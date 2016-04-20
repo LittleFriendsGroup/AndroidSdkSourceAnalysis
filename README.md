@@ -44,8 +44,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
 	<tr>
-     <td><s>AsyncTask源码解析</s></td>
-     <td><s>未认领</s></td>
+     <td>AsyncTask源码解析</td>
+     <td>未认领</td>
     </tr>
   	<tr>
      <td>Button源码解析</td>
