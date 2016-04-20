@@ -23,10 +23,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
 	<tr>
-     <td>AsyncTask源码解析</td>
-      <td>CaMnter</td>
-    </tr>
-    <tr>
      <td>LruCache源码解析</td>
       <td>CaMnter</td>
     </tr>
