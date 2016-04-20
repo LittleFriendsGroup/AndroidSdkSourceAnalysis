@@ -149,5 +149,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 
 
 #####联系方式：
+
 GitHub小伙伴交流群 477826523
+
 微博 [Android-CJJ](http://weibo.com/chenjijun2011)
