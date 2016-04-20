@@ -10,7 +10,7 @@ android sdk 源码解析
       <th>分析者</th>
       <th>校对者</th>
         <th>sdk版本号</th>
-      <th>分析时间</th>
+      <th>发布时间</th>
     </tr>
   </thead>
   <tbody>
@@ -80,7 +80,7 @@ android sdk 源码解析
   </tbody>
 </table>
 
-###带认领文章
+###待认领文章
 
 <table>
   <thead>
