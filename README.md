@@ -122,7 +122,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
     <tr>
-      <td>textview源码解析</a></td>
+      <td>TextView源码解析</a></td>
       <td>无</td>
       <td>未认领</td>
     </tr>
@@ -137,6 +137,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>Toolbar源码解析</td>
+      <td>无</td>
+      <td>未认领</td>
+    </tr>
+    <td>ViewPager源码解析</td>
       <td>无</td>
       <td>未认领</td>
     </tr>
