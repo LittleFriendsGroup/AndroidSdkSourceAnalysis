@@ -80,80 +80,60 @@ android sdk 源码解析
   </tbody>
 </table>
 
-####待认领文章
+####待分析文章
 
 <table>
   <thead>
     <tr>
       <th>Class</th>
       <th>认领者</th>
-      <th>校对者</th>
-      <th>sdk版本号</th>
-      <th>时间</th>
+      <th>认领时间</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
   <tr>
-     <td>textview源码解析</td>
+      <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
  <tr>
       <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
    <tr>
       <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
     <tr>
+  <td>textview源码解析</td>
+      <td>cjj</td>
+      <td>2016/4/20</td>
+    </tr>
+   <tr>
     <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
-      <td>2016/4/20</td>
-    </tr>
-   <tr>
-     <td>textview源码解析</td>
-      <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
     <tr>
       <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
     <tr>
       <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
     <tr>
        <td>textview源码解析</td>
       <td>cjj</td>
-      <td>cjj</td>
-      <td>5.0</td>
       <td>2016/4/20</td>
     </tr>
   </tbody>
