@@ -24,11 +24,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>textview源码解析</a></td>
-      <td>无</td>
-      <td>未认领</td>
-    </tr>
+
   	<tr>
      <td>Button源码解析</td>
       <td>无</td>
@@ -125,6 +121,11 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
+    <tr>
+      <td>textview源码解析</a></td>
+      <td>无</td>
+      <td>未认领</td>
+    </tr>
      <td>Toast源码解析</td>
       <td>无</td>
       <td>未认领</td>
