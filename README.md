@@ -26,6 +26,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>AsyncTask源码解析</td>
       <td>CaMnter</td>
     </tr>
+    <tr>
+     <td>LruCache源码解析</td>
+      <td>CaMnter</td>
+    </tr>
     </tbody>
 </table>
 
@@ -180,8 +184,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
-    <td>LruCache源码解析</td>
-     <td>未认领</td>
+    <td><s>LruCache源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
     <td>MapCollections源码解析</td>
