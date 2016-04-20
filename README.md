@@ -24,7 +24,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
     <tr>
-      <td><a>[textview源码解析](ddddddd)</a></td>
+      <td>textview源码解析</a></td>
       <td>无</td>
       <td>未认领</td>
     </tr>
