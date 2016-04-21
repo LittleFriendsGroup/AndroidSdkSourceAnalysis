@@ -140,6 +140,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>TextUtils源码解析</td>
     	<td>alafighting</td>
     </tr>
+     <tr>
+    	<td>FloatingActionButton源码解析</td>
+    	<td>Rowandjj</td>
+    </tr>
     </tbody>
 </table>
 
@@ -322,10 +326,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   <tbody>
    <tr>
       <td>CollapsingToolbarLayout源码解析</td>
-      <td>未认领</td>
-   </tr>
-   <tr>
-      <td>FloatingActionButton源码解析</td>
       <td>未认领</td>
    </tr>
      <tr>
