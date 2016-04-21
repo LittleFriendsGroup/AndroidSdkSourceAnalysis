@@ -161,6 +161,26 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
+  <tr>
+     <td>AudioPlayer源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Animation源码解析</td>
+     <td>未认领</td>
+    </tr>
+  <tr>
+     <td>ActivityTestCase源码解析</td>
+     <td>未认领</td>
+    </tr>
+  <tr>
+     <td>ActionBar源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>AlarmManager源码解析</td>
+     <td>未认领</td>
+    </tr>
    <tr>
      <td>AccountManager源码解析</td>
      <td>未认领</td>
@@ -174,6 +194,14 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
   	<tr>
+     <td>Bundle源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>BluetoothSocket源码解析</td>
+      <td>未认领</td>
+    </tr>
+  <tr>
      <td>Button源码解析</td>
       <td>未认领</td>
     </tr>
@@ -187,6 +215,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>BoringLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
+     <tr>
+     <td>Camera源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
@@ -210,6 +242,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
+     <td>Html源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
      <td>ImageView源码解析</td>
       <td>未认领</td>
     </tr>
@@ -217,7 +253,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>ImageButton源码解析</td>
       <td>未认领</td>
     </tr>
-    <tr>
     <tr>
      <td>Intent源码解析</td>
       <td>未认领</td>
@@ -227,7 +262,27 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
+     <td>LauncherActivity源码解析</td>
+      <td>未认领</td>
+    </tr>
+     <tr>
+     <td>MediaPlayer源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
      <td>Paint源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>SharedPreferences/Preference源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>PreferenceActivity源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Parcelable源码解析</td>
       <td>未认领</td>
     </tr>
      <tr>
@@ -242,12 +297,20 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>Spinner源码解析</td>
       <td>未认领</td>
     </tr>
+     <tr>
+     <td>Spannable源码解析</td>
+      <td>未认领</td>
+    </tr>
     <tr>
      <td>StaticLayout源码解析</td>
       <td>未认领</td>
     </tr>
      <tr>
      <td>Service源码解析</td>
+      <td>未认领</td>
+    </tr>
+     <tr>
+     <td>SQLiteOpenHelper/SQLiteDatabase/Cursor源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
