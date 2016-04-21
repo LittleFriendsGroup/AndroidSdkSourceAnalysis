@@ -411,9 +411,11 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 
 ###支持我们
 ![](http://ww4.sinaimg.cn/mw690/7ef01fcagw1f348vy4482j2074074aar.jpg)
-已支持的同学：
 
-![](http://tp1.sinaimg.cn/2701537800/180/5750844812/1)
+已支持我们的同学：
+
+ <img src="http://tp1.sinaimg.cn/2701537800/180/5750844812/1" width="100" height="100" />
+
 
 
 ###联系方式：
