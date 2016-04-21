@@ -151,6 +151,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>SwipRefreshLayout源码解析</td>
     	<td>Hanks</td>
     </tr>
+    <tr>
+    	<td>NestedScrollView源码解析</td>
+    	<td>xmuSistone</td>
+    </tr>
     </tbody>
 </table>
 
@@ -394,11 +398,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>CollapsingToolbarLayout源码解析</td>
       <td>未认领</td>
    </tr>
-     <tr>
-      <td>NestedScrollView源码解析</td>
-      <td>未认领</td>
-   </tr>
-       <tr>
+   <tr>
       <td>NavigationView源码解析</td>
       <td>未认领</td>
    </tr>  
