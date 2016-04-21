@@ -65,6 +65,18 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>david-wei</td>
     </tr>
     <tr>
+      <td>ViewPager源码解析</td>
+      <td>cpoopc</td>
+    </tr>
+    <tr>
+      <td>SparseArrayCompat源码解析</td>
+      <td>taoliuh</td>
+    </tr>
+     <tr>
+      <td>LongSparseArray源码解析</td>
+      <td>taoliuh</td>
+    </tr>
+    <tr>
       <td>Dialog源码解析</td>
       <td>wingjay</td>
     </tr>
