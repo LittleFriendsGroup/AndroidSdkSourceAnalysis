@@ -56,6 +56,18 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>LinearLayout源码解析</td>
       <td>razerdp</td>
     </tr>
+    <tr>
+      <td>ArrayMap源码解析</td>
+      <td>audiebantzhan</td>
+    </tr>
+    <tr>
+      <td>AsyncTaskCompat源码解析</td>
+      <td>david-wei</td>
+    </tr>
+    <tr>
+      <td>SimpleArrayMap源码解析</td>
+      <td>david-wei</td>
+    </tr>
     </tbody>
 </table>
 
@@ -190,12 +202,12 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
 	<tr>
-    <td>ArrayMap源码解析</td>
-    <td>未认领</td>
+    <td><s>ArrayMap源码解析</s></td>
+    <td><s>未认领</s></td>
     </tr>
     <tr>
-    <td>AsyncTaskCompat源码解析</td>
-     <td>未认领</td>
+    <td><s>AsyncTaskCompat源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
     <td>AtomicFile源码解析</td>
@@ -222,8 +234,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <td>未认领</td>
     </tr>
     <tr>
-    <td>SimpleArrayMap源码解析</td>
-     <td>未认领</td>
+    <td><s>SimpleArrayMap源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
     <td>SparseArrayCompat源码解析</td>
