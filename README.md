@@ -52,6 +52,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>Seekbar源码解析</td>
       <td>JohnTsaiAndroid</td>
     </tr>
+    <tr>
+      <td>LinearLayout源码解析</td>
+      <td>razerdp</td>
+    </tr>
     </tbody>
 </table>
 
@@ -94,8 +98,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-     <td>LinearLayout源码解析</td>
-      <td>未认领</td>
+     <td><s>LinearLayout源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>ListView源码解析</td>
