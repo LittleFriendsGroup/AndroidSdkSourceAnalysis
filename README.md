@@ -120,10 +120,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>TabLayout源码解析</td>
     	<td>Aspsine</td>
     </tr>
-     <tr>
-    	<td>SwipRefreshLayout源码解析</td>
-    	<td>xdtianyu</td>
-    </tr>
     <tr>
     	<td>Binder源码解析</td>
     	<td>xdtianyu</td>
@@ -147,6 +143,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <tr>
     	<td>FloatingActionButton源码解析</td>
     	<td>Rowandjj</td>
+    </tr>
+     <tr>
+    	<td>SwipRefreshLayout源码解析</td>
+    	<td>Hanks</td>
     </tr>
     </tbody>
 </table>
