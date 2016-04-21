@@ -88,6 +88,38 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>Drawable源码解析</td>
       <td>wingjay</td>
     </tr>
+    <tr>
+    	<td>Handler源码解析</td>
+    	<td>maoruibin</td>
+    </tr>
+    <tr>
+    	<td>CoordinatorLayout源码解析</td>
+    	<td>desmond1121</td>
+    </tr>
+     <tr>
+    	<td>AppBarLayout源码解析</td>
+    	<td>desmond1121</td>
+    </tr>
+     <tr>
+    	<td>ProgressBar源码解析</td>
+    	<td>carozhu</td>
+    </tr>
+     <tr>
+    	<td>RadioGroup</td>
+    	<td>Tikitoo</td>
+    </tr>
+     <tr>
+    	<td>RadioButton</td>
+    	<td>Tikitoo</td>
+    </tr>
+     <tr>
+    	<td>CompoundButton</td>
+    	<td>Tikitoo</td>
+    </tr>
+     <tr>
+    	<td>ToggleButton</td>
+    	<td>Tikitoo</td>
+    </tr>
     </tbody>
 </table>
 
@@ -114,8 +146,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-     <td>CompoundButton源码解析</td>
-     <td>未认领</td>
+     <td><s>CompoundButton源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>EditText源码解析</td>
@@ -138,16 +170,16 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-     <td>ProgressBar源码解析</td>
-      <td>未认领</td>
+     <td><s>ProgressBar源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
-     <td>RadioButton源码解析</td>
-      <td>未认领</td>
+     <td><s>RadioButton源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
-     <td>RadioGroup源码解析</td>
-      <td>未认领</td>
+     <td><s>RadioGroup源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>RelativeLayout源码解析</td>
@@ -198,16 +230,16 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td><s>未认领</s></td>
     </tr>
     <tr>
-     <td>ToggleButton源码解析</td>
-     <td>未认领</td>
+     <td><s>ToggleButton源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>Log源码解析</td>
      <td>未认领</td>
     </tr>
     <tr>
-     <td>Handler源码解析</td>
-     <td>未认领</td>
+     <td><s>Handler源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>Binder源码解析</td>
