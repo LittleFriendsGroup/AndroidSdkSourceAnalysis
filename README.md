@@ -52,7 +52,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   <tbody>
 	<tr>
      <td><s>AsyncTask源码解析</s></td>
-     <td>未认领</td>
+     <td><s>未认领</s></td>
     </tr>
   	<tr>
      <td>Button源码解析</td>
