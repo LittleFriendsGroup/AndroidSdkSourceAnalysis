@@ -289,4 +289,4 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 
 GitHub小伙伴交流群 477826523  (年轻的骚年啊，你是分析者呢 ？还是校对者呢 ？什么都不是别加 T_T)
 
-微博 [Android-CJJ](http://weibo.com/chenjijun2011)
+微博    [Android-CJJ](http://weibo.com/chenjijun2011)
