@@ -157,12 +157,52 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
+   <tr>
+     <td>AccountManager源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Activity源码解析</td>
+     <td>未认领</td>
+    </tr>
+  <tr>
+     <td>AdapterView源码解析</td>
+      <td>未认领</td>
+    </tr>
   	<tr>
      <td>Button源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
+     <td>Bitmap源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>BroadcastReceiver源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>BoringLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Canvas源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Dialog源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>DynamicLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
      <td>EditText源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Fragment源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
@@ -174,7 +214,20 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
+    <tr>
+     <td>Intent源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
      <td>ListView源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Paint源码解析</td>
+      <td>未认领</td>
+    </tr>
+     <tr>
+     <td>PopupWindow源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
@@ -183,6 +236,14 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>Spinner源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>StaticLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
+     <tr>
+     <td>Service源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
@@ -198,6 +259,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
+     <td>LayoutInflater/LayoutInflaterCompat源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
      <td>Log源码解析</td>
      <td>未认领</td>
     </tr>
@@ -206,7 +271,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
-     <td>AccountManager源码解析</td>
+     <td>WebView源码解析</td>
      <td>未认领</td>
     </tr>
   </tbody>
