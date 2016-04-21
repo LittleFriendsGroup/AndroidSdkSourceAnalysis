@@ -348,6 +348,18 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>WebView源码解析</td>
      <td>未认领</td>
     </tr>
+     <tr>
+      <td>GestureDetector源码解析</td>
+      <td>未认领</td>
+      </tr>
+      <tr>
+       <td>OverScroller源码解析</td>
+       <td>未认领</td>
+       </tr>
+       <tr>
+        <td>TextureView源码解析</td>
+        <td>未认领</td>
+        </tr>
   </tbody>
 </table>
 
@@ -382,6 +394,22 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
   </tbody>
+</table>
+
+**v7**
+<table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>认领状态</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+   <td>ItemTouchHelper源码解析</td>
+   <td>未认领</td>
+   </tr>
+   </tbody>
 </table>
 
 **design**
