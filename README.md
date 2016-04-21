@@ -123,6 +123,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>lishiwei</td>
     </tr>
     <tr>
+    	<td>GestureDetector源码分析</td>
+    	<td>lishiwei</td>
+    </tr>
+    <tr>
     	<td>TabLayout源码解析</td>
     	<td>Aspsine</td>
     </tr>
@@ -351,10 +355,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>Notification源码解析</td>
      <td>未认领</td>
     </tr>
-     <tr>
-      <td>GestureDetector源码解析</td>
-      <td>未认领</td>
-      </tr>
       <tr>
        <td>OverScroller源码解析</td>
        <td>未认领</td>
