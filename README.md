@@ -132,6 +132,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Toolbar源码解析</td>
     	<td>SeniorZhai</td>
     </tr>
+    <tr>
+    	<td>TextView源码解析</td>
+    	<td>likkka</td>
+    </tr>
     </tbody>
 </table>
 
@@ -235,8 +239,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
     <tr>
-      <td>TextView源码解析</a></td>
-      <td>未认领</td>
+      <td><s>TextView源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
      <td><s>Toast源码解析</s></td>
      <td><s>未认领</s></td>
