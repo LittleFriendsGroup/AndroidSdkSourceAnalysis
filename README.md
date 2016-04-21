@@ -69,16 +69,16 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>david-wei</td>
     </tr>
     <tr>
-      <td>ViewPager源码解析</td>
-      <td>cpoopc</td>
+      <td>Dialog源码解析</td>
+      <td>wingjay</td>
     </tr>
     <tr>
-      <td>SparseArrayCompat源码解析</td>
-      <td>taoliuh</td>
+      <td>Frame/Linear/RelativeLayout源码解析</td>
+      <td>wingjay</td>
     </tr>
     <tr>
-      <td>LongSparseArray源码解析</td>
-      <td>taoliuh</td>
+      <td>Drawable源码解析</td>
+      <td>wingjay</td>
     </tr>
     </tbody>
 </table>
@@ -194,11 +194,31 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
+     <td>Log源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Handler源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Binder源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Notification源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
+     <td>AccountManager源码解析</td>
+     <td>未认领</td>
+    </tr>
+    <tr>
      <td>Toolbar源码解析</td>
      <td>未认领</td>
     </tr>
-    <td><s>ViewPager源码解析</s></td>
-    <td><s>未认领</s></td>
+    <td>ViewPager源码解析</td>
+    <td>未认领</td>
     </tr>
   </tbody>
 </table>
@@ -234,8 +254,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
-    <td><s>LongSparseArray源码解析</s></td>
-     <td><s>未认领</s></td>
+    <td>LongSparseArray源码解析</td>
+     <td>未认领</td>
     </tr>
     <tr>
     <td><s>LruCache源码解析</s></td>
@@ -250,8 +270,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td><s>未认领</s></td>
     </tr>
     <tr>
-    <td><s>SparseArrayCompat源码解析</s></td>
-     <td><s>未认领</s></td>
+    <td>SparseArrayCompat源码解析</td>
+     <td>未认领</td>
     </tr>
     <tr>
     <td>TimeUtils源码解析</td>
