@@ -128,6 +128,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Binder源码解析</td>
     	<td>xdtianyu</td>
     </tr>
+    <tr>
+    	<td>Toolbar源码解析</td>
+    	<td>SeniorZhai</td>
+    </tr>
     </tbody>
 </table>
 
@@ -262,8 +266,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
-     <td>Toolbar源码解析</td>
-     <td>未认领</td>
+     <td><s>Toolbar源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <td><s>ViewPager源码解析</s></td>
     <td><s>未认领</s></td>
