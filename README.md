@@ -68,6 +68,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>SimpleArrayMap源码解析</td>
       <td>david-wei</td>
     </tr>
+    <tr>
+      <td>ViewPager源码解析</td>
+      <td>cpoopc</td>
+    </tr>
     </tbody>
 </table>
 
@@ -185,8 +189,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>Toolbar源码解析</td>
      <td>未认领</td>
     </tr>
-    <td>ViewPager源码解析</td>
-    <td>未认领</td>
+    <td><s>ViewPager源码解析</s></td>
+    <td><s>未认领</s></td>
     </tr>
   </tbody>
 </table>
