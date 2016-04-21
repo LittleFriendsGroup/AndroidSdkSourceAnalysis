@@ -1,5 +1,8 @@
 android sdk 源码解析
 ===============================
+
+![](https://github.com/yuxingxin/AndroidWidgetClassGraph/blob/master/img/android.jpg)
+
 #####概要说明：
 
 * 已发布文章 发表已经整理好的文章，读者可以阅读学习！
@@ -10,7 +13,7 @@ android sdk 源码解析
 
 ##已发布文章
 Class | 分析者 | 校对者 | 版本 | 发布时间
-:------------- | :------------- | :------------- | :------------- | :-------------
+:------------- | :------------- | :------------- | :------------- | :------------- 
 [BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|Support Library 23.2 | 2016/4/20
 
 
@@ -403,22 +406,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>TextInputLayout源码解析</td>
       <td>未认领</td>
    </tr>
-   <tr>
-    <td>ItemTouchHelper源码解析</td>
-    <td>未认领</td>
-    </tr>
-    <tr>
-     <td>GestureDetector源码解析</td>
-     <td>未认领</td>
-     </tr>
-     <tr>
-      <td>OverScroller源码解析</td>
-      <td>未认领</td>
-      </tr>
-      <tr>
-       <td>TextureView源码解析</td>
-       <td>未认领</td>
-       </tr>
    </tbody>
 </table>
 
