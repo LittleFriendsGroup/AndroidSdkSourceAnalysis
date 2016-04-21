@@ -24,33 +24,33 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-    <tr>
+     <tr>
       <td>LruCache源码解析</td>
-      <td>CaMnter</td>
+      <td>[CaMnter](https://github.com/CaMnter)</td>
     </tr>
     <tr>
       <td>AsyncTask源码解析</td>
-      <td>white37</td>
+      <td>[white37](https://github.com/white37)</td>
     </tr>
     <tr>
       <td>Toast源码解析</td>
-      <td>吴小龙同學</td>
+      <td>[吴小龙同學](https://github.com/WuXiaolong)</td>
     </tr>
      <tr>
      <td>Scroller源码解析</td>
-      <td>Skykai521</td>
+      <td>[Skykai521](https://github.com/Skykai521)</td>
     </tr>
         <tr>
      <td>ScrollView源码解析</td>
-      <td>Skykai521</td>
+      <td>[Skykai521](https://github.com/Skykai521)</td>
     </tr>
     <tr>
       <td>SearchView源码解析</td>
-      <td>Nukc</td>
+      <td>[Nukc](https://github.com/nukc)</td>
     </tr>
      <tr>
       <td>Seekbar源码解析</td>
-      <td>JohnTsaiAndroid</td>
+      <td>[JohnTsaiAndroid](https://github.com/JohnTsaiAndroid)</td>
     </tr>
     </tbody>
 </table>
