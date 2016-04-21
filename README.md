@@ -170,6 +170,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>AdapterView源码解析</td>
     	<td>ShenghuGong</td>
     </tr>
+    <tr>
+    	<td>Activity源码解析</td>
+    	<td>nekocode</td>
+    </tr>
     </tbody>
 </table>
 
@@ -209,10 +213,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
    <tr>
      <td>AccountManager源码解析</td>
-     <td>未认领</td>
-    </tr>
-    <tr>
-     <td>Activity源码解析</td>
      <td>未认领</td>
     </tr>
   	<tr>
