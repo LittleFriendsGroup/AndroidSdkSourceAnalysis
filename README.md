@@ -48,6 +48,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>SearchView源码解析</td>
       <td>Nukc</td>
     </tr>
+     <tr>
+      <td>Seekbar源码解析</td>
+      <td>JohnTsaiAndroid</td>
+    </tr>
     </tbody>
 </table>
 
