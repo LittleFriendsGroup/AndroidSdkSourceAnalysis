@@ -36,6 +36,14 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>Toast源码解析</td>
       <td>吴小龙同學</td>
     </tr>
+     <tr>
+     <td>Scroller源码解析</td>
+      <td>Skykai521</td>
+    </tr>
+        <tr>
+     <td>ScrollView源码解析</td>
+      <td>Skykai521</td>
+    </tr>
     <tr>
       <td>SearchView源码解析</td>
       <td>Nukc</td>
@@ -106,12 +114,12 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-     <td>Scroller源码解析</td>
-      <td>未认领</td>
+     <td><s>Scroller源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
-     <td>ScrollView源码解析</td>
-      <td>未认领</td>
+     <td><s>ScrollView源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
      <td><s>SearchView源码解析</s></td>
