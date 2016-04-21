@@ -343,10 +343,18 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 **design**
 
 <table>
+  <thead>
+    <tr>
+      <th>Class</th>
+      <th>认领状态</th>
+    </tr>
+  </thead>
+  <tbody>
    <tr>
-   	<td><s>TabLayout源码解析</s></td>
-   	<td><s>未认领</s></td>
+      <td><s>TabLayout源码解析</s></td>
+      <td><s>未认领</s></td>
    </tr>
+   </tbody>
 </table>
 
 注意事项：文章请发表在你个人Github上，目的是有统一性，然后你想链接个人博客在自己分析的博文写！
