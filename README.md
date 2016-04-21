@@ -128,6 +128,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Binder源码解析</td>
     	<td>xdtianyu</td>
     </tr>
+     <tr>
+    	<td>RecyclerView源码解析</td>
+    	<td>xdtianyu</td>
+    </tr>
     <tr>
     	<td>Toolbar源码解析</td>
     	<td>SeniorZhai</td>
@@ -223,10 +227,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>Canvas源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>Dialog源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
