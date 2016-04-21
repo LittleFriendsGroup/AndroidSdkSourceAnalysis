@@ -127,8 +127,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Binder源码解析</td>
     	<td>xdtianyu</td>
     </tr>
-     <tr>
-    	<td>RecyclerView源码解析</td>
+    <tr>
+    	<td>RecyclerView/ItemTouchHelper源码解析</td>
     	<td>xdtianyu</td>
     </tr>
     <tr>
@@ -406,7 +406,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
   <tr>
-   <td>ItemTouchHelper源码解析</td>
+   <td>ActionMenuView源码解析</td>
    <td>未认领</td>
    </tr>
    </tbody>
