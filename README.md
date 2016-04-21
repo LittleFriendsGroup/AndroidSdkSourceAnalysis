@@ -136,6 +136,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>TextView源码解析</td>
     	<td>likkka</td>
     </tr>
+     <tr>
+    	<td>TextUtils源码解析</td>
+    	<td>alafighting</td>
+    </tr>
     </tbody>
 </table>
 
@@ -153,17 +157,9 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-	<tr>
-     <td><s>AsyncTask源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
   	<tr>
      <td>Button源码解析</td>
       <td>未认领</td>
-    </tr>
-    <tr>
-     <td><s>CompoundButton源码解析</s></td>
-     <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>EditText源码解析</td>
@@ -178,44 +174,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-     <td><s>LinearLayout源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
      <td>ListView源码解析</td>
       <td>未认领</td>
-    </tr>
-    <tr>
-     <td><s>ProgressBar源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>RadioButton源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>RadioGroup源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td>RelativeLayout源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td><s>Scroller源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>ScrollView源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>SearchView源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>SeekBar源码解析</s></td>
-      <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>Selector原理(Drawable源码解析)</td>
@@ -238,28 +198,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-    <tr>
-      <td><s>TextView源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-     <td><s>Toast源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>ToggleButton源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
      <td>Log源码解析</td>
      <td>未认领</td>
-    </tr>
-    <tr>
-     <td><s>Handler源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>Binder源码解析</s></td>
-     <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>Notification源码解析</td>
@@ -268,13 +208,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <tr>
      <td>AccountManager源码解析</td>
      <td>未认领</td>
-    </tr>
-    <tr>
-     <td><s>Toolbar源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <td><s>ViewPager源码解析</s></td>
-    <td><s>未认领</s></td>
     </tr>
   </tbody>
 </table>
@@ -289,14 +222,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-	<tr>
-    <td><s>ArrayMap源码解析</s></td>
-    <td><s>未认领</s></td>
-    </tr>
-    <tr>
-    <td><s>AsyncTaskCompat源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
     <tr>
     <td>AtomicFile源码解析</td>
     <td>未认领</td>
@@ -310,40 +235,12 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
-    <td><s>LongSparseArray源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
-    <td><s>LruCache源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
     <td>MapCollections源码解析</td>
     <td>未认领</td>
     </tr>
     <tr>
-    <td><s>SimpleArrayMap源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
-    <td><s>SparseArrayCompat源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
     <td>TimeUtils源码解析</td>
      <td>未认领</td>
-    </tr>
-    <tr>
-    <td><s>SwipeRefreshLayout源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
-    <td><s>ViewDragHelper源码解析</s></td>
-     <td><s>未认领</s></td>
-    </tr>
-    <tr>
-    <td><s>ViewPager源码解析</s></td>
-      <td><s>未认领</s></td>
     </tr>
   </tbody>
 </table>
@@ -359,8 +256,24 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
    <tr>
-      <td><s>TabLayout源码解析</s></td>
-      <td><s>未认领</s></td>
+      <td>CollapsingToolbarLayout源码解析</td>
+      <td>未认领</td>
+   </tr>
+   <tr>
+      <td>FloatingActionButton源码解析</td>
+      <td>未认领</td>
+   </tr>
+     <tr>
+      <td>NestedScrollView源码解析</td>
+      <td>未认领</td>
+   </tr>
+       <tr>
+      <td>NavigationView源码解析</td>
+      <td>未认领</td>
+   </tr>  
+     <tr>
+      <td>TextInputLayout源码解析</td>
+      <td>未认领</td>
    </tr>
    </tbody>
 </table>
