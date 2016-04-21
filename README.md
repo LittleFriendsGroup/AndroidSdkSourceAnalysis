@@ -14,8 +14,8 @@ android sdk 源码解析
 ##已发布文章
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
-[BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|Support Library 23.2 | 2016/4/20
-[ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/artcle/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|Support V4   21 | 2016/4/21
+[BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|design-23.2.0 | 2016/4/20
+[ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/artcle/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|support-v4-21.0 | 2016/4/21
 
 
 ## 已认领文章
