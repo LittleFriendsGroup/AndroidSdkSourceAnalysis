@@ -24,25 +24,21 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-	<tr>
-     <td>LruCache源码解析</td>
+    <tr>
+      <td>LruCache源码解析</td>
       <td>CaMnter</td>
     </tr>
-    	<tr>
-     <td>AsyncTask源码解析</td>
+    <tr>
+      <td>AsyncTask源码解析</td>
       <td>white37</td>
     </tr>
-    	<tr>
-     <td>Toast源码解析</td>
+    <tr>
+      <td>Toast源码解析</td>
       <td>吴小龙同學</td>
     </tr>
-        <tr>
-     <td>Scroller源码解析</td>
-      <td>Skykai521</td>
-    </tr>
-        <tr>
-     <td>ScrollView源码解析</td>
-      <td>Skykai521</td>
+    <tr>
+      <td>SearchView源码解析</td>
+      <td>Nukc</td>
     </tr>
     </tbody>
 </table>
@@ -110,16 +106,16 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-     <td><s>Scroller源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td><s>ScrollView源码解析</s></td>
-      <td><s>未认领</s></td>
-    </tr>
-    <tr>
-     <td>SearchView源码解析</td>
+     <td>Scroller源码解析</td>
       <td>未认领</td>
+    </tr>
+    <tr>
+     <td>ScrollView源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td><s>SearchView源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>SeekBar源码解析</td>
