@@ -130,8 +130,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td><s>未认领</s></td>
     </tr>
     <tr>
-     <td>SeekBar源码解析</td>
-      <td>未认领</td>
+     <td><s>SeekBar源码解析</s></td>
+      <td><s>未认领</s></td>
     </tr>
     <tr>
      <td>Spinner源码解析</td>
