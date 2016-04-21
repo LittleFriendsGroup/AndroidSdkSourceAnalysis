@@ -1,4 +1,6 @@
----
+ViewDragHelper源码解析
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
 ### 1.简介
 我们了解了`ViewDragHelper`是可以帮助我们处理各种拖拽事件的类.使用好`ViewDragHelper`能帮助我们做出各种酷炫的交互,今天我们就来分析一下`ViewDragHelper`的使用与实现:
 
