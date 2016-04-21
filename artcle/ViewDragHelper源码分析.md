@@ -1,7 +1,7 @@
 ---
 ### 1.简介
-在上一篇文章[SwipeBackLayout源代码分析](http://skykai521.github.io/2016/03/04/SwipeBackLayout%E6%BA%90%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90/)中,我们了解了`ViewDragHelper`是可以帮助我们处理各种拖拽事件的类.使用好`ViewDragHelper`能帮助我们做出各种酷炫的交互,今天我们就来分析一下`ViewDragHelper`的使用与实现:
-<!-- more -->
+我们了解了`ViewDragHelper`是可以帮助我们处理各种拖拽事件的类.使用好`ViewDragHelper`能帮助我们做出各种酷炫的交互,今天我们就来分析一下`ViewDragHelper`的使用与实现:
+
 ### 2.使用方法
 
 我们这里就以[翔总的这篇文章](http://blog.csdn.net/lmj623565791/article/details/46858663)中的例子来介绍一下`ViewDragHelper`的使用.另外,本文中的demo可以在
