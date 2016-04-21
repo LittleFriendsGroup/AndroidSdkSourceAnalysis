@@ -29,7 +29,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>CaMnter</td>
     </tr>
     <tr>
-      <td>AsyncTask源码解析</td>
+      <td>AsyncTask/AsyncTaskCompat源码解析</td>
       <td>white37</td>
     </tr>
     <tr>
@@ -59,10 +59,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <tr>
       <td>ArrayMap源码解析</td>
       <td>audiebantzhan</td>
-    </tr>
-    <tr>
-      <td>AsyncTaskCompat源码解析</td>
-      <td>david-wei</td>
     </tr>
     <tr>
       <td>SimpleArrayMap源码解析</td>
