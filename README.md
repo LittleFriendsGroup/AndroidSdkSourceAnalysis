@@ -120,6 +120,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>ToggleButton</td>
     	<td>Tikitoo</td>
     </tr>
+    <tr>
+    	<td>ViewDragHelper</td>
+    	<td>lishiwei</td>
+    </tr>
     </tbody>
 </table>
 
@@ -322,8 +326,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>未认领</td>
     </tr>
     <tr>
-    <td>ViewDragHelper源码解析</td>
-     <td>未认领</td>
+    <td><s>ViewDragHelper源码解析</s></td>
+     <td><s>未认领</s></td>
     </tr>
     <tr>
     <td><s>ViewPager源码解析</s></td>
