@@ -111,8 +111,26 @@ AsyncTask是可以在任何时候被取消的，开篇我提到了当你activity
 ```java
 AsyncTask.cancel(mayInterruptIfRunning);
 ```
-mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他们两个有什么区别呢，调用了cancel能马上取消doInBackground里面还在运行的异步任务，你可能会这样想
-我做了一个实验，当我设置AsyncTask.cancel(true)的时候
+mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他们两个有什么区别呢，调用了cancel能马上取消doInBackground里面还在运行的异步任务，你可能会这样想<br>
+我做了一个实验，当我设置AsyncTask.cancel(true)
+![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/cancel(true).png)
+当我在progress更新到1000的时候我点击了，AsyncTask.cancel(true)，界面已经不在更了，但是Log还是会继续累加progress，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
+当我设置AsyncTask.cancel(false)
+当我在progress更新到1000的时候我点击了，AsyncTask.cancel(false)，界面已经不在更新了，但是Log还是会继续累加progress，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
+那到底AsyncTask.cancel(true/false)有什区别呢，听我慢慢到来<br>
+在你的doInBackground里面没有
+```java
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+```
+无论true或者false都是一样结果，也就是，界面已经不在更新了，但是Log还是会继续累加progress，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
+在你的doInBackground里面有上述休眠的代码时候，AsyncTask.cancel(true)出现的结果是界面已经不在更新了，但是Log还是会继续累加progress，期间不会抛出中断的异常，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
+在你的doInBackground里面有上述休眠的代码时候，AsyncTask.cancel(false)出现的结果是界面已经不在更新了，但是Log还是会继续累加progress，先抛出中断的异常，再一直累加输出到20000，执行完doInBackground才调用onCanceled方法,<br>
+![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/cacel(false).png)
+
 
 
 
