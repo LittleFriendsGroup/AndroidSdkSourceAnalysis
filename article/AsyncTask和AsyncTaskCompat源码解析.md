@@ -273,31 +273,53 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
 * SerialExecutor的execute方法
 ```java
   private static class SerialExecutor implements Executor {
+  	//循环数组实现的双向Queue。大小是2的倍数，默认是16。有队头队尾两个下标
         final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();
+        //当前正在运行的runnable
         Runnable mActive;
 
         public synchronized void execute(final Runnable r) {
+            //添加到双端队列里面去
             mTasks.offer(new Runnable() {
                 public void run() {
                     try {
+                    	//执行的是mFuture就是之前AsyncTask构造初始化赋值的FutureTask的run()方法
                         r.run();
                     } finally {
                         scheduleNext();
                     }
                 }
             });
+            //如果没有活动的runnable，从双端队列里面取出一个runnable放到线程池中运行
+            //第一个请求任务过来的时候mActive是空的
             if (mActive == null) {
+            	//取出下一个任务来执行
                 scheduleNext();
             }
         }
-
+	
         protected synchronized void scheduleNext() {
+            //从双端队列中取出一个任务
             if ((mActive = mTasks.poll()) != null) {
+            	//线程池执行取出来的任务，真正执行任务的
                 THREAD_POOL_EXECUTOR.execute(mActive);
             }
         }
     }//java
 ```
+exec.execute(mFuture)执行时，SerialExecutor将FutureTask作为参数执行execute方法。在SerialExecutor的execute方法中，这里通过一个任务队列mTasks把FutureTask插入进了队列中，执行r.run，其实就是执行FutureTask的run方法，因为传递进来的r参数就是mFuture，执行完无论什么情况都是会scheduleNext()取出下一个任务来执行的。由此可知道一个串行的线程池，同一时刻只会有一个线程正在执行，其余的均处于等待状态，等到上一个线程执完r.run()完之后，scheduleNext()取出下一个任务执行。如果再有新的任务被执行时就等待上一个任务执行完毕后才会得到执行，实现了串行的任务队列正是通过SerialExecutor核心类。
 
+##总结前面部分：FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的doInBackground(),这个是在子线程中调用的
+```java
+mWorker = new WorkerRunnable<Params, Result>() {
+            public Result call() throws Exception {
+                mTaskInvoked.set(true);
 
-
+                Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                //noinspection unchecked
+                Result result = doInBackground(mParams);
+                Binder.flushPendingCommands();
+                return postResult(result);
+            }
+        };
+```
