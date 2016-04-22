@@ -75,7 +75,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>cpoopc</td>
     </tr>
     <tr>
-      <td>SparseArrayCompat源码解析</td>
+      <td>SparseArray源码解析</td>
       <td>taoliuh</td>
     </tr>
      <tr>
