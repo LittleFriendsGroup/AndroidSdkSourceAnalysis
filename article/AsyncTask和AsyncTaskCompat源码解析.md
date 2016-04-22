@@ -96,4 +96,5 @@ public class AsyntaskActivity extends AppCompatActivity {
 //java
 ```
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/Asyntask.png)
+
 例子中doInBackground返回的结果Boolean最终会传递给onPostExecute(Boolean aBoolean)，而这一系列的操作是由AsyncTask底层实现的，通过handler发结果发送到主线程
