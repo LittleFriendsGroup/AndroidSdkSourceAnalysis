@@ -14,16 +14,13 @@
  ```java
  public abstract class AsyncTask<Params, Progress, Result>//java
  ```
- * Params     
- 异步任务处理的参数
- * Progress
- 异步任务执行过程中返回给主线程的进度值，通过publishProgress()方法发送出去
- * Result
- 异步任务执行结束返回的结果的结果类型，可以为boolean，或者bitmap等类型
+ * Params     异步任务处理的参数
+ * Progress   异步任务执行过程中返回给主线程的进度值，通过publishProgress()方法发送出去
+ * Result     异步任务执行结束返回的结果的结果类型，可以为boolean，或者bitmap等类型
+ 
 
 ```java
 public class AsyntaskActivity extends AppCompatActivity {
-
 
     private ProgressDialog progressDialog;
     private int progress = 0;
