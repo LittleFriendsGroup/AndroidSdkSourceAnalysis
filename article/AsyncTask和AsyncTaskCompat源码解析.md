@@ -189,7 +189,7 @@ mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他
     }
 ```
 AsyncTask的实例化在UI线程中。构造函数初始化了两个AsyncTask类的成员变量（mWorker和mFuture）。mWorker为匿名内部类的实例对象WorkerRunnable（实现了Callable接口），mFuture为匿名内部类的实例对象FutureTask，传入了mWorker作为形参（重写了FutureTask类的done方法）。
-* WorkerRunnable是一个实现了Callable的抽象类
+* WorkerRunnable是一个实现了Callable的抽象类,扩展了Callable多了一个Params参数
 ```java
 private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> 
 {
@@ -221,7 +221,7 @@ public class CallableAndFuture {
     }
 }//java
 ```
-* FutureTask
+* FutureTask实现了接口Runnable，所以它既可以作为Runnable被线程执行，将Callable作为构造函数的参数传实例中，那么这个组合的使用有什么好处呢？假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，那么就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到，岂不美哉！这里有一个Future模式的介绍
 
 
 
