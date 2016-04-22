@@ -10,7 +10,7 @@
     提供自定义的线程池，实现多个线程顺序同步执行，异步并发执行
     提供回调方法，及时监控后台执行任务的进度，更新主线程的UI控件以及获取异步执行结果
 ## 二、AsyncTask用法
-### 2.1、AsyncTask是抽象类
+### 2.1、AsyncTask是抽象类，需要被子类继承，需要指定三个泛型的参数
  ```java
  public abstract class AsyncTask<Params, Progress, Result>//java
  ```
@@ -18,7 +18,14 @@
  * Progress   异步任务执行过程中返回给主线程的进度值，通过publishProgress()方法发送出去
  * Result     异步任务执行结束返回的结果的结果类型，可以为boolean，或者bitmap等类型
  
-###2.2、创建自定义的AsyncTask，实现抽象方法
+###2.2、子类必须实现的抽象方法
+（1）onPreExecute：     执行后台耗时操作前被调用，通常用于完成一些初始化操作，比如2.3例子中初始化dialog的操作，或者一些集合容器
+（2）doInBackGround：   必须实现，异步执行后台线程将要完成的任务(该方法在子线程运行,下面源码会分析到)
+（3）onProgressUpdate： 在doInBackGround方法中调用publishProgress方法，AsyncTask就会主动调用onProgressUpdate实现更新
+任务的执行进度
+（4）onPostExecute：当doInBackGround完成后，系统会自动调用，销毁一些dialog的操作，并将doInBackGround﻿方法返回的值传给该方法，
+
+###2.3、创建自定义的AsyncTask，实现抽象方法
 
 ```java
 public class AsyntaskActivity extends AppCompatActivity {
@@ -98,3 +105,5 @@ public class AsyntaskActivity extends AppCompatActivity {
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/Asyntask.png)
 
 例子中doInBackground返回的结果Boolean最终会传递给onPostExecute(Boolean aBoolean)，而这一系列的操作是由AsyncTask底层实现的，通过handler发结果发送到主线程
+
+
