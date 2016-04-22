@@ -230,8 +230,74 @@ public class FutureTask<V> implements RunnableFuture<V>//java
 ```
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/FutureTask(run).png)
 
+### 3.2、核心方法
+* execute()方法
+```java
+private static volatile Executor sDefaultExecutor = SERIAL_EXECUTOR;
+public static final Executor SERIAL_EXECUTOR = new SerialExecutor();
 
+ /** AsyncTask类的execute方法**/
+ public final AsyncTask<Params, Progress, Result> execute(Params... params) {
+    //调用executeOnExecutor方法
+    return executeOnExecutor(sDefaultExecutor, params);
+}
+```
+当执行execute方法时，里面调用的executeOnExecutor方法。这里传递了两个参数，一个是sDefaultExecutor，一个是params。从上面的源码可以看出，sDefaultExecutor其实是一个SerialExecutor对象。params其实最终会赋给doInBackground方法去处理
+* executeOnExecutor()方法
+```java
+//exec执行AsyncTask.execute()方法时传递进来的参数sDefaultExecutor，这个sDefaultExecutor其实就是SerialExecutor对象。
+public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec,
+            Params... params) {
+        if (mStatus != Status.PENDING) {
+            switch (mStatus) {
+                case RUNNING:
+                    throw new IllegalStateException("Cannot execute task:"
+                            + " the task is already running.");
+                case FINISHED:
+                    throw new IllegalStateException("Cannot execute task:"
+                            + " the task has already been executed "
+                            + "(a task can be executed only once)");
+            }
+        }
 
+        mStatus = Status.RUNNING;
+
+        onPreExecute();
+
+        mWorker.mParams = params;
+        exec.execute(mFuture);//execute是调用SERIAL_EXECUTOR的execute，mFuture就是之前AsyncTask构造初始化赋值的FutureTask。
+        return this;
+    }
+
+```
+* SerialExecutor的execute方法
+```java
+  private static class SerialExecutor implements Executor {
+        final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();
+        Runnable mActive;
+
+        public synchronized void execute(final Runnable r) {
+            mTasks.offer(new Runnable() {
+                public void run() {
+                    try {
+                        r.run();
+                    } finally {
+                        scheduleNext();
+                    }
+                }
+            });
+            if (mActive == null) {
+                scheduleNext();
+            }
+        }
+
+        protected synchronized void scheduleNext() {
+            if ((mActive = mTasks.poll()) != null) {
+                THREAD_POOL_EXECUTOR.execute(mActive);
+            }
+        }
+    }//java
+```
 
 
 
