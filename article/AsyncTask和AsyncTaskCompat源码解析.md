@@ -107,6 +107,13 @@ public class AsyntaskActivity extends AppCompatActivity {
 例子中doInBackground返回的结果Boolean最终会传递给onPostExecute(Boolean aBoolean)，而这一系列的操作是由AsyncTask底层实现的，通过handler发结果发送到主线程
 
 ###2.4、取消异步任务
-AysncTask是可以在任何时候被取消的，开篇我提到了当你activity销毁了，我们需要及时的释放资源，包括AsyncTask，你也可以取消正在执行的异步任务
+AsyncTask是可以在任何时候被取消的，开篇我提到了当你activity销毁了，我们需要及时的释放资源，包括AsyncTask，你也可以取消正在执行的异步任务
+```java
+AsyncTask.cancel(mayInterruptIfRunning);
+```
+mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他们两个有什么区别呢，调用了cancel能马上取消doInBackground里面还在运行的异步任务，你可能会这样想
+我做了一个实验，当我设置AsyncTask.cancel(true)的时候
+
+
 
 
