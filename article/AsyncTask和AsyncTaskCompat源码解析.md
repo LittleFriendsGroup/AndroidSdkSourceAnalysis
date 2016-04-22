@@ -160,9 +160,9 @@ mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他
 /**AsyncTask的构造函数源码片段**/
    public AsyncTask() {
         mWorker = new WorkerRunnable<Params, Result>() {
+            //异步任务执行的时候调用call方法
             public Result call() throws Exception {
                 mTaskInvoked.set(true);
-
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                 //noinspection unchecked
                 Result result = doInBackground(mParams);
@@ -188,7 +188,7 @@ mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他
         };
     }
 ```
-AsyncTask的实例化在UI线程中。构造函数初始化了两个AsyncTask类的成员变量（mWorker和mFuture）。mWorker为匿名内部类的实例对象WorkerRunnable（实现了Callable接口），mFuture为匿名内部类的实例对象FutureTask，传入了mWorker作为形参（重写了FutureTask类的done方法）。
+AsyncTask的实例化在UI线程中。构造函数初始化了两个AsyncTask类的成员变量（mWorker和mFuture）。mWorker为匿名内部类的实例对象WorkerRunnable（实现了Callable接口），mFuture为匿名内部类的实例对象FutureTask，传入了mWorker作为形参（重写了FutureTask类的done方法）。当用户执行了execute方法的时候在特定情况下会触发这两个对象的回调方法。
 * WorkerRunnable是一个实现了Callable的抽象类,扩展了Callable多了一个Params参数
 ```java
 private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> 
@@ -208,7 +208,9 @@ public class CallableAndFuture {
                 return new Random().nextInt(100);
             }
         };
-        FutureTask<Integer> future = new FutureTask<Integer>(callable);
+        FutureTask<Integer> future = new FutureTask<Integer>(callable，那WorkerRunnable的回调方法call肯定是在FutureTask中调用的
+      ```java
+      ```);
         new Thread(future).start();
         try {
             Thread.sleep(5000);// 可能做一些事情
@@ -221,7 +223,15 @@ public class CallableAndFuture {
     }
 }//java
 ```
-* FutureTask实现了接口Runnable，所以它既可以作为Runnable被线程执行，将Callable作为构造函数的参数传实例中，那么这个组合的使用有什么好处呢？假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，那么就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到，岂不美哉！这里有一个Future模式的介绍
+* FutureTask实现了接口Runnable，所以它既可以作为Runnable被线程执行，将Callable作为构造函数的参数传实例中，那么这个组合的使用有什么好处呢？假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，那么就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到。当我们初始化FutureTask的时候传入了callable，那WorkerRunnable的回调方法call肯定是在FutureTask中调用的
+```java
+public class FutureTask<V> implements RunnableFuture<V>//java
+实现了RunnableFuture接口
+```
+![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/FutureTask(run).png)
+
+
+
 
 
 
