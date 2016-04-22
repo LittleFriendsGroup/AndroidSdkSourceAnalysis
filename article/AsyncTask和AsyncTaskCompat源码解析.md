@@ -132,13 +132,96 @@ mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他
 * AsyncTask.cancel(true)出现的结果是界面已经不在更新了，但是Log还是会继续累加progress，期间不会抛出中断的异常，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
 
 * AsyncTask.cancel(false)出现的结果是界面已经不在更新了，先抛出中断的异常，但是后台任务还是会继续累加progress,一直输出到20000，执行完doInBackground才调用onCanceled方法,<br>
-* 所以mayInterruptIfRunning表示是可以被打断的
+* 所以mayInterruptIfRunning表示任务如果存在休眠的状态，任务可不可以被打断的，抛出异常
 
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/cacel(false).png)<br>
 
-既然AsyncTask.cancel(mayInterruptIfRunning)
+既然AsyncTask.cancel(mayInterruptIfRunning)不能真正的取消任务，我们如何取消任务呢？<br>
+事实上AsyncTask.cancel(mayInterruptIfRunning)只是把task的状态置为Cancel而已,执行完异步任务之后会调用onCancelled()方法，但是真正的取消需还是要配合isCancelled()方法来运用,所以在doingbackground或其他方法中判断是否被取消,然后做相应的处理.
+```java
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            while (progress < 10000) {
+                progress = progress + 2;
+                Log.i("当前的进度", "progress==" + progress);
+                publishProgress(progress);
+                //判断是不是调用了AsyncTask.cancel(mayInterruptIfRunning)，如果已经调用了，
+                if(isCancelled())
+                {
+                   break;//跳出循环，马上调用onCancelled()方法，不需要等doInBackground执行完任务
+                }
+            }
+            return true;
+        }
+```
+## 三、AsyncTask源码分析
+### 3.1、AsyncTask构造函数
+```java
+/**AsyncTask的构造函数源码片段**/
+   public AsyncTask() {
+        mWorker = new WorkerRunnable<Params, Result>() {
+            public Result call() throws Exception {
+                mTaskInvoked.set(true);
 
+                Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
+                //noinspection unchecked
+                Result result = doInBackground(mParams);
+                Binder.flushPendingCommands();
+                return postResult(result);
+            }
+        };
 
+        mFuture = new FutureTask<Result>(mWorker) {
+            @Override
+            protected void done() {
+                try {
+                    postResultIfNotInvoked(get());
+                } catch (InterruptedException e) {
+                    android.util.Log.w(LOG_TAG, e);
+                } catch (ExecutionException e) {
+                    throw new RuntimeException("An error occurred while executing doInBackground()",
+                            e.getCause());
+                } catch (CancellationException e) {
+                    postResultIfNotInvoked(null);
+                }
+            }
+        };
+    }
+```
+AsyncTask的实例化在UI线程中。构造函数初始化了两个AsyncTask类的成员变量（mWorker和mFuture）。mWorker为匿名内部类的实例对象WorkerRunnable（实现了Callable接口），mFuture为匿名内部类的实例对象FutureTask，传入了mWorker作为形参（重写了FutureTask类的done方法）。
+* WorkerRunnable是一个实现了Callable的抽象类
+```java
+private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> 
+{
+        Params[] mParams;
+}//java
+```
+Callable和Runnable类似，都是可以在另一个线程中执行的，但是二者还是有区别的。<br>
+	1、Callable的接口方法是call，Runnable是run<br>
+	2、Callable可以带返回值，Runnable不行,这个结果是Future获取的<br>
+	3、Callable可以捕获异常，Runnable不行<br>
+```java
+public class CallableAndFuture {
+    public static void main(String[] args) {
+        Callable<Integer> callable = new Callable<Integer>() {
+            public Integer call() throws Exception {
+                return new Random().nextInt(100);
+            }
+        };
+        FutureTask<Integer> future = new FutureTask<Integer>(callable);
+        new Thread(future).start();
+        try {
+            Thread.sleep(5000);// 可能做一些事情
+            System.out.println(future.get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+}//java
+```
+* FutureTask
 
 
 
