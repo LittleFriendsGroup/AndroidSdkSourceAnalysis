@@ -4,7 +4,7 @@
 ### 1.2、背景
  执行异步耗时的任务的时候，初学者一般想到使用线程和Handler完成异步处理操作，但这样会导致一些问题，当开发中需要创建N个线程时，你可能会new N个Thread出来。过多的线程创建出来又缺乏统的管理，性能开销大，甚至你的activity销毁没及时取消停止线程的运行，你创建的线程仍然有可能在后台运行。为了更好的控制、提高性能，Android给我们提供了一个实现异步处理任务的工具类AsyncTask。
 ### 1.3、版本差别
-* android3.0以前没有SerialExecutor这个类的，直接在AsyncTask中构建了一个sExecutor常量，并对线程池总大小，同一时刻能够运行的线程数做了规定，代码如下所示：
+* android3.0以前没有SerialExecutor这个类的，AsyncTask类中只是构建了一个sExecutor常量，并对线程池总大小，同一时刻能够运行的核心线程数做了限制，代码如下所示：
 ```java
 private static final int CORE_POOL_SIZE = 5;//核心线程数量
 private static final int MAXIMUM_POOL_SIZE = 128;//最大的线程池大小
@@ -20,7 +20,7 @@ private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_
     private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
     private static final int KEEP_ALIVE = 1;//活跃的线程只有一个
 ```
-### 1.3、AysncTask优点 
+### 1.4、AysncTask优点 
 
     内部采用线程池机制，统一管理线程池
     提供自定义的线程池，实现多个线程顺序同步执行，异步并发执行
