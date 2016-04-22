@@ -1,9 +1,25 @@
 ## 一、AsyncTask简介 
 ### 1.1、定义
- AsyncTask能让我们更方便容易的使用UI线程，这个类允许我们在UI线程执行后台耗时的操作和发布处理结果都在UI线程上。也就是你使用AsyncTask的时候你将看不到任何关于操作线程的代码。
+ AsyncTask能让我们更方便容易的使用UI线程，这个类允许我们在UI线程执行后台耗时的操作和发布处理结果都在UI线程上，你将看不到任何关于操作线程的代码。
 ### 1.2、背景
- 执行异步耗时的任务的时候，初学者一般想到使用线程和Handler完成异步处理操作，但这样会导致一些问题，当开发中需要创建N个线程时，你可能会new N个Thread出来。过多的线程创建出来又缺乏统的管理，性能开销大，甚至你的activity销毁没及时取消停止线程的运行，你创建的线程仍然有可能在后台运行。为了更好的控制、提供性能，Android给我们提供了一个实现异步处理任务的工具类AsyncTask。
- 
+ 执行异步耗时的任务的时候，初学者一般想到使用线程和Handler完成异步处理操作，但这样会导致一些问题，当开发中需要创建N个线程时，你可能会new N个Thread出来。过多的线程创建出来又缺乏统的管理，性能开销大，甚至你的activity销毁没及时取消停止线程的运行，你创建的线程仍然有可能在后台运行。为了更好的控制、提高性能，Android给我们提供了一个实现异步处理任务的工具类AsyncTask。
+### 1.3、版本差别
+* android3.0以前没有SerialExecutor这个类的，直接在AsyncTask中构建了一个sExecutor常量，并对线程池总大小，同一时刻能够运行的线程数做了规定，代码如下所示：
+```java
+private static final int CORE_POOL_SIZE = 5;//核心线程数量
+private static final int MAXIMUM_POOL_SIZE = 128;//最大的线程池大小
+private static final it KEEP_ALIVE = 10;//活跃的线程数量
+……    
+private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE,    
+        MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS, sWorkQueue, sThreadFactory);  
+```
+ * android3.0以后，同时只能有1个任务在执行。
+```java
+    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();//根据cpu的大小来配置核心的线程
+    private static final int CORE_POOL_SIZE = CPU_COUNT + 1;
+    private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
+    private static final int KEEP_ALIVE = 1;//活跃的线程只有一个
+```
 ### 1.3、AysncTask优点 
 
     内部采用线程池机制，统一管理线程池
@@ -136,7 +152,7 @@ mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他
 
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/cacel(false).png)<br>
 
-既然AsyncTask.cancel(mayInterruptIfRunning)不能真正的取消任务，我们如何取消任务呢？<br>
+既然AsyncTask.cancel(mayInterruptIfRunning)不能真正的取消任务，我们如何取消任务呢？(面试可能会经常问道这个问题)<br>
 事实上AsyncTask.cancel(mayInterruptIfRunning)只是把task的状态置为Cancel而已,执行完异步任务之后会调用onCancelled()方法，但是真正的取消需还是要配合isCancelled()方法来运用,所以在doingbackground或其他方法中判断是否被取消,然后做相应的处理.
 ```java
         @Override
@@ -265,7 +281,8 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
         onPreExecute();
 
         mWorker.mParams = params;
-        exec.execute(mFuture);//execute是调用SERIAL_EXECUTOR的execute，mFuture就是之前AsyncTask构造初始化赋值的FutureTask。
+        //execute是调用SERIAL_EXECUTOR的execute，mFuture就是之前AsyncTask构造初始化赋值的FutureTask。
+        exec.execute(mFuture);
         return this;
     }
 
