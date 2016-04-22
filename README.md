@@ -119,10 +119,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Tikitoo</td>
     </tr>
     <tr>
-    	<td>ViewDragHelper源码解析</td>
-    	<td>lishiwei</td>
-    </tr>
-    <tr>
     	<td>GestureDetector源码分析</td>
     	<td>lishiwei</td>
     </tr>
