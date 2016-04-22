@@ -309,7 +309,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
 ```
 exec.execute(mFuture)执行时，SerialExecutor将FutureTask作为参数执行execute方法。在SerialExecutor的execute方法中，这里通过一个任务队列mTasks把FutureTask插入进了队列中，执行r.run，其实就是执行FutureTask的run方法，因为传递进来的r参数就是mFuture，执行完无论什么情况都是会scheduleNext()取出下一个任务来执行的。由此可知道一个串行的线程池，同一时刻只会有一个线程正在执行，其余的均处于等待状态，等到上一个线程执完r.run()完之后，scheduleNext()取出下一个任务执行。如果再有新的任务被执行时就等待上一个任务执行完毕后才会得到执行，实现了串行的任务队列正是通过SerialExecutor核心类。
 
-##总结前面部分：FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的doInBackground(),这个是在子线程中调用的
+### 总结前面部分：FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的doInBackground(),这个是在子线程中调用的
 ```java
 mWorker = new WorkerRunnable<Params, Result>() {
             public Result call() throws Exception {
@@ -317,9 +317,82 @@ mWorker = new WorkerRunnable<Params, Result>() {
 
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                 //noinspection unchecked
-                Result result = doInBackground(mParams);
+                Result result = doInBackground(mParams);//调用子类的doInBackground
                 Binder.flushPendingCommands();
-                return postResult(result);
+                return postResult(result);//执行完后通过postResult结果传递出去
             }
         };
+```
+* AsyncTask的postResult方法
+```java
+    private Result postResult(Result result) {
+        @SuppressWarnings("unchecked")
+        //获取一个handler，等到一个消息，将结果封装在Message
+        Message message = getHandler().obtainMessage(MESSAGE_POST_RESULT,
+                new AsyncTaskResult<Result>(this, result));//new AsyncTaskResult<Result>(this, result)将得到的结果再做了一层封装
+        //将消息发送到主线程，会回调handleMessage()方法
+        message.sendToTarget();
+        return result;
+    }
+
+```
+
+```java
+  private static Handler getHandler() {
+        synchronized (AsyncTask.class) {
+            if (sHandler == null) {
+            	//初始化一个InternalHandler，用与将结果发送给主线程
+                sHandler = new InternalHandler();
+            }
+            return sHandler;
+        }
+    }
+```
+```java
+     private static class InternalHandler extends Handler {
+        public InternalHandler() {
+            // 在主线程中调用
+            super(Looper.getMainLooper());
+        }
+
+        @SuppressWarnings({"unchecked", "RawUseOfParameterizedType"})
+        @Override
+        public void handleMessage(Message msg) {
+            AsyncTaskResult<?> result = (AsyncTaskResult<?>) msg.obj;
+            switch (msg.what) {
+                case MESSAGE_POST_RESULT:
+                    // There is only one result
+                    result.mTask.finish(result.mData[0]);
+                    break;
+                case MESSAGE_POST_PROGRESS:
+                    result.mTask.onProgressUpdate(result.mData);
+                    break;
+            }
+        }
+    }
+```
+执行postResult的时候，obtainMessage传递的参数是：MESSAGE_POST_RESULT和AsyncTaskResult(this, result))，然后message.sendToTarget()开始发消息，并在InternalHandler的handleMessage中开始处理消息。
+当我们子类调用publishProgress(progress)的时候
+
+```java
+    @WorkerThread
+    protected final void publishProgress(Progress... values) {
+        if (!isCancelled()) {
+            getHandler().obtainMessage(MESSAGE_POST_PROGRESS,
+                    new AsyncTaskResult<Progress>(this, values)).sendToTarget();
+        }
+    }
+```
+调用AysncTask里面publishProgress,，obtainMessage传递的参数是：MESSAGE_POST_PROGRESS和AsyncTaskResult(this, result))，然后message.sendToTarget()开始发消息，并在InternalHandler的handleMessage中开始处理消息。
+当我们子类调用publishProgress(progress)的时候
+```java
+ private void finish(Result result) {
+        if (isCancelled()) {
+            onCancelled(result);
+        } else {
+            //执行完异步任务后，调用子类的onPostExecute，关闭一些dialog、释放资源等操作
+            onPostExecute(result);
+        }
+        mStatus = Status.FINISHED;
+    }
 ```
