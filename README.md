@@ -143,11 +143,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>likkka</td>
     </tr>
      <tr>
-    	<td>TextUtils源码解析</td>
-    	<td>alafighting</td>
-    </tr>
-    <tr>
-    	<td>TimeUtils源码解析</td>
+    	<td>TextUtils/TimeUtils源码解析</td>
     	<td>alafighting</td>
     </tr>
      <tr>
@@ -281,6 +277,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>LauncherActivity源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>LocalBroadcastManager源码解析</td>
       <td>未认领</td>
     </tr>
      <tr>
