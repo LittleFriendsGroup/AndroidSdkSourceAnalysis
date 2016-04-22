@@ -10,7 +10,7 @@
     提供自定义的线程池，实现多个线程顺序同步执行，异步并发执行
     提供回调方法，及时监控后台执行任务的进度，更新主线程的UI控件以及获取异步执行结果
 ## 二、AsyncTask用法
-### 2.1、创建自定义的AsyncTask
+### 2.1、AsyncTask是抽象类
  ```java
  public abstract class AsyncTask<Params, Progress, Result>//java
  ```
@@ -18,6 +18,7 @@
  * Progress   异步任务执行过程中返回给主线程的进度值，通过publishProgress()方法发送出去
  * Result     异步任务执行结束返回的结果的结果类型，可以为boolean，或者bitmap等类型
  
+###2.2、创建自定义的AsyncTask，实现抽象方法
 
 ```java
 public class AsyntaskActivity extends AppCompatActivity {
@@ -94,3 +95,5 @@ public class AsyntaskActivity extends AppCompatActivity {
 }
 //java
 ```
+![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/Asyntask.png)
+例子中doInBackground返回的结果Boolean最终会传递给onPostExecute(Boolean aBoolean)，而这一系列的操作是由AsyncTask底层实现的，通过handler发结果发送到主线程
