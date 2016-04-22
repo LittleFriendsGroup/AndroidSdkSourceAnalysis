@@ -19,11 +19,11 @@
  * Result     异步任务执行结束返回的结果的结果类型，可以为boolean，或者bitmap等类型
  
 ###2.2、子类必须实现的抽象方法
-（1）onPreExecute：     执行后台耗时操作前被调用，通常用于完成一些初始化操作，比如2.3例子中初始化dialog的操作，或者一些集合容器
-（2）doInBackGround：   必须实现，异步执行后台线程将要完成的任务(该方法在子线程运行,下面源码会分析到)
-（3）onProgressUpdate： 在doInBackGround方法中调用publishProgress方法，AsyncTask就会主动调用onProgressUpdate实现更新
+（1）onPreExecute：    <br> 执行后台耗时操作前被调用，通常用于完成一些初始化操作，比如2.3例子中初始化dialog的操作，或者一些集合容器
+（2）doInBackGround：  <br> 必须实现，异步执行后台线程将要完成的任务(该方法在子线程运行,下面源码会分析到)
+（3）onProgressUpdate：<br> 在doInBackGround方法中调用publishProgress方法，AsyncTask就会主动调用onProgressUpdate实现更新
 任务的执行进度
-（4）onPostExecute：当doInBackGround完成后，系统会自动调用，销毁一些dialog的操作，并将doInBackGround﻿方法返回的值传给该方法，
+（4）onPostExecute：   <br>当doInBackGround完成后，系统会自动调用，销毁一些dialog的操作，并将doInBackGround﻿方法返回的值传给该方法，
 
 ###2.3、创建自定义的AsyncTask，实现抽象方法
 
@@ -105,5 +105,8 @@ public class AsyntaskActivity extends AppCompatActivity {
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/Asyntask.png)
 
 例子中doInBackground返回的结果Boolean最终会传递给onPostExecute(Boolean aBoolean)，而这一系列的操作是由AsyncTask底层实现的，通过handler发结果发送到主线程
+
+###2.4、取消异步任务
+AysncTask是可以在任何时候被取消的，开篇我提到了当你activity销毁了，我们需要及时的释放资源，包括AsyncTask，你也可以取消正在执行的异步任务
 
 
