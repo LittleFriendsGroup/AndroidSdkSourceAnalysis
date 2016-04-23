@@ -20,8 +20,11 @@ private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;//线程池中允
 private static final int KEEP_ALIVE = 1;//空闲线程的超时时间
 ```
 2、串行和并行
+* android 1.5以前的时候`execute`是串行执行的
+* android 1.6直到android 2.3.2被修改为并行执行，执行任务的线程池就是THREAD_POOL_EXECUTOR
+* android 3.0以后，如果你使用execute函数直接执行AsyncTask，那么这些任务是串行执行的，引用来自![http://www.jianshu.com/p/a8b1861f2efc]
 
-## 二、基本用法(基于android3.0以后分析)
+## 二、基本用法
 ### 2.1、继承AsyncTask，设置子类三个泛型的参数
  ```java
  public abstract class AsyncTask<Params, Progress, Result>//java
@@ -155,7 +158,7 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
             return true;
         }
 ```
-## 三、AsyncTask源码分析
+## 三、AsyncTask源码分析(基于android3.0以后分析)
 ### 3.1、AsyncTask构造函数
 ```java
 /**AsyncTask的构造函数源码片段**/
