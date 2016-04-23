@@ -19,10 +19,10 @@ private static final int CORE_POOL_SIZE = CPU_COUNT + 1;//核心线程数量
 private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;//线程池中允许的最大线程数目
 private static final int KEEP_ALIVE = 1;//空闲线程的超时时间
 ```
-2、串行和并行
+2、串行和并行,引用来自[这篇文章](http://www.jianshu.com/p/a8b1861f2efc)
 * android 1.5以前的时候`execute`是串行执行的
 * android 1.6直到android 2.3.2被修改为并行执行，执行任务的线程池就是THREAD_POOL_EXECUTOR
-* android 3.0以后，如果你使用execute函数直接执行AsyncTask，那么这些任务是串行执行的，引用[这篇文章](http://www.jianshu.com/p/a8b1861f2efc)
+* android 3.0以后，如果你使用execute函数直接执行AsyncTask，那么这些任务是串行执行的，
 
 ## 二、基本用法
 ### 2.1、继承AsyncTask，设置子类三个泛型的参数
