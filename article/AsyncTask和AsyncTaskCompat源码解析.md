@@ -33,8 +33,10 @@ private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_
 （2）doInBackGround<br>必须实现，异步执行后台线程将要完成的任务(该方法在子线程运行,下面源码会分析到)<br>
 （3）onProgressUpdate<br>在doInBackGround方法中调用publishProgress方法，AsyncTask就会主动调用onProgressUpdate实现更新
 任务的执行进度<br>
-（4）onPostExecute<br>当doInBackGround完成后，系统会自动调用，销毁一些dialog的操作，并将doInBackGround﻿方法返回的值传给该方法
+（4）onPostExecute<br>当doInBackGround完成后，系统会自动调用，销毁一些dialog的操作，并将doInBackGround﻿方法返回的值传给该方法<br>
+ 执行的大致流程是：
 
+`onPreExecute`-> `doInBackGround`->`onProgressUpdate(调用publishProgress的时候)`->`onPostExecute`
 ###2.3、用法案例
 1、实例化子类
 ```java
