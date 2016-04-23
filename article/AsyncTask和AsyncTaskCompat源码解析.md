@@ -200,10 +200,10 @@ private static abstract class WorkerRunnable<Params, Result> implements Callable
         Params[] mParams;
 }//java
 ```
-Callable和Runnable类似，都是可以在另一个线程中执行的，但是二者还是有区别的。<br>
-	1、Callable的接口方法是call，Runnable是run<br>
-	2、Callable可以带返回值，Runnable不行,这个结果是Future获取的<br>
-	3、Callable可以捕获异常，Runnable不行<br>
+下面讲述下Callable和Runnable的区别。
+1、Callable的接口方法是call，Runnable是run<br>
+2、Callable可以带返回值，Runnable不行,这个结果是Future获取的<br>
+3、Callable可以捕获异常，Runnable不行<br>
 ```java
 public class CallableAndFuture {
     public static void main(String[] args) {
@@ -212,7 +212,8 @@ public class CallableAndFuture {
                 return new Random().nextInt(100);
             }
         };
-        FutureTask<Integer> future = new FutureTask<Integer>(callable，那WorkerRunnable的回调方法call肯定是在FutureTask中调用的
+        //那WorkerRunnable的回调方法call肯定是在FutureTask中调用的
+        FutureTask<Integer> future = new FutureTask<Integer>(callable)
       ```java
       ```);
         new Thread(future).start();
@@ -227,11 +228,12 @@ public class CallableAndFuture {
     }
 }//java
 ```
-* FutureTask实现了接口Runnable，所以它既可以作为Runnable被线程执行，将Callable作为构造函数的参数传实例中，那么这个组合的使用有什么好处呢？假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，那么就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到。当我们初始化FutureTask的时候传入了callable，那WorkerRunnable的回调方法call肯定是在FutureTask中调用的
+* FutureTask实现了接口Runnable，它既可以作为Runnable被线程执行，同时将Callable作为构造函数的参数传入，那么这个组合的使用有什么好处呢？假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，那么就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到。
 ```java
 public class FutureTask<V> implements RunnableFuture<V>//java
 实现了RunnableFuture接口
 ```
+当我们初始化FutureTask的时候传入callable，FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的`doInBackground()`,由此可以看出`doInBackground()`是在子线程中执行的，如下图所示
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/FutureTask(run).png)
 
 ### 3.2、核心方法
@@ -246,7 +248,8 @@ public static final Executor SERIAL_EXECUTOR = new SerialExecutor();
     return executeOnExecutor(sDefaultExecutor, params);
 }
 ```
-当执行execute方法时，里面调用的executeOnExecutor方法。这里传递了两个参数，一个是sDefaultExecutor，一个是params。从上面的源码可以看出，sDefaultExecutor其实是一个SerialExecutor对象。params其实最终会赋给doInBackground方法去处理
+当执行execute方法时，实际上是调用了executeOnExecutor方法。这里传递了两个参数，一个是sDefaultExecutor，一个是params。从上面的源码可以看出，sDefaultExecutor其实是一个SerialExecutor对象，实现了串行线程队列。params其实最终会赋给doInBackground方法去处理。
+
 * executeOnExecutor()方法
 ```java
 //exec执行AsyncTask.execute()方法时传递进来的参数sDefaultExecutor，这个sDefaultExecutor其实就是SerialExecutor对象。
@@ -265,7 +268,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
         }
 
         mStatus = Status.RUNNING;
-
+	//实际是调用子类里面的onPreExecute
         onPreExecute();
 
         mWorker.mParams = params;
@@ -291,6 +294,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
                     	//执行的是mFuture就是之前AsyncTask构造初始化赋值的FutureTask的run()方法
                         r.run();
                     } finally {
+                    	//取出下一个任务执行
                         scheduleNext();
                     }
                 }
@@ -314,7 +318,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
 ```
 exec.execute(mFuture)执行时，SerialExecutor将FutureTask作为参数执行execute方法。在SerialExecutor的execute方法中，这里通过一个任务队列mTasks把FutureTask插入进了队列中，执行r.run，其实就是执行FutureTask的run方法，因为传递进来的r参数就是mFuture，执行完无论什么情况都是会scheduleNext()取出下一个任务来执行的。由此可知道一个串行的线程池，同一时刻只会有一个线程正在执行，其余的均处于等待状态，等到上一个线程执完r.run()完之后，scheduleNext()取出下一个任务执行。如果再有新的任务被执行时就等待上一个任务执行完毕后才会得到执行，实现了串行的任务队列正是通过SerialExecutor核心类。
 
-### 总结前面部分：FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的doInBackground(),这个是在子线程中调用的
+### 总结前面大致的流程是：·`new DownAsynTask().execute()->`
 ```java
 mWorker = new WorkerRunnable<Params, Result>() {
             public Result call() throws Exception {
