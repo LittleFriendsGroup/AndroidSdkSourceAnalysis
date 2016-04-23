@@ -2,24 +2,27 @@
 ### 1.1、简介
  AsyncTask是android提供的一种异步消息处理的解决方案，能简化我们在子线程中更新UI控件，使用AsyncTask你将看不到任何关于操作线程的代码。
 ### 1.3、版本差别
-* android3.0以前没有SerialExecutor这个类的，AsyncTask类中只是构建了一个sExecutor常量，并对线程池总大小，同一时刻能够运行的核心线程数做了限制，代码如下所示：
+1、线程池配置
+* android3.0以前线程池配置，代码如下所示：
 ```java
 private static final int CORE_POOL_SIZE = 5;//核心线程数量
-private static final int MAXIMUM_POOL_SIZE = 128;//最大的线程池大小
-private static final it KEEP_ALIVE = 10;//活跃的线程数量
+private static final int MAXIMUM_POOL_SIZE = 128;//线程池中允许的最大线程数目
+private static final it KEEP_ALIVE = 10;//当线程数目大于核心线程数目时，如果超过这个keepAliveTime时间，那么空闲的线程会被终止。
 ……    
 private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_POOL_SIZE,    
         MAXIMUM_POOL_SIZE, KEEP_ALIVE, TimeUnit.SECONDS, sWorkQueue, sThreadFactory);  
 ```
- * android3.0以后，同时只能有1个任务在执行。
+ android3.0以后更加灵活，根据cpu核数配置`CORE_POOL_SIZE`和`MAXIMUM_POOL_SIZE`
 ```java
     private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();//根据cpu的大小来配置核心的线程
-    private static final int CORE_POOL_SIZE = CPU_COUNT + 1;
-    private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
-    private static final int KEEP_ALIVE = 1;//活跃的线程只有一个
+    private static final int CORE_POOL_SIZE = CPU_COUNT + 1;//核心线程数量
+    private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;//线程池中允许的最大线程数目
+    private static final int KEEP_ALIVE = 1;//空闲线程的超时时间
 
 ```
-## 二、基本用法
+2、串行和并行
+
+## 二、基本用法(基于android3.0以后分析)
 ### 2.1、继承AsyncTask，设置子类三个泛型的参数
  ```java
  public abstract class AsyncTask<Params, Progress, Result>//java
