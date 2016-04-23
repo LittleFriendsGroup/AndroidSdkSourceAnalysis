@@ -186,6 +186,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Volley源码解析</td>
     	<td>THEONE10211024</td>
     </tr>
+    <tr>
+    	<td>AudioPlayer源码解析</td>
+    	<td>ayyb1988</td>
+    </tr>
     </tbody>
 </table>
 
@@ -203,10 +207,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-  <tr>
-     <td>AudioPlayer源码解析</td>
-     <td>未认领</td>
-    </tr>
     <tr>
      <td>Animation源码解析</td>
      <td>未认领</td>
