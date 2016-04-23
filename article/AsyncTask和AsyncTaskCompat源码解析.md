@@ -118,23 +118,14 @@ public class AsyntaskActivity extends AppCompatActivity {
 }
 //java
 ```
-![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/Asyntask.png)
 
 例子中doInBackground返回的结果Boolean最终会传递给onPostExecute(Boolean aBoolean)，而这一系列的操作是由AsyncTask底层实现的，通过handler发结果发送到主线程
 
 ###2.4、取消异步任务
-AsyncTask是可以在任何时候被取消的，开篇我提到了当你activity销毁了，我们需要及时的释放资源，包括AsyncTask，你也可以取消正在执行的异步任务
 ```java
 AsyncTask.cancel(mayInterruptIfRunning);
 ```
-mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他们两个有什么区别呢，调用了cancel能马上取消doInBackground里面还在运行的异步任务，你可能会这样想<br>
-我做了一个实验，当我设置AsyncTask.cancel(true)
-![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/cancel(true).png)
-当我在progress更新到1000的时候我点击了，AsyncTask.cancel(true)，界面已经不在更了，但是Log还是会继续累加progress，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
-当我设置AsyncTask.cancel(false)
-当我在progress更新到1000的时候我点击了，AsyncTask.cancel(false)，界面已经不在更新了，但是Log还是会继续累加progress，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
-那到底AsyncTask.cancel(true/false)有什区别呢，听我慢慢道来<br>
-在你的doInBackground里面没有下面代码的时候，无论true或者false都是一样结果，也就是，界面已经不在更新了，但是doInBackground会继续累加progress，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
+mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
 ```java
  try {
          Thread.sleep(2000);
@@ -143,17 +134,9 @@ mayInterruptIfRunning是boolean类型的，可以是true，也可以是false,他
          e.printStackTrace();
      }
 ```
+如果线程处于休眠状态，为true则正在执行的线程将会中断，抛出异常，但执行的任务线程会继续执行完毕调用`onCanceled()`。为false则正在执行的线程不会中断，任务线程执行完毕调用`onCanceled()`。
+如果线程不处于休眠状态，为true和false都没有区别，任务线程执行完毕后调用`onCanceled()`
 
-在你的doInBackground里面有上述休眠的代码时候<br>
-* AsyncTask.cancel(true)出现的结果是界面已经不在更新了，但是Log还是会继续累加progress，期间不会抛出中断的异常，一直输出到20000，执行完doInBackground才调用onCanceled方法<br>
-
-* AsyncTask.cancel(false)出现的结果是界面已经不在更新了，先抛出中断的异常，但是后台任务还是会继续累加progress,一直输出到20000，执行完doInBackground才调用onCanceled方法,<br>
-* 所以mayInterruptIfRunning表示任务如果存在休眠的状态，任务可不可以被打断的，抛出异常
-
-![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/cacel(false).png)<br>
-
-既然AsyncTask.cancel(mayInterruptIfRunning)不能真正的取消任务，我们如何取消任务呢？(面试可能会经常问道这个问题)<br>
-事实上AsyncTask.cancel(mayInterruptIfRunning)只是把task的状态置为Cancel而已,执行完异步任务之后会调用onCancelled()方法，但是真正的取消需还是要配合isCancelled()方法来运用,所以在doingbackground或其他方法中判断是否被取消,然后做相应的处理.
 ```java
         @Override
         protected Boolean doInBackground(Void... params) {
