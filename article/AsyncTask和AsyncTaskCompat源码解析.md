@@ -1,8 +1,6 @@
 ## 一、AsyncTask源码分析
 ### 1.1、简介
- AsyncTask能简化我们在子线程中更新UI控件，使用AsyncTask你将看不到任何关于操作线程的代码。
-### 1.2、背景
- 执行异步耗时的任务的时候，初学者一般想到使用线程和Handler完成异步处理操作，但这样会导致一些问题，当开发中需要创建N个线程时，你可能会new N个Thread出来。过多的线程创建出来又缺乏统的管理，性能开销大，甚至你的activity销毁没及时取消停止线程的运行，你创建的线程仍然有可能在后台运行。为了更好的控制、提高性能，Android给我们提供了一个实现异步处理任务的工具类AsyncTask。
+ AsyncTask是android提供的一种异步消息处理的解决方案，能简化我们在子线程中更新UI控件，使用AsyncTask你将看不到任何关于操作线程的代码。
 ### 1.3、版本差别
 * android3.0以前没有SerialExecutor这个类的，AsyncTask类中只是构建了一个sExecutor常量，并对线程池总大小，同一时刻能够运行的核心线程数做了限制，代码如下所示：
 ```java
@@ -19,14 +17,10 @@ private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_
     private static final int CORE_POOL_SIZE = CPU_COUNT + 1;
     private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
     private static final int KEEP_ALIVE = 1;//活跃的线程只有一个
-```
-### 1.4、AysncTask优点 
 
-    内部采用线程池机制，统一管理线程池
-    提供自定义的线程池，实现多个线程顺序同步执行，异步并发执行
-    提供回调方法，及时监控后台执行任务的进度，更新主线程的UI控件以及获取异步执行结果
-## 二、AsyncTask用法
-### 2.1、AsyncTask是抽象类，需要被子类继承，需要指定三个泛型的参数
+```
+## 二、基本用法
+### 2.1、继承AsyncTask，设置子类三个泛型的参数
  ```java
  public abstract class AsyncTask<Params, Progress, Result>//java
  ```
@@ -41,8 +35,12 @@ private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_
 任务的执行进度<br>
 （4）onPostExecute<br>当doInBackGround完成后，系统会自动调用，销毁一些dialog的操作，并将doInBackGround﻿方法返回的值传给该方法
 
-###2.3、创建自定义的AsyncTask，实现抽象方法
-
+###2.3、用法案例
+1、实例化子类
+```java
+new DownAsyncTask().extcute();
+```
+2、代码案例
 ```java
 public class AsyntaskActivity extends AppCompatActivity {
 
@@ -50,7 +48,7 @@ public class AsyntaskActivity extends AppCompatActivity {
     private int progress = 0;
     private int MAX_PROGRESS = 100;
     private TextView tvProgress;
-    private DownAsynTask task;
+    private DownAsyncTask task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +56,11 @@ public class AsyntaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_asyntask);
         tvProgress = (TextView) findViewById(R.id.tvProgress);
         progressDialog = new ProgressDialog(this);
-        task = new DownAsynTask();
+        task = new DownAsyncTask();
         task.execute();
     }
 
-    class DownAsynTask extends AsyncTask<Void, Integer, Boolean> {
+    class DownAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 
         @Override
         protected void onCancelled() {
