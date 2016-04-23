@@ -161,7 +161,7 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
 ## 三、AsyncTask源码分析(基于android3.0以后分析)
 ### 3.1、AsyncTask构造函数
 ```java
-/**AsyncTask的构造函数源码片段**/
+   /**AsyncTask的构造函数源码片段**/
    public AsyncTask() {
         mWorker = new WorkerRunnable<Params, Result>() {
             //异步任务执行的时候调用call方法
@@ -192,7 +192,7 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
         };
     }
 ```
-AsyncTask的实例化在UI线程中。构造函数初始化了两个AsyncTask类的成员变量（mWorker和mFuture）。mWorker为匿名内部类的实例对象WorkerRunnable（实现了Callable接口），mFuture为匿名内部类的实例对象FutureTask，传入了mWorker作为形参（重写了FutureTask类的done方法）。当用户执行了execute方法的时候在特定情况下会触发这两个对象的回调方法。
+AsyncTask的实例化在UI线程中。构造函数初始化了两个成员变量mWorker和mFuture。mWorker为WorkerRunnable类型的匿名内部类实例对象（实现了Callable接口），mFuture为FutureTask类型的匿名内部类实例对象，将mWorker作为mFuture的形参（重写了FutureTask类的done方法）。当执行了execute方法的时候在会回调`call()`方法，`call()`方法调用了`doInBackground(mParams)`,这部分是在子线程中完成的。
 * WorkerRunnable是一个实现了Callable的抽象类,扩展了Callable多了一个Params参数
 ```java
 private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> 
