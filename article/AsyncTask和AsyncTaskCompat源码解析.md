@@ -135,8 +135,8 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
      }
 ```
 如果线程处于休眠状态，为true则正在执行的线程将会中断，抛出异常，但执行的任务线程会继续执行完毕调用`onCanceled()`。为false则正在执行的线程不会中断，任务线程执行完毕调用`onCanceled()`。
-如果线程不处于休眠状态，为true和false都没有区别，任务线程执行完毕后调用`onCanceled()`
-
+如果线程不处于休眠状态，为true和false都没有区别，任务线程执行完毕后调用`onCanceled()`。
+正确地取消要在`doInBackground(Void... params)`使用`isCancelled()`来判断，退出循环操作。如下面的
 ```java
         @Override
         protected Boolean doInBackground(Void... params) {
