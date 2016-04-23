@@ -318,7 +318,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
 ```
 exec.execute(mFuture)执行时，SerialExecutor将FutureTask作为参数执行execute方法。在SerialExecutor的execute方法中，这里通过一个任务队列mTasks把FutureTask插入进了队列中，执行r.run，其实就是执行FutureTask的run方法，因为传递进来的r参数就是mFuture，执行完无论什么情况都是会scheduleNext()取出下一个任务来执行的。由此可知道一个串行的线程池，同一时刻只会有一个线程正在执行，其余的均处于等待状态，等到上一个线程执完r.run()完之后，scheduleNext()取出下一个任务执行。如果再有新的任务被执行时就等待上一个任务执行完毕后才会得到执行，实现了串行的任务队列正是通过SerialExecutor核心类。
 
-总结前面大致的流程是：·`new DownAsynTask().execute()->``AsyncTask.executeOnExecutor(Executor exec,Params... params)->onPreExecute()->SerialExecutor.execute(mFuture)->`
+
 ```java
 mWorker = new WorkerRunnable<Params, Result>() {
             public Result call() throws Exception {
@@ -397,6 +397,7 @@ mWorker = new WorkerRunnable<Params, Result>() {
 ```java
  private void finish(Result result) {
         if (isCancelled()) {
+            //如果已经取消了就会调用onCancelled方法
             onCancelled(result);
         } else {
             //执行完异步任务后，调用子类的onPostExecute，关闭一些dialog、释放资源等操作
@@ -405,3 +406,4 @@ mWorker = new WorkerRunnable<Params, Result>() {
         mStatus = Status.FINISHED;
     }
 ```
+总结前面大致的流程是：·`new DownAsynTask().execute()->AsyncTask.executeOnExecutor(Executor exec,Params... params)->onPreExecute()->SerialExecutor.execute(mFuture)->mFuture插入队列->THREAD_POOL_EXECUTOR.execute(mActive)取出任务串行执行->mWorker.call()->doInBackground(mParams)->postResult(result)->onPostExecute(result)或者onCancelled(result)`
