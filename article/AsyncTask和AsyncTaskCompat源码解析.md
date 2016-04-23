@@ -14,11 +14,10 @@ private static final ThreadPoolExecutor sExecutor = new ThreadPoolExecutor(CORE_
 ```
  android3.0以后更加灵活，根据cpu核数配置`CORE_POOL_SIZE`和`MAXIMUM_POOL_SIZE`
 ```java
-    private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();//根据cpu的大小来配置核心的线程
-    private static final int CORE_POOL_SIZE = CPU_COUNT + 1;//核心线程数量
-    private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;//线程池中允许的最大线程数目
-    private static final int KEEP_ALIVE = 1;//空闲线程的超时时间
-
+private static final int CPU_COUNT = Runtime.getRuntime().availableProcessors();//根据cpu的大小来配置核心的线程
+private static final int CORE_POOL_SIZE = CPU_COUNT + 1;//核心线程数量
+private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;//线程池中允许的最大线程数目
+private static final int KEEP_ALIVE = 1;//空闲线程的超时时间
 ```
 2、串行和并行
 
