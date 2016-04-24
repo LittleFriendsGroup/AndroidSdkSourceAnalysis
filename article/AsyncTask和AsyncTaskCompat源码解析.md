@@ -333,6 +333,7 @@ mWorker = new WorkerRunnable<Params, Result>() {
         };
 ```
 可以看到如果回调了`call()`方法，就会调用了`doInBackground(mParams)`方法，这都是在子线程中执行的。执行完后，将结果通过`postResult(result)`发送出去。
+
 4、AsyncTask的postResult方法
 ```java
     private Result postResult(Result result) {
