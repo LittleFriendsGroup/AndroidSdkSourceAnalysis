@@ -17,7 +17,8 @@ android sdk 源码解析
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
 [BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|design-23.2.0 | 2016/4/20
-[ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|support-v4-21.0 | 2016/4/21
+[ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|support-v4-21.0 | 2016/4/21  
+[LruCache源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/LruCache\346\272\220\347\240\201\350\247\243\346\236\220.md) | [CaMnter](https://github.com/CaMnter)| [android-cjj](https://github.com/android-cjj/)|support-v4-23.2.1 | 2016/4/24
 
 
 ## 已认领文章
@@ -30,10 +31,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-     <tr>
-      <td>LruCache源码解析</td>
-      <td>CaMnter</td>
-    </tr>
     <tr>
       <td>AsyncTask/AsyncTaskCompat源码解析</td>
       <td>white37</td>
