@@ -192,6 +192,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>TimePicker源码解析</td>
     	<td>shixinzhang</td>
     </tr>
+    <tr>
+    	<td>LayoutInflater/LayoutInflaterCompat源码解析</td>
+    	<td>peerless2012</td>
+    </tr>
     </tbody>
 </table>
 
@@ -344,10 +348,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <tr>
      <td>TableLayout源码解析</td>
       <td>未认领</td>
-    </tr>
-    <tr>
-     <td>LayoutInflater/LayoutInflaterCompat源码解析</td>
-     <td>未认领</td>
     </tr>
     <tr>
      <td>Log源码解析</td>
