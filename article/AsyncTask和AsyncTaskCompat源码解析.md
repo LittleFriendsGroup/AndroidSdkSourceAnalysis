@@ -192,7 +192,7 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
         };
     }
 ```
-AsyncTask的实例化在UI线程中。构造函数初始化了两个成员变量mWorker和mFuture。mWorker为WorkerRunnable类型的匿名内部类实例对象（实现了Callable接口），mFuture为FutureTask类型的匿名内部类实例对象，将mWorker作为mFuture的形参（重写了FutureTask类的done方法）。当执行了execute方法的时候在会回调`call()`方法，`call()`方法调用了`doInBackground(mParams)`,这部分是在子线程中完成的。
+AsyncTask的实例化在UI线程中。构造函数初始化了两个成员变量mWorker和mFuture。mWorker为WorkerRunnable类型的匿名内部类实例对象（实现了Callable接口），mFuture为FutureTask类型的匿名内部类实例对象，将mWorker作为mFuture的形参（重写了FutureTask类的done方法）。
 * WorkerRunnable是一个实现了Callable的抽象类,扩展了Callable多了一个Params参数
 ```java
 private static abstract class WorkerRunnable<Params, Result> implements Callable<Result> 
@@ -228,16 +228,16 @@ public class CallableAndFuture {
     }
 }//java
 ```
-* FutureTask实现了接口Runnable，它既可以作为Runnable被线程执行，同时将Callable作为构造函数的参数传入，那么这个组合的使用有什么好处呢？假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，那么就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到。
+* 
 ```java
 public class FutureTask<V> implements RunnableFuture<V>//java
 实现了RunnableFuture接口
 ```
-当我们初始化FutureTask的时候传入callable，FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的`doInBackground()`,由此可以看出`doInBackground()`是在子线程中执行的，如下图所示
+FutureTask实现了接口Runnable，，它既可以作为Runnable被线程执行，同时将Callable作为构造函数的参数传入，这样组合的好处是，假设有一个很耗时的返回值需要计算，并且这个返回值不是立刻需要的话，就可以使用这个组合，用另一个线程去计算返回值，而当前线程在使用这个返回值之前可以做其它的操作，等到需要这个返回值时，再通过Future得到。FutureTask的run方法要开始回调WorkerRunable的call方法了，call里面调用doInBackground(mParams),终于回到我们后台任务了，调用我们AsyncTask子类的`doInBackground()`,由此可以看出`doInBackground()`是在子线程中执行的，如下图所示
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/FutureTask(run).png)
 
 ### 3.2、核心方法
-* execute()方法
+1、execute()方法
 ```java
 private static volatile Executor sDefaultExecutor = SERIAL_EXECUTOR;
 public static final Executor SERIAL_EXECUTOR = new SerialExecutor();
@@ -250,7 +250,7 @@ public static final Executor SERIAL_EXECUTOR = new SerialExecutor();
 ```
 当执行execute方法时，实际上是调用了executeOnExecutor方法。这里传递了两个参数，一个是sDefaultExecutor，一个是params。从上面的源码可以看出，sDefaultExecutor其实是一个SerialExecutor对象，实现了串行线程队列。params其实最终会赋给doInBackground方法去处理。
 
-* executeOnExecutor()方法
+2、executeOnExecutor()方法
 ```java
 //exec执行AsyncTask.execute()方法时传递进来的参数sDefaultExecutor，这个sDefaultExecutor其实就是SerialExecutor对象。
 public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec,
@@ -278,7 +278,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
     }
 
 ```
-* SerialExecutor的execute方法
+3、SerialExecutor的execute方法
 ```java
   private static class SerialExecutor implements Executor {
   	//循环数组实现的双向Queue。大小是2的倍数，默认是16。有队头队尾两个下标
@@ -316,7 +316,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
         }
     }//java
 ```
-exec.execute(mFuture)执行时，SerialExecutor将FutureTask作为参数执行execute方法。在SerialExecutor的execute方法中，这里通过一个任务队列mTasks把FutureTask插入进了队列中，执行r.run，其实就是执行FutureTask的run方法，因为传递进来的r参数就是mFuture，执行完无论什么情况都是会scheduleNext()取出下一个任务来执行的。由此可知道一个串行的线程池，同一时刻只会有一个线程正在执行，其余的均处于等待状态，等到上一个线程执完r.run()完之后，scheduleNext()取出下一个任务执行。如果再有新的任务被执行时就等待上一个任务执行完毕后才会得到执行，实现了串行的任务队列正是通过SerialExecutor核心类。
+exec.execute(mFuture)执行时，SerialExecutor将FutureTask作为参数执行execute方法。在execute方法中，假设FutureTask插入进了两个以上的任务队列到mTasks中，第一次过来mActive==null，通过`mTasks.poll()`取出一个任务丢给线程池运行，线程池执行r.run，其实就是执行FutureTask的run方法，因为传递进来的r参数就是mFuture。等到上一个线程执完r.run()完之后，这里是通过一个try-finally代码块，并在finally中调用了scheduleNext()方法，保证无论发生什么情况，scheduleNext()都会取出下一个任务执行。接着因为mActive不为空了，不会再执行``scheduleNext()`，由此可知道这是一个串行的执行过程，同一时刻只会有一个线程正在执行，其余的均处于等待状态。
 
 
 ```java
@@ -332,7 +332,8 @@ mWorker = new WorkerRunnable<Params, Result>() {
             }
         };
 ```
-* AsyncTask的postResult方法
+可以看到如果回调了`call()`方法，就会调用了`doInBackground(mParams)`方法，这都是在子线程中执行的。执行完后，将结果通过`postResult(result)`发送出去。
+4、AsyncTask的postResult方法
 ```java
     private Result postResult(Result result) {
         @SuppressWarnings("unchecked")
@@ -345,7 +346,7 @@ mWorker = new WorkerRunnable<Params, Result>() {
     }
 
 ```
-
+因为`postResult(Result result)`还是在子线程中调用的，如果要发送给主线程，必须通过Handler。源码中使用sHandler并带着MESSAGE_POST_RESULT和封装了任务执行结果的对象AsyncTaskResult，然后message.sendToTarget()开始发消息。
 ```java
   private static Handler getHandler() {
         synchronized (AsyncTask.class) {
@@ -357,10 +358,11 @@ mWorker = new WorkerRunnable<Params, Result>() {
         }
     }
 ```
+并在InternalHandler的handleMessage中开始处理消息，InternalHandler的源码如下所示：
 ```java
      private static class InternalHandler extends Handler {
         public InternalHandler() {
-            // 在主线程中调用
+            // 这个handler是关联到主线程的
             super(Looper.getMainLooper());
         }
 
@@ -380,9 +382,19 @@ mWorker = new WorkerRunnable<Params, Result>() {
         }
     }
 ```
-执行postResult的时候，obtainMessage传递的参数是：MESSAGE_POST_RESULT和AsyncTaskResult(this, result))，然后message.sendToTarget()开始发消息，并在InternalHandler的handleMessage中开始处理消息。
-当我们子类调用publishProgress(progress)的时候
-
+* 这里根据消息的类型进行了判断，如果是MESSAGE_POST_RESULT消息，就会去执行finish()方法，`finish()`源码如下文所示：
+```java
+private void finish(Result result) {  
+    if (isCancelled()) {  
+        onCancelled(result);  
+    } else {  
+        onPostExecute(result);  
+    }  
+    mStatus = Status.FINISHED;  
+} 
+```
+如果任务已经取消了，调用`onCancelled`方法，如果没被取消，则调用onPostExecute()方法。
+* 如果`doInBackground(Void... params)`调用`publishProgress()`方法，实际就是发送一条MESSAGE_POST_PROGRESS消息，就会去执行onProgressUpdate()方法。`publishProgress()`的源码如下文所示：
 ```java
     @WorkerThread
     protected final void publishProgress(Progress... values) {
@@ -392,18 +404,5 @@ mWorker = new WorkerRunnable<Params, Result>() {
         }
     }
 ```
-调用AysncTask里面publishProgress,，obtainMessage传递的参数是：MESSAGE_POST_PROGRESS和AsyncTaskResult(this, result))，然后message.sendToTarget()开始发消息，并在InternalHandler的handleMessage中开始处理消息。
-当我们子类调用publishProgress(progress)的时候
-```java
- private void finish(Result result) {
-        if (isCancelled()) {
-            //如果已经取消了就会调用onCancelled方法
-            onCancelled(result);
-        } else {
-            //执行完异步任务后，调用子类的onPostExecute，关闭一些dialog、释放资源等操作
-            onPostExecute(result);
-        }
-        mStatus = Status.FINISHED;
-    }
-```
+
 总结前面大致的流程是：·`new DownAsynTask().execute()->AsyncTask.executeOnExecutor(Executor exec,Params... params)->onPreExecute()->SerialExecutor.execute(mFuture)->mFuture插入队列->THREAD_POOL_EXECUTOR.execute(mActive)取出任务串行执行->mWorker.call()->doInBackground(mParams)->postResult(result)->onPostExecute(result)或者onCancelled(result)`
