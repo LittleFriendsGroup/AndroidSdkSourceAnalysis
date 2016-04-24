@@ -190,6 +190,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>AudioPlayer源码解析</td>
     	<td>ayyb1988</td>
     </tr>
+    <tr>
+    	<td>TimePicker源码解析</td>
+    	<td>shixinzhang</td>
+    </tr>
     </tbody>
 </table>
 
@@ -341,10 +345,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>TableLayout源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>TimePicker源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
