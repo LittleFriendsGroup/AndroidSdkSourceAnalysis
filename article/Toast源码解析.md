@@ -45,7 +45,7 @@ public static Toast makeText(Context context, CharSequence text, @Duration int d
         TextView tv = (TextView)v.findViewById(com.android.internal.R.id.message);
         tv.setText(text);
         
-        result.mNextView = v;
+        result.mNextView = v;//传入下个view
         result.mDuration = duration;//Toast显示的时间长度
 
         return result;
@@ -78,12 +78,14 @@ makeText中的transient_notification.xml，源码位于：[frameworks\base\core\
 # 2. show
 ```
 public void show() {
+		//解释自定义view，需要先setView
         if (mNextView == null) {
             throw new RuntimeException("setView must have been called");
         }
-
+		//得到INotificationManager服务
         INotificationManager service = getService();
         String pkg = mContext.getOpPackageName();
+		//TN对象
         TN tn = mTN;
         tn.mNextView = mNextView;
 
@@ -99,46 +101,51 @@ public void show() {
 ## 2.1. TN 
 ```
  private static class TN extends ITransientNotification.Stub {
+ 
         final Runnable mShow = new Runnable() {
             @Override
             public void run() {
-                handleShow();
+                handleShow();//显示处理
             }
         };
 
         final Runnable mHide = new Runnable() {
             @Override
             public void run() {
-                handleHide();
+                handleHide();//消失处理
                 // Don't do this in handleHide() because it is also invoked by handleShow()
                 mNextView = null;
             }
         };
-
+		//应用程序窗口
         private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
         final Handler mHandler = new Handler();    
 
-        int mGravity;
-        int mX, mY;
-        float mHorizontalMargin;
-        float mVerticalMargin;
+        int mGravity;//出现在屏幕的位置
+        int mX, mY;//分别是出现在屏幕的X、Y方向偏移量
+        float mHorizontalMargin;//横向margin值
+        float mVerticalMargin;//竖向margin值
 
 
-        View mView;
-        View mNextView;
+        View mView;//当前view
+        View mNextView;//下个Toast显示的view
 
         WindowManager mWM;
-
+		//TN构造函数
         TN() {
             // XXX This should be changed to use a Dialog, with a Theme.Toast
             // defined that sets up the layout params appropriately.
             final WindowManager.LayoutParams params = mParams;
             params.height = WindowManager.LayoutParams.WRAP_CONTENT;
             params.width = WindowManager.LayoutParams.WRAP_CONTENT;
-            params.format = PixelFormat.TRANSLUCENT;
+            // 不设置这个弹出框的透明遮罩显示为黑色
+			params.format = PixelFormat.TRANSLUCENT;
+			// 动画
             params.windowAnimations = com.android.internal.R.style.Animation_Toast;
-            params.type = WindowManager.LayoutParams.TYPE_TOAST;
+            // 类型
+			params.type = WindowManager.LayoutParams.TYPE_TOAST;
             params.setTitle("Toast");
+			// 设置flag
             params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                     | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
@@ -165,19 +172,21 @@ public void show() {
         public void handleShow() {
             if (localLOGV) Log.v(TAG, "HANDLE SHOW: " + this + " mView=" + mView
                     + " mNextView=" + mNextView);
-            if (mView != mNextView) {
+            if (mView != mNextView) {//判断下个view是否一样
                 // remove the old view if necessary
-                handleHide();
+                handleHide();//移除当前view
                 mView = mNextView;
-                Context context = mView.getContext().getApplicationContext();
+                Context context = mView.getContext().getApplicationContext();//获取当前view上下文
                 String packageName = mView.getContext().getOpPackageName();
                 if (context == null) {
                     context = mView.getContext();
                 }
+				//获得 WindowManager对象
                 mWM = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
                 // We can resolve the Gravity here by using the Locale for getting
                 // the layout direction
                 final Configuration config = mView.getContext().getResources().getConfiguration();
+				//获取绝对的Gravity
                 final int gravity = Gravity.getAbsoluteGravity(mGravity, config.getLayoutDirection());
                 mParams.gravity = gravity;
                 if ((gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {
@@ -193,14 +202,14 @@ public void show() {
                 mParams.packageName = packageName;
                 if (mView.getParent() != null) {
                     if (localLOGV) Log.v(TAG, "REMOVE! " + mView + " in " + this);
-                    mWM.removeView(mView);
+                    mWM.removeView(mView);//如果当前view存在，先移除
                 }
                 if (localLOGV) Log.v(TAG, "ADD! " + mView + " in " + this);
                 mWM.addView(mView, mParams);//通过WindowManager调用addView加载
                 trySendAccessibilityEvent();
             }
         }
-		//主要是一些View获得点击、焦点、文字改变等事件的分发管理
+		
         private void trySendAccessibilityEvent() {
             AccessibilityManager accessibilityManager =
                     AccessibilityManager.getInstance(mView.getContext());
@@ -246,7 +255,7 @@ oneway interface ITransientNotification {
  @Override
         public void show() {
             if (localLOGV) Log.v(TAG, "SHOW: " + this);
-            mHandler.post(mShow);
+            mHandler.post(mShow);//显示
         }
 
         /**
@@ -255,7 +264,7 @@ oneway interface ITransientNotification {
         @Override
         public void hide() {
             if (localLOGV) Log.v(TAG, "HIDE: " + this);
-            mHandler.post(mHide);
+            mHandler.post(mHide);//消失
         }
 ```
 这里可以看出Toast显示和消失用的Handler机制实现的。
@@ -298,7 +307,7 @@ private static INotificationManager sService;
                     return;
                 }
             }
-
+			//入队列mToastQueue 
             synchronized (mToastQueue) {
                 int callingPid = Binder.getCallingPid();
                 long callingId = Binder.clearCallingIdentity();
@@ -321,7 +330,7 @@ private static INotificationManager sService;
                                  final ToastRecord r = mToastQueue.get(i);
                                  if (r.pkg.equals(pkg)) {
                                      count++;
-                                     if (count >= MAX_PACKAGE_NOTIFICATIONS) {
+                                     if (count >= MAX_PACKAGE_NOTIFICATIONS) {//限制toasts数，最大50
                                          Slog.e(TAG, "Package has already posted " + count
                                                 + " toasts. Not showing more. Package=" + pkg);
                                          return;
@@ -329,9 +338,10 @@ private static INotificationManager sService;
                                  }
                             }
                         }
-
+						//获得ToastRecord对象
                         record = new ToastRecord(callingPid, pkg, callback, duration);
-                        mToastQueue.add(record);//放入mToastQueue中
+						//放入mToastQueue中                       
+					    mToastQueue.add(record);
                         index = mToastQueue.size() - 1;
                         keepProcessAliveLocked(callingPid);//(3)设置该Toast为前台进程
                     }
@@ -355,6 +365,7 @@ private static INotificationManager sService;
     }
 private static boolean isUidSystem(int uid) {
         final int appid = UserHandle.getAppId(uid);
+		//判断pid为系统进程使用的用户id，值为1000，或者为系统进程的手机的用户id，值为1001
         return (appid == Process.SYSTEM_UID || appid == Process.PHONE_UID || uid == 0);
     }
 ```
@@ -363,6 +374,7 @@ private static boolean isUidSystem(int uid) {
  // lock on mToastQueue
     int indexOfToastLocked(String pkg, ITransientNotification callback)
     {
+	//
         IBinder cbak = callback.asBinder();
         ArrayList<ToastRecord> list = mToastQueue;
         int len = list.size();
@@ -390,6 +402,7 @@ private static boolean isUidSystem(int uid) {
             }
         }
         try {
+		    //设置该Toast为前台进程
             mAm.setProcessForeground(mForegroundToken, pid, toastCount > 0);
         } catch (RemoteException e) {
             // Shouldn't happen.
@@ -399,12 +412,13 @@ private static boolean isUidSystem(int uid) {
 (4)直接显示Toast，源码：
 ```
  void showNextToastLocked() {
+		//直接取第一个
         ToastRecord record = mToastQueue.get(0);
         while (record != null) {
             if (DBG) Slog.d(TAG, "Show pkg=" + record.pkg + " callback=" + record.callback);
             try {
                 record.callback.show();//回调TN类，显示Toast
-                scheduleTimeoutLocked(record);
+                scheduleTimeoutLocked(record);//设置消失
                 return;
             } catch (RemoteException e) {
                 Slog.w(TAG, "Object died trying to show notification " + record.callback
@@ -425,16 +439,17 @@ private static boolean isUidSystem(int uid) {
     }
  private void scheduleTimeoutLocked(ToastRecord r)
     {
-        mHandler.removeCallbacksAndMessages(r);
+        mHandler.removeCallbacksAndMessages(r);//移除ToastRecord
         Message m = Message.obtain(mHandler, MESSAGE_TIMEOUT, r);
         //static final int LONG_DELAY = 3500; // 3.5 seconds
         //static final int SHORT_DELAY = 2000; // 2 seconds
         long delay = r.duration == Toast.LENGTH_LONG ? LONG_DELAY : SHORT_DELAY;
+		//发送Toast消失的message
         mHandler.sendMessageDelayed(m, delay);
     }
 ```
 从enqueueToast方法可知，先判断是不是系统和合法的Toast，然后判断是否在ToastQueue（这里解释了很多Toast，是一个个显示的），如果存在，只需要更新Toast显示的时间，如果不在，就直接显示，回调给TN类。`到这里，知道了Toast是如何显示的。`
-然后还得继续追踪mHandler，来到WorkerHandler ：
+还没有结束，继续追踪mHandler，来到WorkerHandler ：
 ```
 private final class WorkerHandler extends Handler
     {
@@ -473,12 +488,12 @@ private final class WorkerHandler extends Handler
             // the list anyway
         }
         mToastQueue.remove(index);//该ToastRecord对象从mToastQueue中移除
-        keepProcessAliveLocked(record.pid);
+        keepProcessAliveLocked(record.pid);//设置该Toast为前台进程
         if (mToastQueue.size() > 0) {
             // Show the next one. If the callback fails, this will remove
             // it from the list, so don't assume that the list hasn't changed
             // after this point.
-            showNextToastLocked();
+            showNextToastLocked();//继续show下个Toast
         }
     }
 ```
@@ -487,3 +502,7 @@ Toast核心显示和消失源码分析完毕，其他一些比如duration、grav
 
 # 总结
 Toast代码调用只有一行，了解这行代码的背后，了解Toast是怎样显示，又是怎样消失的。自定义Toast时，需要调用setView，不然show会抛异常，这个从show方法就能得知。至此，Toast源码解析告一段落。
+
+
+
+
