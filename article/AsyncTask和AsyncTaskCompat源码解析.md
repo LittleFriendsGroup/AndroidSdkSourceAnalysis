@@ -159,7 +159,6 @@ public class CallableAndFuture {
     }
 }//java
 ```
-* 
 ```java
 public class FutureTask<V> implements RunnableFuture<V>//java
 实现了RunnableFuture接口
