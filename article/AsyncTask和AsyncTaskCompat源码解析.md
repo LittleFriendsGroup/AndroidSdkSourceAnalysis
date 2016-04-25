@@ -355,4 +355,8 @@ AsyncTasks should ideally be used for short operations (a few seconds at the mos
 
 ## 五、总结
  尽管AsyncTask现在已经很少使用了，但是他的一些设计思路可以借鉴到我们的框架中。比如我们的代码中尽量设计灵活一些，就像AysnTask里面存在串行、并行的操作一样，提供用户同的api，让用户在不同的场景下选择不同的业务逻辑处理。
+ 
+## 六、版本兼容AsyncTaskCompat
+[有兴趣的可以看这篇文章](http://www.jianshu.com/p/b283b5b704e5)
+
 
