@@ -342,4 +342,4 @@ private void finish(Result result) {
 ## AsyncTask需要注意的坑
 * AsyncTask的对象必须在主线程中实例化，execute方法也要在主线程调用
 * AsyncTask任务只能被执行一次，即只能调用一次execute方法，多次调用时将会抛异常
-* cancel()方法无法直接中断子线程，只是更改了中断的标志位。控制异步任务执行结束后不会回调onPostExecute()。取消异步任务要cancel()方法+doInbacground()做判断跳出循环
+* cancel()方法无法直接中断子线程，只是更改了中断的标志位。控制异步任务执行结束后不会回调onPostExecute()。正确的取消异步任务要cancel()方法+doInbacground()做判断跳出循环
