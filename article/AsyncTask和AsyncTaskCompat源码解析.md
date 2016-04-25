@@ -343,7 +343,14 @@ private void finish(Result result) {
 如果你还不够清晰，请看下面的这个流程图。
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/AsyncTask%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
-## AsyncTask需要注意的坑
+## 四、AsyncTask需要注意的坑
 * AsyncTask的对象必须在主线程中实例化，execute方法也要在主线程调用
 * AsyncTask任务只能被执行一次，即只能调用一次execute方法，多次调用时将会抛异常
 * cancel()方法无法直接中断子线程，只是更改了中断的标志位。控制异步任务执行结束后不会回调onPostExecute()。正确的取消异步任务要cancel()方法+doInbacground()做判断跳出循环
+* AsyncTask在Activit通常作为匿名的内部类来使用，如果 AsyncTask 中的异步任务在 Activity 退出时还没执行完或者阻塞了，那么这个保持的外部的 Activity 实例得不到释放（内部类保持隐式外部类的实例的引用），最后导致会引起OOM，解决办法是：在 AsyncTask 使用弱引用外部实例，或者保证在 Activity 退出时，所有的 AsyncTask 已执行完成或被取消
+* 会产生阻塞问题，尤其是单任务顺序执行的情况下，一个任务执行时间过长会阻塞其他任务的执行
+* 不建议使用AsyncTask进行网络操作
+AsyncTasks should ideally be used for short operations (a few seconds at the most.) If you need to keep threads running for long periods of time, it is highly recommended you use the various APIs。 Android文档中有写到AsyncTask应该处理几秒钟的操作（通常为轻量的本地IO操作），由于网络操作存在不确定性，可能达到几秒以上，所以不建议使用。
+## 五、总结
+ 尽管AsyncTask现在已经很少使用了，但是他的一些设计思路可以借鉴到我们的框架中，
+
