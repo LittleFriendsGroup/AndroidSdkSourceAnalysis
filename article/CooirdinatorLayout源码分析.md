@@ -13,7 +13,7 @@
 |`AndchorId`| `layout_anchor` &`layout_anchorGravity`| 布局时根据自身`gravity` 与 `layout_anchorGravity`放置在被anchor的View中 |
 |`Behavior` | `layout_behavior` | 辅助Coordinator对View进行layout、nestedScroll的处理 |
 |`KeyLine` | `layout_keyline` & `keylines` | 给Coordinator设置了`keylines`（整数数组）后，可以为子View设置`layout_keyline="i"`使其的水平位置根据对应`keylines[i]`进行layout。 |
-|`LsstChildRect` | 无 | 记录每一次Layout的位置，从而判断是否新的一帧改变了位置 |
+|`LastChildRect` | 无 | 记录每一次Layout的位置，从而判断是否新的一帧改变了位置 |
 
 注：
 
@@ -167,6 +167,9 @@ class OnPreDrawListener implements ViewTreeObserver.OnPreDrawListener {
 - 判断一下新的布局边界与lastChildRect是否相同，是则记录新的布局边界为lastChildRect，并继续后续流程，否则跳过；
 - 对于之后每一个View，如果它依赖于本View，则调用它的`Behavior.onDependentViewChanged`（如果有Behavior的话）。
 
+至于`onDependentViewRemoved`，是在初始化的时候就会调用`ViewGroup.setOnHierarchyChangeListener()`方法设置一个`OnHierarchyChangeListener`，这样每次add和remove子View的时候就会接收到回调，同时对相应依赖关系的View进行处理。
+
+
 #### 1.3.3 布局类
 
  `onMeasureChild`&`onLayoutChild`：如果重写了该方法并返回`true`，则CoordinatorLayout会使用Behavior对这个子View进行measure/layout。具体的可以见下面的**Measure&Layout**
@@ -260,6 +263,7 @@ protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 ```
 
 总结下来，onMeasure干了这么几件事：
+
 1. 根据依赖关系对所有子View进行排序
 2. 保证OnPreDrawListener被添加
 3. 按依赖关系遍历子View:
@@ -360,6 +364,6 @@ private void layoutChildWithAnchor(View child, View anchor, int layoutDirection)
 CoordinatorLayout的特性总结下来就是两个方面：
 
 1. 可以设置anchor，被依赖的View变化自身也会变化；
-2. 可以设置behavior，当内部有支持嵌套滑动的控件时处理nestedScroll事件；
+2. 可以设置behavior，当内部有支持嵌套滑动的控件时处理NestedScroll事件；
 
 这两个特性导致的子View之间的依赖关系让界面的交互更有意思。有兴趣的同学可以再去看`AppBarLayout`、`FloatingActionButton`、`SnackBar`的源码~~
