@@ -365,3 +365,8 @@ public void onRestoreInstanceState(Parcelable state) {
 }
 ```
 保存状态是自定义一个SavedState，继承自BaseSavedState，然后Parcelable 将Boobean 类型checked 属性序列化，判断是否选中，在onSaveInstanceState() 中，保存，然后在onRestoreInstanceState() 获取序列化的属性，重新调用setChecked() 设置属性。
+
+
+## Checkbox/ToggleButton
+Checkbox 和ToggleButton 的实现那都是继承自CompoundButton，还有RadioGroup 和RadioButton 的源码分析，可以看下面这两篇文章。
+- [ToggleButton/Checkbox 的源码分析](compoundbutton_checkbox_source_analysis.md)
