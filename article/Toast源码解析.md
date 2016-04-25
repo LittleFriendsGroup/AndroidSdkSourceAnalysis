@@ -1,7 +1,4 @@
-# 写在前面
-第一步正式去分析源码，我准备按照What-How-Why，知其然知其所以然，沿着这个3W思路来探探Toast源码，正式进入主题，let's go。
-
-# What
+# Toast简介
 Toast源码位于：[frameworks\base\core\java\android\widget\Toast.java](https://github.com/android/platform_frameworks_base/blob/master/core/java/android/widget/Toast.java)
 
 > A toast is a view containing a quick little message for the user.The toast class helps you create and show those.
@@ -15,9 +12,8 @@ Toast源码位于：[frameworks\base\core\java\android\widget\Toast.java](https:
 > The easiest way to use this class is to call one of the static methods that constructs
 > everything you need and returns a new Toast object.
 
-其实Toast是什么？这个应该最熟悉不过了，估计也是平时用的最多的组件之一，至于Toast定义还是引用源码的，原汁原味的比较爽。
 
-# How
+# Toast使用
 Toast使用就一行代码：
 ```
  Toast.makeText(ToastActivity.this,"Toast源码解析",Toast.LENGTH_LONG).show();
@@ -44,12 +40,12 @@ toast_view.xml
         android:background="@mipmap/ic_launcher" />
 </LinearLayout>
 ```
-# Why
-Toast使用多了，肯定好奇它是如何实现了？它的出现位置能不能自己改？如果有多个Toast，好像都是按照次序一个个展示的？带着这些疑问，我们一探Toast源码。首先从Toast的基本使用，作为入口。
+# Toast源码分析
+Toast源码分析有两个目标，知道Toast源码在哪里体现了Toast显示，又在哪里体现了Toast消失，首先从Toast的基本使用。首先从Toast的基本使用，作为入口。
 ```
  Toast.makeText(ToastActivity.this,"Toast源码解析",Toast.LENGTH_LONG).show();
 ```
-## makeText
+## 1. makeText
 ```
 public static Toast makeText(Context context, CharSequence text, @Duration int duration) {
         Toast result = new Toast(context);
@@ -90,7 +86,7 @@ makeText中的transient_notification.xml，源码位于：[frameworks\base\core\
 ```
 从makeText方法看，就是Toast的自定义view的那部分代码。
 
-# show
+# 2. show
 ```
 public void show() {
         if (mNextView == null) {
@@ -109,9 +105,9 @@ public void show() {
         }
     }
 ```
-看了show方法，发现涉及两个新的类，TN 和INotificationManager 。
+看了show方法，发现涉及两个新的类，TN 和INotificationManager 。enqueueToast方法大概就是实现Toast显示和消失吧，让我们一步步探索。
 
-## TN 
+## 2.1. TN 
 ```
  private static class TN extends ITransientNotification.Stub {
         final Runnable mShow = new Runnable() {
@@ -275,8 +271,8 @@ oneway interface ITransientNotification {
 ```
 这里可以看出Toast显示和消失用的Handler机制实现的。
 
-## INotificationManager
-调用了getService得到INotificationManager服务
+## 2.2. INotificationManager
+调用了getService，如下：
 ```
 private static INotificationManager sService;
 
@@ -288,9 +284,9 @@ private static INotificationManager sService;
         return sService;
     }
 ```
-再调用enqueueToast方法，参数有三个，包名，TN，时间。INofiticationManager接口的具体实现类是NotificationManagerService类，源码位置：[frameworks\base\services\core\java\com\android\server\notification\NotificationManagerService.java](https://github.com/android/platform_frameworks_base/blob/master/services/core/java/com/android/server/notification/NotificationManagerService.java)
+得到INotificationManager服务，再调用enqueueToast方法，参数有三个，包名，TN，时间。INofiticationManager接口的具体实现类是NotificationManagerService类，源码位置：[frameworks\base\services\core\java\com\android\server\notification\NotificationManagerService.java](https://github.com/android/platform_frameworks_base/blob/master/services/core/java/com/android/server/notification/NotificationManagerService.java)
 
-enqueueToast
+## 2.3. enqueueToast
 ```
  @Override
         public void enqueueToast(String pkg, ITransientNotification callback, int duration)
@@ -304,7 +300,7 @@ enqueueToast
                 Slog.e(TAG, "Not doing toast. pkg=" + pkg + " callback=" + callback);
                 return ;
             }
-			//1.判断是否系统的Toast，如果当前包名是android则为系统
+			//(1)判断是否系统的Toast，如果当前包名是android则为系统
             final boolean isSystemToast = isCallerSystem() || ("android".equals(pkg));
 			//判断当前toast所属的pkg是不是所阻止的
             if (ENABLE_BLOCKED_TOASTS && !noteNotificationOp(pkg, Binder.getCallingUid())) {
@@ -319,7 +315,7 @@ enqueueToast
                 long callingId = Binder.clearCallingIdentity();
                 try {
                     ToastRecord record;
-                    //2.判断Toast是否在队列当中
+                    //(2)判断Toast是否在队列当中
                     int index = indexOfToastLocked(pkg, callback);
                     // If it's already in the queue, we update it in place, we don't
                     // move it to the end of the queue.
@@ -348,14 +344,14 @@ enqueueToast
                         record = new ToastRecord(callingPid, pkg, callback, duration);
                         mToastQueue.add(record);//放入mToastQueue中
                         index = mToastQueue.size() - 1;
-                        keepProcessAliveLocked(callingPid);//3.设置该Toast为前台进程
+                        keepProcessAliveLocked(callingPid);//(3)设置该Toast为前台进程
                     }
                     // If it's at index 0, it's the current toast.  It doesn't matter if it's
                     // new or just been updated.  Call back and tell it to show itself.
                     // If the callback fails, this will remove it from the list, so don't
                     // assume that it's valid after this.
                     if (index == 0) {
-                        showNextToastLocked();//4.直接显示Toast
+                        showNextToastLocked();//(4)直接显示Toast
                     }
                 } finally {
                     Binder.restoreCallingIdentity(callingId);
@@ -363,7 +359,7 @@ enqueueToast
             }
         }
 ```
-1.判断是否系统的Toast，源码：
+(1)判断是否系统的Toast，源码：
 ```
  private static boolean isCallerSystem() {
         return isUidSystem(Binder.getCallingUid());
@@ -373,7 +369,7 @@ private static boolean isUidSystem(int uid) {
         return (appid == Process.SYSTEM_UID || appid == Process.PHONE_UID || uid == 0);
     }
 ```
-2.判断Toast是否在队列当中，源码：
+(2)判断Toast是否在队列当中，源码：
 ```
  // lock on mToastQueue
     int indexOfToastLocked(String pkg, ITransientNotification callback)
@@ -390,7 +386,7 @@ private static boolean isUidSystem(int uid) {
         return -1;
     }
 ```
-3.设置该Toast为前台进程，源码：
+(3)设置该Toast为前台进程，源码：
 ```
  // lock on mToastQueue
     void keepProcessAliveLocked(int pid)
@@ -411,7 +407,7 @@ private static boolean isUidSystem(int uid) {
         }
     }
 ```
-4.直接显示Toast，源码：
+(4)直接显示Toast，源码：
 ```
  void showNextToastLocked() {
         ToastRecord record = mToastQueue.get(0);
@@ -448,7 +444,8 @@ private static boolean isUidSystem(int uid) {
         mHandler.sendMessageDelayed(m, delay);
     }
 ```
-从enqueueToast方法可知，先判断是不是系统和合法的Toast，然后判断是否在ToastQueue（这里解释了很多Toast，是一个个显示的），如果存在，只需要更新Toast显示的时间，如果不在，就直接显示，回调给TN类。然后还得继续追踪mHandler，来到WorkerHandler ：
+从enqueueToast方法可知，先判断是不是系统和合法的Toast，然后判断是否在ToastQueue（这里解释了很多Toast，是一个个显示的），如果存在，只需要更新Toast显示的时间，如果不在，就直接显示，回调给TN类。`到这里，知道了Toast是如何显示的。`
+然后还得继续追踪mHandler，来到WorkerHandler ：
 ```
 private final class WorkerHandler extends Handler
     {
@@ -496,11 +493,8 @@ private final class WorkerHandler extends Handler
         }
     }
 ```
-到这里，知道了Toast是如何消失的。Toast核心显示和消失源码分析完毕，其他一些设置，不难，一看就明白。
+`到这里，知道了Toast是如何消失的。`
+Toast核心显示和消失源码分析完毕，其他一些比如duration、gravity等设置，不难，一看就明白。
 
 # 总结
-源码中涉及aidl进程间通信，这块我本身还得学习，分析过程中基本是带过了，Toast代码调用只有一行，背后却涉及这么多，真是涨姿势，知其然知其所以然，保持一个学习的心。至此，Toast源码解析告一段落。
-
-
-
-
+Toast代码调用只有一行，了解这行代码的背后，了解Toast是怎样显示，又是怎样消失的。自定义Toast时，需要调用setView，不然show会抛异常，这个从show方法就能得知。至此，Toast源码解析告一段落。
