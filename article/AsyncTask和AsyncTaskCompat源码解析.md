@@ -50,7 +50,7 @@ new DownAsyncTask().extcute();
 //并行实例化
 new DownAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"");
 ```
-2、[代码案例参照](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/source/AsyntaskActivity.java)
+2、点击查看，[代码案例](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/source/AsyntaskActivity.java)
 ###2.4、取消异步任务
 ```java
 AsyncTask.cancel(mayInterruptIfRunning);
@@ -89,21 +89,25 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
    /**AsyncTask的构造函数源码片段**/
    public AsyncTask() {
         mWorker = new WorkerRunnable<Params, Result>() {
-            //异步任务执行的时候调用call方法
+            //异步任务执行的时候回调call方法
             public Result call() throws Exception {
                 mTaskInvoked.set(true);
+                //设置线程的优先级
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                 //noinspection unchecked
                 Result result = doInBackground(mParams);
                 Binder.flushPendingCommands();
+                //将结果发送出去
                 return postResult(result);
             }
         };
 
         mFuture = new FutureTask<Result>(mWorker) {
+            //任务执行完毕后会调用done方法
             @Override
             protected void done() {
                 try {
+                    //get()表示获取mWorker的call的返回值，即Result.然后看postResultIfNotInvoked方法
                     postResultIfNotInvoked(get());
                 } catch (InterruptedException e) {
                     android.util.Log.w(LOG_TAG, e);
@@ -180,6 +184,7 @@ public static final Executor SERIAL_EXECUTOR = new SerialExecutor();
 //exec执行AsyncTask.execute()方法时传递进来的参数sDefaultExecutor，这个sDefaultExecutor其实就是SerialExecutor对象。
 public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec,
             Params... params) {
+        //如果一个任务已经进入执行的状态，再执行就会抛异常。这就决定了一个AsyncTask只能执行一次
         if (mStatus != Status.PENDING) {
             switch (mStatus) {
                 case RUNNING:
@@ -191,11 +196,11 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
                             + "(a task can be executed only once)");
             }
         }
-
+	//一旦executeOnExecutor调用了就标记为运行状态
         mStatus = Status.RUNNING;
 	//实际是调用子类里面的onPreExecute
         onPreExecute();
-
+	//将处理的参数类型赋值给mWorker
         mWorker.mParams = params;
         //execute是调用SERIAL_EXECUTOR的execute，mFuture就是之前AsyncTask构造初始化赋值的FutureTask。
         exec.execute(mFuture);
@@ -203,6 +208,10 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
     }
 
 ```
+这里要说明一下，AsyncTask的异步任务有三种状态
+* PENDING 待执行状态。当AsyncTask被创建时，就进入了PENDING状态。
+* RUNNING 运行状态。当调用executeOnExecutor，就进入了RUNNING状态。
+* FINISHED 结束状态。当AsyncTask完成(用户cancel()或任务执行完毕)时，就进入了FINISHED状态。
 3、SerialExecutor的execute方法
 ```java
   private static class SerialExecutor implements Executor {
@@ -219,7 +228,7 @@ public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec
                     	//执行的是mFuture就是之前AsyncTask构造初始化赋值的FutureTask的run()方法
                         r.run();
                     } finally {
-                    	//取出下一个任务执行
+                    	//无论执行结果如何都会取出下一个任务执行
                         scheduleNext();
                     }
                 }
@@ -330,5 +339,8 @@ private void finish(Result result) {
         }
     }
 ```
-
-总结前面大致的流程是：·`new DownAsynTask().execute()->AsyncTask.executeOnExecutor(Executor exec,Params... params)->onPreExecute()->SerialExecutor.execute(mFuture)->mFuture插入队列->THREAD_POOL_EXECUTOR.execute(mActive)取出任务串行执行->mWorker.call()->doInBackground(mParams)->postResult(result)->onPostExecute(result)或者onCancelled(result)`
+## AsyncTask需要注意的坑
+* AsyncTask的对象必须在主线程中实例化，execute方法也要在主线程调用
+* AsyncTask任务只能被执行一次，即只能调用一次execute方法，多次调用时将会抛异常
+* AsyncTask不是被设计为解决非常耗时操作的，耗时上限为几秒钟，如果要做长耗时操作，强烈建议使用Executor，ThreadPoolExecutor等线程池处理。
+* 取消异步任务要cancel()方法+doInbacground()做判断跳出循环
