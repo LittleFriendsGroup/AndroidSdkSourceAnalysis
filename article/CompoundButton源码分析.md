@@ -315,4 +315,4 @@ public void onRestoreInstanceState(Parcelable state) {
 
 ## Checkbox/ToggleButton
 Checkbox 和ToggleButton 的实现那都是继承自CompoundButton，可以看下面这两篇文章。
-- [ToggleButton/Checkbox 的源码分析](ToggleButton和CheckBox源码分析)
+- [ToggleButton/Checkbox 的源码分析](ToggleButton和CheckBox源码分析.md)
