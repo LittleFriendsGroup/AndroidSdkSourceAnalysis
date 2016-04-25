@@ -352,5 +352,5 @@ private void finish(Result result) {
 * 不建议使用AsyncTask进行网络操作
 AsyncTasks should ideally be used for short operations (a few seconds at the most.) If you need to keep threads running for long periods of time, it is highly recommended you use the various APIs。 Android文档中有写到AsyncTask应该处理几秒钟的操作（通常为轻量的本地IO操作），由于网络操作存在不确定性，可能达到几秒以上，所以不建议使用。
 ## 五、总结
- 尽管AsyncTask现在已经很少使用了，但是他的一些设计思路可以借鉴到我们的框架中，
+ 尽管AsyncTask现在已经很少使用了，但是他的一些设计思路可以借鉴到我们的框架中。比如我们的代码中尽量设计灵活一些，就像AysnTask里面存在串行、并行的操作一样，提供用户同的api，让用户在不同的场景下选择不同的业务逻辑处理
 
