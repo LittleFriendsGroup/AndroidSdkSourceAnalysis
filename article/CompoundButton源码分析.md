@@ -1,64 +1,21 @@
+## CompoundButton 源码分析
 CompoundButton 是一个有两种状态（选中和未选中 / checkd unchecked）的Button。当你按下（pressed）或者点击（clicked），它的状态会自动改变。
 
-### 它有以下三大特点
+
+
+### 特点
+
 - 是一个抽象类（abstract），所以我们不能直接使用它，只有自定义实现或者系统已经提供的它的一直子类（ToggleButton，Checkbox，RadioButton 等等）。
 - 继承自Button，而Button 继承自TextView，所以Button，TextView 的特性CompoundButton 都是具备的。
 - 实现自Checkable 接口（interface），利用它可以设置状态（setChecked(boolean checked)），获取状态（isChecked()）和切换状态（toggle()）。
 
-
-## 例子
-我们以ToggleButton 为例，来演示CompoundButton 的特性，然后进而深入源码看它的具体实现过程。
-
-我先来看一个例子：
-详细可以在我的Github 中查看：[https://github.com/Tikitoo/AndroidDemo/tree/master/compoundbutton](https://github.com/Tikitoo/AndroidDemo/tree/master/compoundbutton)
-<br />
-
-**在布局文件（Layout）中声明ToggleButton**
-```xml
-<ToggleButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textOn="Text On"
-        android:textOff="Text Off"
-        style="@style/ToggleStyle"
-        />
-```
-<br />
-
-**@style/ToggleStyle**
-```xml
-<style name="ToogleStyle" parent="Widget.AppCompat.Button">
-    <item name="android:background">@drawable/toogle_bg</item>
-    <item name="android:textColor">@color/toggle_text_color</item>
-</style>
-```
-<br />
-
-**@drawable/toogle_bg**
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/colorAccent" android:state_checked="true" />
-    <item android:drawable="@android:color/white" />
-</selector>
-```
-<br />
-
-**@color/toggle_text_color**
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@android:color/white" android:state_checked="true" />
-    <item android:color="@color/colorAccent" />
-</selector>
-```
-<br />
-
-最后的效果图就是这样的。
+最后的效果图就是这样的。<br />
 ![](http://ww2.sinaimg.cn/large/68622377gw1f36nyso3hsg20c0034dfy.gif)
 
 
-## 源码分析
+
+### 分析
+
 ```java
 // 选中和未选中的状态
 private boolean mChecked;
@@ -93,23 +50,8 @@ private OnCheckedChangeListener mOnCheckedChangeWidgetListener;
       <attr name="buttonTint" format="color" />
       <!-- 对着色设置模式 -->
       <attr name="buttonTintMode">
-          <!-- The tint is drawn on top of the drawable.
-               [Sa + (1 - Sa)*Da, Rc = Sc + (1 - Sa)*Dc] -->
           <enum name="src_over" value="3" />
-          <!-- The tint is masked by the alpha channel of the drawable. The drawable’s
-               color channels are thrown out. [Sa * Da, Sc * Da] -->
-          <enum name="src_in" value="5" />
-          <!-- The tint is drawn above the drawable, but with the drawable’s alpha
-               channel masking the result. [Da, Sc * Da + (1 - Sa) * Dc] -->
-          <enum name="src_atop" value="9" />
-          <!-- Multiplies the color and alpha channels of the drawable with those of
-               the tint. [Sa * Da, Sc * Dc] -->
-          <enum name="multiply" value="14" />
-          <!-- [Sa + Da - Sa * Da, Sc + Dc - Sc * Dc] -->
-          <enum name="screen" value="15" />
-          <!-- Combines the tint and drawable color and alpha channels, clamping the
-               result to valid color values. Saturate(S + D) -->
-          <enum name="add" value="16" />
+          ...
       </attr>
   </declare-styleable>
 ```
@@ -164,7 +106,8 @@ public CompoundButton(Context context, AttributeSet attrs, int defStyleAttr, int
 
 
 
-**setButtonDrawable() 方法， 用于绘制按钮图形**
+### 绘制按钮图形
+
 ```java
 @Nullable
 public void setButtonDrawable(@Nullable Drawable drawable) {
@@ -195,7 +138,8 @@ public void setButtonDrawable(@Nullable Drawable drawable) {
 
 
 
-**applyButtonTint()**
+### 着色
+
 ```java
 private void applyButtonTint() {
     if (mButtonDrawable != null && (mHasButtonTint || mHasButtonTintMode)) {
@@ -221,8 +165,8 @@ private void applyButtonTint() {
 
 
 
+### **绘制**
 
-**绘制**
 ```java
 protected void onDraw(Canvas canvas) {
     final Drawable buttonDrawable = mButtonDrawable;
@@ -273,7 +217,7 @@ protected void onDraw(Canvas canvas) {
 
 
 
-**设置选中(checked)状态**
+### **设置选中(checked)状态**
 
 ```java
 public void setChecked(boolean checked) {
@@ -315,7 +259,7 @@ void setOnCheckedChangeWidgetListener(OnCheckedChangeListener listener) {
 
 
 
-**状态保存**
+### **状态保存**
 
 ```java
 static class SavedState extends BaseSavedState {
@@ -367,6 +311,8 @@ public void onRestoreInstanceState(Parcelable state) {
 保存状态是自定义一个SavedState，继承自BaseSavedState，然后Parcelable 将Boobean 类型checked 属性序列化，判断是否选中，在onSaveInstanceState() 中，保存，然后在onRestoreInstanceState() 获取序列化的属性，重新调用setChecked() 设置属性。
 
 
+
+
 ## Checkbox/ToggleButton
-Checkbox 和ToggleButton 的实现那都是继承自CompoundButton，还有RadioGroup 和RadioButton 的源码分析，可以看下面这两篇文章。
-- [ToggleButton/Checkbox 的源码分析](compoundbutton_checkbox_source_analysis.md)
+Checkbox 和ToggleButton 的实现那都是继承自CompoundButton，可以看下面这两篇文章。
+- [ToggleButton/Checkbox 的源码分析](ToggleButton和CheckBox源码分析)

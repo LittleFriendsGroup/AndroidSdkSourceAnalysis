@@ -1,11 +1,11 @@
 ## ToggleButton
 
-ToggleButton 是一种具有指示灯的开/关按钮。因为它继承自CompoundButton，所以CompoundButton 的属性它也都可以使用，不懂CompoundButton 可以看[这篇文章](compoundbutton_source_analysis.md)。它的底部有个类似似分割线的东西。像下面这张图。
+ToggleButton 是一种具有指示灯的开/关按钮。因为它继承自CompoundButton，所以CompoundButton 的属性它也都可以使用，不懂CompoundButton 可以看[这篇文章](CompoundButton源码分析.md)。它的底部有个类似似分割线的东西。像下面这张图。
 ![http://ww4.sinaimg.cn/large/68622377gw1f37nsm4mhsg20f0048ta0.gif?width=100](http://ww4.sinaimg.cn/large/68622377gw1f37nsm4mhsg20f0048ta0.gif)
 
 
 
-**属性**
+### **属性**
 
 | [android:disabledAlpha](http://developer.android.com/reference/android/widget/ToggleButton.html#attr_android:disabledAlpha) | 设置按钮在禁用时透明度（我们后面会详细说到）（enable=false） |
 | ---------------------------------------- | ------------------------------------ |
@@ -14,36 +14,7 @@ ToggleButton 是一种具有指示灯的开/关按钮。因为它继承自Compou
 
 
 
-**使用**
-
-```xml
-<ToggleButton
-    android:id="@+id/btn_toggle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:disabledAlpha="0.3"
-    android:enabled="false"
-    android:textOff="Text Off"
-    android:textOn="Text On"
-    />
-```
-
-
-
-```java
-ToggleButton toggle = (ToggleButton) findViewById(R.id.btn_toggle);
-toggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if (isChecked) {
-            // The toggle is enabled
-        } else {
-            // The toggle is disabled
-        }
-    }
-});
-```
-
-我们看上面的图，有文字，下面有类似指示器一样的东西。文字是根据textOff 和textOn 两个属性来设置两种状态的文字。而下部指示器一样的东西，是因为设置了默认Style。
+### 分析
 
 ```java
 public ToggleButton(Context context, AttributeSet attrs) {
@@ -53,9 +24,9 @@ public ToggleButton(Context context, AttributeSet attrs) {
 
 
 
-com.android.internal.R.attr.buttonStyleToggle
+**com.android.internal.R.attr.buttonStyleToggle**
 
-我们在\res\values\theme_material.xml（不同的版本会不一样）
+\res\values\theme_material.xml（不同的版本会不一样）
 
 ```xml
 ...
@@ -65,7 +36,7 @@ com.android.internal.R.attr.buttonStyleToggle
 
 
 
-\data\res\values\styles_material.xml
+**\data\res\values\styles_material.xml**
 ```xml
 <style name="Widget.Material.Button.Toggle">
     <item name="background">@drawable/btn_toggle_material</item>
@@ -76,7 +47,7 @@ com.android.internal.R.attr.buttonStyleToggle
 
 
 
-data\res\drawable\btn_toggle_material.xml
+**data\res\drawable\btn_toggle_material.xml**
 
 ```xml
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
@@ -115,7 +86,7 @@ data\res\drawable\btn_toggle_material.xml
 
 
 
-@color/control_checkable_material
+**@color/control_checkable_material**
 
 ```xml
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
@@ -132,7 +103,7 @@ data\res\drawable\btn_toggle_material.xml
 
 
 
-**设置样式**
+### **设置样式**
 
 ```java
 @Override
@@ -155,7 +126,8 @@ private void syncTextState() {
 
 
 
-**设置指示器**
+### **设置指示器**
+
 ```java
 // 设置背景资源
 @Override
@@ -192,7 +164,7 @@ protected void drawableStateChanged() {
 
 
 
-**问题**
+### **问题**
 
 在使用的过程中，设置disabledAlpha 属性，并且enble="false"，发现指示器的颜色的透明度并没有改变，后来在调试中发现mIndicatorDrawable 一直为空，所以想要使用这个属性，必须自定义背景资源，然后调用setBackgroundDrawable() 来设置，并且将下面指示器的Drawable id 设置为R.id.toggle，才能起作用。详细的Demo 可以去[我的Github 中查看]()，最后的效果图就是这样的效果。
 ![http://ww1.sinaimg.cn/large/68622377gw1f37ntueifsj20f10bv0t0.jpg?width=100](http://ww1.sinaimg.cn/large/68622377gw1f37ntueifsj20f10bv0t0.jpg)
@@ -289,4 +261,4 @@ style name="Widget.Material.CompoundButton.CheckBox" parent="Widget.CompoundButt
 </animated-selector>
 ```
 
-我们可以看到两个Item，分别是选中和未选中的，每个Item 是由Vector来画出的，并且使用@color/control_checkable_material（上面提到过） 来着色的的。状态相互切换，是有两个动画来实现的。
+我们可以看到两个Item，分别是选中和未选中的，每个Item 是由Vector来画出的，并且使用@color/control_checkable_material（上面提到过） 来着色的的。状态相互切换，是由两个动画来实现的。
