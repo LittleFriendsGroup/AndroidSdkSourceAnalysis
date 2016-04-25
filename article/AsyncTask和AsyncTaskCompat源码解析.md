@@ -181,7 +181,8 @@ public static final Executor SERIAL_EXECUTOR = new SerialExecutor();
 
 2、executeOnExecutor()方法
 ```java
-//exec执行AsyncTask.execute()方法时传递进来的参数sDefaultExecutor，这个sDefaultExecutor其实就是SerialExecutor对象。
+//exec执行AsyncTask.execute()方法时传递进来的参数sDefaultExecutor，这个sDefaultExecutor其实就是SerialExecutor对象。默认是串行执行的
+//若想变成并发执行exec可以传入AsyncTask.THREAD_POOL_EXECUTOR。
 public final AsyncTask<Params, Progress, Result> executeOnExecutor(Executor exec,
             Params... params) {
         //如果一个任务已经进入执行的状态，再执行就会抛异常。这就决定了一个AsyncTask只能执行一次
