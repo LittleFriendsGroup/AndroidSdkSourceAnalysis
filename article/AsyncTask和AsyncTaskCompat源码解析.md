@@ -339,6 +339,9 @@ private void finish(Result result) {
         }
     }
 ```
+下面是我总结以上流程画的流程图
+![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/AsyncTask%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
+
 ## AsyncTask需要注意的坑
 * AsyncTask的对象必须在主线程中实例化，execute方法也要在主线程调用
 * AsyncTask任务只能被执行一次，即只能调用一次execute方法，多次调用时将会抛异常
