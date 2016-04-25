@@ -45,7 +45,10 @@ private static final int KEEP_ALIVE = 1;//空闲线程的超时时间
 ###2.3、用法案例
 1、实例化子类
 ```java
+//串行实例化
 new DownAsyncTask().extcute();
+//并行实例化
+ new DownAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"");
 ```
 2、[代码案例参照](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/source/AsyntaskActivity.java)
 ###2.4、取消异步任务
