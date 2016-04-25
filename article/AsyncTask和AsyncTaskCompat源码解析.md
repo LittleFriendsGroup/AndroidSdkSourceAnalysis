@@ -51,6 +51,7 @@ new DownAsyncTask().extcute();
 new DownAsyncTask().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,"");
 ```
 2、点击查看，[代码案例](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/source/AsyntaskActivity.java)
+
 ###2.4、取消异步任务
 ```java
 AsyncTask.cancel(mayInterruptIfRunning);
@@ -65,6 +66,7 @@ mayInterruptIfRunning是boolean类型的，注意这里true和false的区别
      }
 ```
 * 如果线程处于休眠状态，为true则正在执行的线程将会中断，抛出异常，但执行的任务线程会继续执行完毕调用`onCanceled()`。为false则正在执行的线程不会中断，任务线程执行完毕调用`onCanceled()`。
+
 * 如果线程不处于休眠状态，为true和false都没有区别，任务线程执行完毕后调用`onCanceled()`。
 正确地取消要在`doInBackground(Void... params)`使用`isCancelled()`来判断，退出循环操作。如下面的
 ```java
@@ -351,6 +353,7 @@ private void finish(Result result) {
 * 会产生阻塞问题，尤其是单任务顺序执行的情况下，一个任务执行时间过长会阻塞其他任务的执行
 * 不建议使用AsyncTask进行网络操作
 AsyncTasks should ideally be used for short operations (a few seconds at the most.) If you need to keep threads running for long periods of time, it is highly recommended you use the various APIs。 Android文档中有写到AsyncTask应该处理几秒钟的操作（通常为轻量的本地IO操作），由于网络操作存在不确定性，可能达到几秒以上，所以不建议使用。
+
 ## 五、总结
- 尽管AsyncTask现在已经很少使用了，但是他的一些设计思路可以借鉴到我们的框架中。比如我们的代码中尽量设计灵活一些，就像AysnTask里面存在串行、并行的操作一样，提供用户同的api，让用户在不同的场景下选择不同的业务逻辑处理
+ 尽管AsyncTask现在已经很少使用了，但是他的一些设计思路可以借鉴到我们的框架中。比如我们的代码中尽量设计灵活一些，就像AysnTask里面存在串行、并行的操作一样，提供用户同的api，让用户在不同的场景下选择不同的业务逻辑处理。
 
