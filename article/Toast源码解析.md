@@ -41,7 +41,7 @@ toast_view.xml
 </LinearLayout>
 ```
 # Toast源码分析
-Toast源码分析有两个目标，知道Toast源码在哪里体现了Toast显示，又在哪里体现了Toast消失，首先从Toast的基本使用。首先从Toast的基本使用，作为入口。
+Toast源码分析有两个目标，知道Toast源码在哪里体现了Toast显示，又在哪里体现了Toast消失。首先从Toast的基本使用，作为入口。
 ```
  Toast.makeText(ToastActivity.this,"Toast源码解析",Toast.LENGTH_LONG).show();
 ```
