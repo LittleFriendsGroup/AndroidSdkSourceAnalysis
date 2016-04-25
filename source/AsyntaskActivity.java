@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yanbober.customerviewdemo.R;
 
 public class AsyntaskActivity extends AppCompatActivity {
 
