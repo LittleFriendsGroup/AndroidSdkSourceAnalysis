@@ -339,7 +339,7 @@ private void finish(Result result) {
         }
     }
 ```
-下面是我总结以上流程画的流程图
+如果你还不够清晰，请看下面的这个流程图。
 ![](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/images/AsyncTask%E6%B5%81%E7%A8%8B%E5%9B%BE.png)
 
 ## AsyncTask需要注意的坑
