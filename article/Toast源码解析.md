@@ -501,8 +501,4 @@ private final class WorkerHandler extends Handler
 Toast核心显示和消失源码分析完毕，其他一些比如duration、gravity等设置，不难，一看就明白。
 
 # 总结
-Toast代码调用只有一行，了解这行代码的背后，了解Toast是怎样显示，又是怎样消失的。自定义Toast时，需要调用setView，不然show会抛异常，这个从show方法就能得知。至此，Toast源码解析告一段落。
-
-
-
-
+Toast代码调用只有一行，了解这行代码的背后，使用进程间通信进行回调,有个ToastQueue，进入队列之前，会做一些合法性判断，用的Handler机制显示和消失。自定义Toast时，需要调用setView，不然show会抛异常，这个从show方法就能得知。至此，Toast源码解析告一段落，今后应该会有更多的这样的常用的组件的源码分析，知其然知其所以然。
