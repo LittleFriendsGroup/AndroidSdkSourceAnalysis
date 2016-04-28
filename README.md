@@ -204,6 +204,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>SharedPreferences/Preference源码解析</td>
     	<td>beautifulSoup</td>
     </tr>
+    <tr>
+    	<td>Button源码解析</td>
+    	<td>pc859107393</td>
+    </tr>
     </tbody>
 </table>
 
@@ -247,10 +251,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>BluetoothSocket源码解析</td>
-      <td>未认领</td>
-    </tr>
-  <tr>
-     <td>Button源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
