@@ -208,6 +208,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Button源码解析</td>
     	<td>pc859107393</td>
     </tr>
+    <tr>
+    	<td>MediaPlayer源码解析</td>
+    	<td>lber19535</td>
+    </tr>
     </tbody>
 </table>
 
@@ -299,10 +303,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>LocalBroadcastManager源码解析</td>
-      <td>未认领</td>
-    </tr>
-     <tr>
-     <td>MediaPlayer源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
