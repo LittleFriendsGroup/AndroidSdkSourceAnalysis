@@ -212,6 +212,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>MediaPlayer源码解析</td>
     	<td>lber19535</td>
     </tr>
+     <tr>
+    	<td>Animation源码解析</td>
+    	<td>binIoter</td>
+    </tr>
     </tbody>
 </table>
 
@@ -229,10 +233,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-    <tr>
-     <td>Animation源码解析</td>
-     <td>未认领</td>
-    </tr>
   <tr>
      <td>ActivityTestCase源码解析</td>
      <td>未认领</td>
