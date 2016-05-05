@@ -220,6 +220,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>NavigationView源码解析</td>
     	<td>hongyangAndroid</td>
     </tr>
+    <tr>
+    	<td>Notification源码解析</td>
+    	<td>Allyns</td>
+    </tr>
     </tbody>
 </table>
 
@@ -356,10 +360,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <tr>
      <td>TableLayout源码解析</td>
       <td>未认领</td>
-    </tr>
-    <tr>
-     <td>Notification源码解析</td>
-     <td>未认领</td>
     </tr>
       <tr>
        <td>OverScroller源码解析</td>
