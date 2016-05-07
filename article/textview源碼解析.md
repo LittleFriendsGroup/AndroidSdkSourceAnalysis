@@ -793,7 +793,7 @@ void draw(Canvas c, float x, int top, int y, int bottom) {
 
 接下来我们来看一下在测量过程中出现的FontMetrics，这是一个Paint的静态内部类。主要用来储存文字排版的Y轴相关信息。内部仅包含ascent、descent、top、bottom、leading五个数值。如下图:
 
- ![1339061786_4121](./images/1339061786_4121.PNG)
+ ![1339061786_4121](https://raw.githubusercontent.com/7heaven/AndroidSdkSourceAnalysis/master/article/images/fontmetrics.gif)
 
 除了leading以外，其他的数值都是相对于每一行的baseline的，也就是说其他的数值需要加上对应行的baseline才能得到最终真实的坐标。
 
