@@ -14,6 +14,8 @@ android sdk 源码解析
 * 待认领文章 是想参与的的同学可以参与进来如被认领，也可以做校对者，若想解析的内容不在表格，也可以联系我们添加分析，也可以在Issues添加，你可以在文末看到我们的联系方式。
 
 ##已发布文章
+
+###第一期
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
 [LruCache源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/LruCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [CaMnter](https://github.com/CaMnter)| [android-cjj](https://github.com/android-cjj/)|support-v4-23.2.1 | 2016/4/24   
