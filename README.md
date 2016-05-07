@@ -15,6 +15,9 @@ ANDROID SDK 源码解析
 
 ##已发布文章
 
+####转载说明
+这里每一篇文章我们都或多或少的付出了时间、精力分析校对，第一次搞这种源码解析，可能有很多地方做的不好，但是我们用心做了！所以，如果你想转载，至少文章开头写下来源[https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis),还有写下分析者名字！请尊重每一篇文章的劳动成果，谢谢！
+
 ###第一期
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
@@ -455,4 +458,4 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 
 GitHub小伙伴交流群'' 523388744
 
-微博    [Android-CJJ](http://weibo.com/chenjijun2011)
+微博    [小说家CJJ](http://weibo.com/chenjijun2011)
