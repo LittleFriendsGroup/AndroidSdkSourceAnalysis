@@ -376,8 +376,6 @@ measured.setPara(source, paraStart, paraEnd, textDir, b);
                     variableTabStops, TAB_INCREMENT, b.mBreakStrategy, b.mHyphenationFrequency);
 ```
 
-
-​```java
             int fmCacheCount = 0;
             int spanEndCacheCount = 0;
             for (int spanStart = paraStart, spanEnd; spanStart < paraEnd; spanStart = spanEnd) {
