@@ -2,8 +2,9 @@ ANDROID SDK 源码解析
 ===============================
 
 #####转载说明：
+这里每一篇文章我们都或多或少的付出了时间、精力分析校对，第一次搞这种源码解析，可能有很多地方做的不好，但是我们用心做了！所以，如果你想转载，至少文章开头写下来源地址：[https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis),还有写下分析者名字！
 
-这里每一篇文章我们都或多或少的付出了时间、精力分析校对，第一次搞这种源码解析，可能有很多地方做的不好，但是我们用心做了！所以，如果你想转载，至少文章开头写下来源[https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis),还有写下分析者名字！请尊重每一篇文章的劳动成果，谢谢！
+请尊重每一篇文章的劳动成果，谢谢！
 
 ![](https://github.com/yuxingxin/AndroidWidgetClassGraph/blob/master/img/android.jpg)
 
