@@ -29,7 +29,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
 [Binder源码解析](https://github.com/xdtianyu/SourceAnalysis/blob/master/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [xdtianyu](https://github.com/xdtianyu) |[xdtianyu](https://github.com/xdtianyu) |android api 23| 2016/5/8
 [TextView源码解析](https://github.com/7heaven/AndroidSdkSourceAnalysis/blob/master/article/textview%E6%BA%90%E7%A2%BC%E8%A7%A3%E6%9E%90.md) | [7heaven](https://github.com/7heaven) |[7heaven](https://github.com/7heaven) |android api 23| 2016/5/8
-[CooirdinatorLayout源码解析](https://github.com/desmond1121/AndroidSdkSourceAnalysis/blob/master/article/CooirdinatorLayout%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [Desmond Yao](https://github.com/desmond1121) |[轻微](https://github.com/zzz40500) | support-v7-23.2.1| 2016/5/8
+[CoordinatorLayout源码解析](https://github.com/desmond1121/AndroidSdkSourceAnalysis/blob/master/article/CooirdinatorLayout%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [Desmond Yao](https://github.com/desmond1121) |[轻微](https://github.com/zzz40500) | support-v7-23.2.1| 2016/5/8
 [Scroller源码解析](https://github.com/Skykai521/AndroidSdkSourceAnalysis/blob/master/article/Scroller%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [Skykai521](https://github.com/Skykai521) |[子墨](https://github.com/zimoguo) | android api 23| 2016/5/8
 [SwipeRefreshLayout 源码解析](https://github.com/hanks-zyh/SwipeRefreshLayout/blob/master/README.md) | [hanks-zyh](https://github.com/hanks-zyh) |[android-cjj](https://github.com/android-cjj/) | support-v7-23.2.1| 2016/5/8
 [FloatingActionButton源码解析](https://github.com/Rowandjj/my_awesome_blog/blob/master/fab_anlysis/README.md) | [Rowandjj](https://github.com/Rowandjj) |[CaMnter](https://github.com/CaMnter) | support-v7-23.2.1| 2016/5/8
@@ -55,16 +55,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   </thead>
   <tbody>
     <tr>
-      <td>AsyncTask/AsyncTaskCompat源码解析</td>
-      <td>white37</td>
-    </tr>
-    <tr>
       <td>Toast源码解析</td>
       <td>吴小龙同學</td>
-    </tr>
-     <tr>
-     <td>Scroller源码解析</td>
-      <td>Skykai521</td>
     </tr>
         <tr>
      <td>ScrollView源码解析</td>
@@ -73,10 +65,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <tr>
       <td>Seekbar源码解析</td>
       <td>JohnTsaiAndroid</td>
-    </tr>
-    <tr>
-      <td>LinearLayout源码解析</td>
-      <td>razerdp</td>
     </tr>
     <tr>
       <td>ArrayMap源码解析</td>
@@ -114,10 +102,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Handler源码解析</td>
     	<td>maoruibin</td>
     </tr>
-    <tr>
-    	<td>CoordinatorLayout源码解析</td>
-    	<td>desmond1121</td>
-    </tr>
      <tr>
     	<td>AppBarLayout源码解析</td>
     	<td>desmond1121</td>
@@ -130,21 +114,9 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>RadioGroup源码解析</td>
     	<td>Tikitoo</td>
     </tr>
-     <tr>
-    	<td>Compound/Radio/ToggleButton源码解析</td>
-    	<td>Tikitoo</td>
-    </tr>
     <tr>
     	<td>GestureDetector源码分析</td>
     	<td>lishiwei</td>
-    </tr>
-    <tr>
-    	<td>TabLayout源码解析</td>
-    	<td>Aspsine</td>
-    </tr>
-    <tr>
-    	<td>Binder源码解析</td>
-    	<td>xdtianyu</td>
     </tr>
     <tr>
     	<td>RecyclerView/ItemTouchHelper源码解析</td>
@@ -154,21 +126,9 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Toolbar源码解析</td>
     	<td>SeniorZhai</td>
     </tr>
-    <tr>
-    	<td>TextView源码解析</td>
-    	<td>likkka</td>
-    </tr>
      <tr>
     	<td>TextUtils/TimeUtils源码解析</td>
     	<td>alafighting</td>
-    </tr>
-     <tr>
-    	<td>FloatingActionButton源码解析</td>
-    	<td>Rowandjj</td>
-    </tr>
-     <tr>
-    	<td>SwipRefreshLayout源码解析</td>
-    	<td>Hanks</td>
     </tr>
     <tr>
     	<td>NestedScrollView源码解析</td>
