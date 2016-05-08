@@ -27,7 +27,6 @@ ANDROID SDK 源码解析
 ###第一期
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
-
 [FloatingActionButton源码解析](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/article/AsyncTask%E5%92%8CAsyncTaskCompat%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [Rowandjj/](https://github.com/Rowandjj) |[CaMnter](https://github.com/CaMnter) | support-v7-23.2.1| 2016/5/8
 [AsyncTask源码分析](https://github.com/white37/AndroidSdkSourceAnalysis/blob/master/article/AsyncTask%E5%92%8CAsyncTaskCompat%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [white37](https://github.com/nukc) |[android-cjj](https://github.com/android-cjj/) | android api 23 | 2016/5/8
 [SearchView源码解析](https://github.com/nukc/SearchViewAnalysis) | [Nukc](https://github.com/nukc) |[android-cjj](https://github.com/android-cjj/) | support-v7-23.2.1 | 2016/5/7
