@@ -1,4 +1,4 @@
-android sdk 源码解析
+ANDROID SDK 源码解析
 ===============================
 
 ![](https://github.com/yuxingxin/AndroidWidgetClassGraph/blob/master/img/android.jpg)
@@ -9,19 +9,32 @@ android sdk 源码解析
 
 * 已发布文章 发表已经整理好的文章，读者可以阅读学习！
 
-* 已认领文章  如果你喜欢的文章被认领，你还想参与，可以作为校对者，也可以在Issues提意见，联系我们请看文末
+* 已认领文章  如果你喜欢的文章被认领，你想参与,你还是可以分析认领，我们选择好的发布，也可以作为校对者。认领方式：在Issues提你要认领什么内容的就可以了.(写好加我qq:929178101校对)
 
-* 待认领文章 是想参与的的同学可以参与进来如被认领，也可以做校对者，若想解析的内容不在表格，也可以联系我们添加分析，也可以在Issues添加，你可以在文末看到我们的联系方式。
+* 待认领文章 是想参与的的同学可以参与进来，如被认领，也可以做校对者，若想解析的内容不在表格，可以联系我们添加分析的内容，方式：在Issues提你要认领什么内容的就可以了.(写好加我qq:929178101校对)
+
+
+#####转载说明：
+这里每一篇文章我们都或多或少的付出了时间、精力分析校对，第一次搞这种源码解析，可能有很多地方做的不好，但是我们用心做了！所以，如果你想转载，至少文章开头写下来源地址：
+
+[https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis)
+
+,还有写下分析者名字！请尊重每一篇文章的劳动成果，谢谢！
 
 ##已发布文章
+
+
+###第一期
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :------------- 
-[BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|design-23.2.0 | 2016/4/20
-[ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|support-v4-21.0 | 2016/4/21
+[LruCache源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/LruCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [CaMnter](https://github.com/CaMnter)| [alafighting](https://github.com/alafighting)|support-v4-23.2.1 | 2016/4/24   
+[ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|support-v4-21.0 | 2016/4/21   
+[BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|design-23.2.0 | 2016/4/20  
+[CoordinatorLayout源码分析](https://github.com/desmond1121/AndroidSdkSourceAnalysis/blob/master/article/CooirdinatorLayout%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [desmond1121](https://github.com/desmond1121) | [轻微](https://github.com/zzz40500) | support-design-23.2.1 | 2016/5/7 |
 
 
 ## 已认领文章
-
+(写好的童鞋可以加我qq:929178101做校对)
 <table>
   <thead>
     <tr>
@@ -30,10 +43,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-     <tr>
-      <td>LruCache源码解析</td>
-      <td>CaMnter</td>
-    </tr>
     <tr>
       <td>AsyncTask/AsyncTaskCompat源码解析</td>
       <td>white37</td>
@@ -87,7 +96,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>wingjay</td>
     </tr>
     <tr>
-      <td>Frame/Linear/RelativeLayout源码解析</td>
+      <td>Frame/RelativeLayout源码解析</td>
       <td>wingjay</td>
     </tr>
     <tr>
@@ -194,6 +203,42 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>TimePicker源码解析</td>
     	<td>shixinzhang</td>
     </tr>
+    <tr>
+    	<td>LayoutInflater/LayoutInflaterCompat源码解析</td>
+    	<td>peerless2012</td>
+    </tr>
+    <tr>
+    	<td>Log源码解析</td>
+    	<td>lypeer</td>
+    </tr>
+     <tr>
+    	<td>SharedPreferences/Preference源码解析</td>
+    	<td>beautifulSoup</td>
+    </tr>
+    <tr>
+    	<td>Button源码解析</td>
+    	<td>pc859107393</td>
+    </tr>
+    <tr>
+    	<td>MediaPlayer源码解析</td>
+    	<td>lber19535</td>
+    </tr>
+     <tr>
+    	<td>Animation源码解析</td>
+    	<td>binIoter</td>
+    </tr>
+    <tr>
+    	<td>NavigationView源码解析</td>
+    	<td>hongyangAndroid</td>
+    </tr>
+    <tr>
+    	<td>Notification源码解析</td>
+    	<td>Allyns</td>
+    </tr>
+    <tr>
+    	<td>TextInputLayout源码解析</td>
+    	<td>wbersaty</td>
+    </tr>
     </tbody>
 </table>
 
@@ -211,10 +256,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-    <tr>
-     <td>Animation源码解析</td>
-     <td>未认领</td>
-    </tr>
   <tr>
      <td>ActivityTestCase源码解析</td>
      <td>未认领</td>
@@ -237,10 +278,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>BluetoothSocket源码解析</td>
-      <td>未认领</td>
-    </tr>
-  <tr>
-     <td>Button源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
@@ -291,16 +328,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>LocalBroadcastManager源码解析</td>
       <td>未认领</td>
     </tr>
-     <tr>
-     <td>MediaPlayer源码解析</td>
-      <td>未认领</td>
-    </tr>
     <tr>
      <td>Paint源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>SharedPreferences/Preference源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
@@ -346,18 +375,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <tr>
      <td>TableLayout源码解析</td>
       <td>未认领</td>
-    </tr>
-    <tr>
-     <td>LayoutInflater/LayoutInflaterCompat源码解析</td>
-     <td>未认领</td>
-    </tr>
-    <tr>
-     <td>Log源码解析</td>
-     <td>未认领</td>
-    </tr>
-    <tr>
-     <td>Notification源码解析</td>
-     <td>未认领</td>
     </tr>
       <tr>
        <td>OverScroller源码解析</td>
@@ -429,14 +446,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>CollapsingToolbarLayout源码解析</td>
       <td>未认领</td>
    </tr>
-   <tr>
-      <td>NavigationView源码解析</td>
-      <td>未认领</td>
-   </tr>  
-     <tr>
-      <td>TextInputLayout源码解析</td>
-      <td>未认领</td>
-   </tr>
    </tbody>
 </table>
 
@@ -447,12 +456,12 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 ![](http://ww4.sinaimg.cn/mw690/7ef01fcagw1f348vy4482j2074074aar.jpg)
 
 已打赏我们的同学：
-[霏霁小雨](http://weibo.com/u/2701537800?refer_flag=1001030101_&is_all=1),灯泡（支付宝）
+[霏霁小雨](http://weibo.com/u/2701537800?refer_flag=1001030101_&is_all=1),[WeiChaoFeng](https://github.com/razerdp),[singwhatiwanna](https://github.com/singwhatiwanna)
 
 
 
 ###联系方式：
 
-GitHub小伙伴交流群 477826523  (年轻的骚年啊，你是分析者呢 ？还是校对者呢 ？什么都不是别加 T_T)
+GitHub小伙伴交流群'' 523388744
 
-微博    [Android-CJJ](http://weibo.com/chenjijun2011)
+微博    [小说家CJJ](http://weibo.com/chenjijun2011)
