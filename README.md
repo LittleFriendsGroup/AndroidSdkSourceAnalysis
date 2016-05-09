@@ -206,6 +206,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>TextInputLayout源码解析</td>
     	<td>wbersaty</td>
     </tr>
+    <tr>
+    	<td>ActivityTestCase源码解析</td>
+    	<td>gdky005</td>
+    </tr>
     </tbody>
 </table>
 
@@ -223,10 +227,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-  <tr>
-     <td>ActivityTestCase源码解析</td>
-     <td>未认领</td>
-    </tr>
   <tr>
      <td>ActionBar源码解析</td>
      <td>未认领</td>
