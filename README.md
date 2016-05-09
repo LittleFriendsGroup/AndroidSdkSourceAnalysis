@@ -423,7 +423,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 ![](http://ww4.sinaimg.cn/mw690/7ef01fcagw1f348vy4482j2074074aar.jpg)
 
 已打赏我们的同学：
-[霏霁小雨](http://weibo.com/u/2701537800?refer_flag=1001030101_&is_all=1),[WeiChaoFeng](https://github.com/razerdp),[singwhatiwanna](https://github.com/singwhatiwanna)，[Stay](https://github.com/Stay)
+[霏霁小雨](http://weibo.com/u/2701537800?refer_flag=1001030101_&is_all=1),[WeiChaoFeng](https://github.com/razerdp),[singwhatiwanna](https://github.com/singwhatiwanna),[Stay](https://github.com/Stay)
 
 
 
