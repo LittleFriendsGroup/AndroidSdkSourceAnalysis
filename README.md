@@ -210,6 +210,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>ActivityTestCase源码解析</td>
     	<td>gdky005</td>
     </tr>
+    <tr>
+    	<td>SQLiteOpenHelper/SQLiteDatabase/Cursor源码解析</td>
+    	<td>YZHIWEN</td>
+    </tr>
     </tbody>
 </table>
 
@@ -329,10 +333,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
      <tr>
      <td>Service源码解析</td>
-      <td>未认领</td>
-    </tr>
-     <tr>
-     <td>SQLiteOpenHelper/SQLiteDatabase/Cursor源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
