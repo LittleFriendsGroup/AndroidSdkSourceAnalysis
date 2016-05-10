@@ -26,7 +26,7 @@ ANDROID SDK 源码解析
 
 ###第一期
 Class | 分析者 | 校对者 | 版本 | 发布时间
-:------------- | :------------- | :------------- | :------------- | :------------- 
+:------------- | :------------- | :------------- | :------------- | :-------------
 [Binder源码解析](https://github.com/xdtianyu/SourceAnalysis/blob/master/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [xdtianyu](https://github.com/xdtianyu) |[xdtianyu](https://github.com/xdtianyu) |android api 23| 2016/5/8
 [TextView源码解析](https://github.com/7heaven/AndroidSdkSourceAnalysis/blob/master/article/textview%E6%BA%90%E7%A2%BC%E8%A7%A3%E6%9E%90.md) | [7heaven](https://github.com/7heaven) |[7heaven](https://github.com/7heaven) |android api 23| 2016/5/8
 [CoordinatorLayout源码解析](https://github.com/desmond1121/AndroidSdkSourceAnalysis/blob/master/article/CoordinatorLayout%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [Desmond Yao](https://github.com/desmond1121) |[轻微](https://github.com/zzz40500) | support-v7-23.2.1| 2016/5/8
@@ -38,7 +38,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 [CompoundButton源码解析](https://github.com/Tikitoo/AndroidSdkSourceAnalysis/blob/master/article/CompoundButton%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [Tikitoo](https://github.com/Tikitoo) |[android-cjj](https://github.com/android-cjj/) | android api 23 | 2016/5/8
 [LinearLayout源码解析](https://github.com/razerdp/AndroidSourceAnalysis/blob/master/LinearLayout/android_widget_LinearLayout.md) | [razerdp](https://github.com/razerdp) |[android-cjj](https://github.com/android-cjj/) | support-v7-23.2.1 | 2016/5/8
 [SearchView源码解析](https://github.com/nukc/SearchViewAnalysis/blob/master/README.md) | [Nukc](https://github.com/nukc) |[android-cjj](https://github.com/android-cjj/) | support-v7-23.2.1 | 2016/5/7
-[LruCache源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/LruCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [CaMnter](https://github.com/CaMnter)| [alafighting](https://github.com/alafighting)|support-v4-23.2.1 | 2016/4/24 
+[LruCache源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/LruCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [CaMnter](https://github.com/CaMnter)| [alafighting](https://github.com/alafighting)|support-v4-23.2.1 | 2016/4/24
 [ViewDragHelper源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/ViewDragHelper%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [达庆凯](https://github.com/Skykai521)| [android-cjj](https://github.com/android-cjj/)|support-v4-21.0 | 2016/4/21   
 [BottomSheets源码解析](https://github.com/android-cjj/SourceAnalysis) | [android-cjj](https://github.com/android-cjj/)| [轻微](https://github.com/zzz40500)|design-23.2.0 | 2016/4/20  
 
@@ -392,11 +392,51 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-  <tr>
-   <td>ActionMenuView源码解析</td>
-   <td>未认领</td>
-   </tr>
-   </tbody>
+    <tr>
+      <td>ActionMenuView源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>ActionBarDrawerToggle源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>AlertController源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>ButtonBarLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>DrawerArrowDrawable源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>ListMenuItemView源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>PopupMenu源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>ActionMenuView源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>ToolbarActionBar源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>ViewStubCompat源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+      <td>WindowDecorActionBar源码解析</td>
+      <td>未认领</td>
+    </tr>
+    </tbody>
 </table>
 
 **design**
