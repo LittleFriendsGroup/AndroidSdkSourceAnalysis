@@ -234,6 +234,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>ListView源码解析</td>
     	<td>KingJA</td>
     </tr>
+    <tr>
+    	<td>Intent源码解析</td>
+    	<td>imdreamrunner</td>
+    </tr>
     </tbody>
 </table>
 
@@ -293,10 +297,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>ImageButton源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>Intent源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
