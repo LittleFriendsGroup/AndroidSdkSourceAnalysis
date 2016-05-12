@@ -238,6 +238,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Intent源码解析</td>
     	<td>imdreamrunner</td>
     </tr>
+    <tr>
+    	<td>Bundle源码解析</td>
+    	<td>ASPOOK</td>
+    </tr>
     </tbody>
 </table>
 
@@ -266,10 +270,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
    <tr>
      <td>AccountManager源码解析</td>
      <td>未认领</td>
-    </tr>
-  	<tr>
-     <td>Bundle源码解析</td>
-      <td>未认领</td>
     </tr>
     <tr>
      <td>BluetoothSocket源码解析</td>
