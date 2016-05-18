@@ -254,6 +254,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Canvas源码解析</td>
     	<td>heavenxue</td>
     </tr>
+    <tr>
+    	<td>CollapsingToolbarLayout源码解析</td>
+    	<td>fever324</td>
+    </tr>
     </tbody>
 </table>
 
@@ -457,10 +461,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-   <tr>
-      <td>CollapsingToolbarLayout源码解析</td>
-      <td>未认领</td>
-   </tr>
    </tbody>
 </table>
 
