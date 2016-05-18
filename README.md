@@ -258,6 +258,14 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>CollapsingToolbarLayout源码解析</td>
     	<td>fever324</td>
     </tr>
+    <tr>
+    	<td>PopupWindow源码解析</td>
+    	<td>GJson</td>
+    </tr>
+    <tr>
+    	<td>AudioRecord源码解析</td>
+    	<td>GJson</td>
+    </tr>
     </tbody>
 </table>
 
@@ -325,10 +333,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>PreferenceActivity源码解析</td>
-      <td>未认领</td>
-    </tr>
-     <tr>
-     <td>PopupWindow源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
