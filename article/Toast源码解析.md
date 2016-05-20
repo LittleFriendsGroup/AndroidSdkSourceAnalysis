@@ -193,7 +193,9 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
             mHandler.post(mHide);
         }
         
-		//显示Toast
+		/**
+		* 显示Toast
+		*/
         public void handleShow() {
             if (localLOGV) Log.v(TAG, "HANDLE SHOW: " + this + " mView=" + mView
                     + " mNextView=" + mNextView);
@@ -251,7 +253,9 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
             accessibilityManager.sendAccessibilityEvent(event);
         }
                 
-		/** WindowManager调用removeView方法来将Toast视图移除 */
+		/** 
+		* WindowManager调用removeView方法来将Toast视图移除
+		*/
         public void handleHide() {
             if (localLOGV) Log.v(TAG, "HANDLE HIDE: " + this + " mView=" + mView);
             if (mView != null) {
