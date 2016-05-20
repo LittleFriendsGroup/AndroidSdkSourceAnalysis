@@ -78,14 +78,14 @@ makeText中的transient_notification.xml，源码位于：[frameworks\base\core\
 # 2. show
 ```java
 public void show() {
-		//解释自定义view，需要先setView
+	//解释自定义view，需要先setView
         if (mNextView == null) {
             throw new RuntimeException("setView must have been called");
         }
-		//得到INotificationManager服务
+	//得到INotificationManager服务
         INotificationManager service = getService();
         String pkg = mContext.getOpPackageName();
-		//TN对象
+	//TN对象
         TN tn = mTN;
         tn.mNextView = mNextView;
 
@@ -117,7 +117,7 @@ public void show() {
                 mNextView = null;
             }
         };
-		//应用程序窗口
+	//应用程序窗口
         private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
         final Handler mHandler = new Handler();    
 
@@ -131,7 +131,7 @@ public void show() {
         View mNextView;//下个Toast显示的view
 
         WindowManager mWM;
-		//TN构造函数
+	//TN构造函数
         TN() {
             // XXX This should be changed to use a Dialog, with a Theme.Toast
             // defined that sets up the layout params appropriately.
@@ -140,12 +140,12 @@ public void show() {
             params.width = WindowManager.LayoutParams.WRAP_CONTENT;
             // 不设置这个弹出框的透明遮罩显示为黑色
 			params.format = PixelFormat.TRANSLUCENT;
-			// 动画
+	    // 动画
             params.windowAnimations = com.android.internal.R.style.Animation_Toast;
             // 类型
 			params.type = WindowManager.LayoutParams.TYPE_TOAST;
             params.setTitle("Toast");
-			// 设置flag
+            // 设置flag
             params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                     | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
@@ -168,7 +168,7 @@ public void show() {
             if (localLOGV) Log.v(TAG, "HIDE: " + this);
             mHandler.post(mHide);
         }
-		//显示Toast
+	//显示Toast
         public void handleShow() {
             if (localLOGV) Log.v(TAG, "HANDLE SHOW: " + this + " mView=" + mView
                     + " mNextView=" + mNextView);
@@ -181,12 +181,12 @@ public void show() {
                 if (context == null) {
                     context = mView.getContext();
                 }
-				//获得 WindowManager对象
+		//获得 WindowManager对象
                 mWM = (WindowManager)context.getSystemService(Context.WINDOW_SERVICE);
                 // We can resolve the Gravity here by using the Locale for getting
                 // the layout direction
                 final Configuration config = mView.getContext().getResources().getConfiguration();
-				//获取绝对的Gravity
+		//获取绝对的Gravity
                 final int gravity = Gravity.getAbsoluteGravity(mGravity, config.getLayoutDirection());
                 mParams.gravity = gravity;
                 if ((gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {
@@ -298,16 +298,16 @@ private static INotificationManager sService;
                 Slog.e(TAG, "Not doing toast. pkg=" + pkg + " callback=" + callback);
                 return ;
             }
-			//(1)判断是否系统的Toast，如果当前包名是android则为系统
+	    //(1)判断是否系统的Toast，如果当前包名是android则为系统
             final boolean isSystemToast = isCallerSystem() || ("android".equals(pkg));
-			//判断当前toast所属的pkg是不是所阻止的
+	    //判断当前toast所属的pkg是不是所阻止的
             if (ENABLE_BLOCKED_TOASTS && !noteNotificationOp(pkg, Binder.getCallingUid())) {
                 if (!isSystemToast) {
                     Slog.e(TAG, "Suppressing toast from package " + pkg + " by user request.");
                     return;
                 }
             }
-			//入队列mToastQueue 
+	    //入队列mToastQueue 
             synchronized (mToastQueue) {
                 int callingPid = Binder.getCallingPid();
                 long callingId = Binder.clearCallingIdentity();
@@ -365,7 +365,7 @@ private static INotificationManager sService;
     }
 private static boolean isUidSystem(int uid) {
         final int appid = UserHandle.getAppId(uid);
-		//判断pid为系统进程使用的用户id，值为1000，或者为系统进程的手机的用户id，值为1001
+	//判断pid为系统进程使用的用户id，值为1000，或者为系统进程的手机的用户id，值为1001
         return (appid == Process.SYSTEM_UID || appid == Process.PHONE_UID || uid == 0);
     }
 ```
@@ -402,7 +402,7 @@ private static boolean isUidSystem(int uid) {
             }
         }
         try {
-		    //设置该Toast为前台进程
+            //设置该Toast为前台进程
             mAm.setProcessForeground(mForegroundToken, pid, toastCount > 0);
         } catch (RemoteException e) {
             // Shouldn't happen.
@@ -412,7 +412,7 @@ private static boolean isUidSystem(int uid) {
 (4)直接显示Toast，源码：
 ```java
  void showNextToastLocked() {
-		//直接取第一个
+	//直接取第一个
         ToastRecord record = mToastQueue.get(0);
         while (record != null) {
             if (DBG) Slog.d(TAG, "Show pkg=" + record.pkg + " callback=" + record.callback);
