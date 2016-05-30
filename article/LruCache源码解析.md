@@ -45,7 +45,7 @@ this.bitmapCache = new LruCache<String, Bitmap>(CACHE_SIZE) {
 [LruCache 效果展示](https://github.com/CaMnter/AndroidLife/blob/master/article/LruCache%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90_%E6%95%88%E6%9E%9C%E5%B1%95%E7%A4%BA.md)  
 
 
-## 4. 源码分析	
+## 4. 源码分析
 
 ### 4.1 LruCache 原理概要解析
 
@@ -61,7 +61,7 @@ LruCache 就是 **利用 LinkedHashMap 的一个特性（ accessOrder＝true 基
 
 - 4.`LinkedHashMap` 是双向循环链表，然后每次 `LruCache.get` -> `LinkedHashMap.get` 的数据就被放到最末尾了。
 
-- 5.在 `put` 和 `trimToSize` 的方法执行下，如果发成数据量移除了，会优先移除掉最前面的数据（因为最新访问的数据在尾部）。
+- 5.在 `put` 和 `trimToSize` 的方法执行下，如果发生数据量移除，会优先移除掉最前面的数据（因为最新访问的数据在尾部）。
 
 **具体解析在：** *4.2*、*4.3*、*4.4*、*4.5* 。
 
@@ -74,7 +74,7 @@ LruCache 就是 **利用 LinkedHashMap 的一个特性（ accessOrder＝true 基
 public LruCache(int maxSize) {
 
     ...
-    
+
     this.maxSize = maxSize;
     /*
      * 初始化LinkedHashMap
@@ -99,9 +99,9 @@ public LruCache(int maxSize) {
  * 如果如果没有缓存的值，则返回 null。
  */
 public final V get(K key) {
-    
+
     ...  
-      
+
     V mapValue;
     synchronized (this) {
         // 关键点：LinkedHashMap每次get都会基于访问顺序来重整数据顺序
@@ -315,7 +315,7 @@ public void trimToSize(int maxSize) {
 
 ---  
 
-最后看看： 
+最后看看：
 
 ### 4.8 覆写 entryRemoved 的作用
 
@@ -356,7 +356,7 @@ protected void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {
 
 ## 5. 开源项目中的使用
 
-[square/picasso](https://github.com/square/picasso) 
+[square/picasso](https://github.com/square/picasso)
 
 
 ## 6. 总结
@@ -382,8 +382,3 @@ LruCache重要的几点：
 
 
 [LruCache 注释源码](https://github.com/CaMnter/AndroidLife/blob/master/app/src/main/java/com/camnter/newlife/utils/cache/LruCache.java)   
-
- 
-
- 
-
