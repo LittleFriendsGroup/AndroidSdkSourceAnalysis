@@ -425,10 +425,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-      <td>AlertController源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
       <td>ButtonBarLayout源码解析</td>
       <td>未认领</td>
     </tr>
@@ -449,7 +445,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>未认领</td>
     </tr>
     <tr>
-      <td>ToolbarActionBar源码解析</td>
+      <td>Toolbar源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
