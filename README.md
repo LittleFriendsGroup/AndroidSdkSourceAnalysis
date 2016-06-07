@@ -19,7 +19,7 @@ ANDROID SDK 源码解析
 
 [https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis)
 
-,还有写下分析者名字！请尊重每一篇文章的劳动成果，谢谢！
+还有写下分析者名字！请尊重每一篇文章的劳动成果，谢谢！
 
 ##已发布文章
 
