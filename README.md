@@ -278,6 +278,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Actionbar/AlertController源码解析</td>
     	<td>rickdynasty</td>
     </tr>
+    <tr>
+    	<td>StaticLayout源码解析</td>
+    	<td>laobie</td>
+    </tr>
     </tbody>
 </table>
 
@@ -357,10 +361,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
      <tr>
      <td>Spannable源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>StaticLayout源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
