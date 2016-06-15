@@ -57,9 +57,10 @@ Toast源码分析有两个目标，知道Toast源码在哪里体现了Toast显�
         View v = inflate.inflate(com.android.internal.R.layout.transient_notification, null);
         TextView tv = (TextView)v.findViewById(com.android.internal.R.id.message);
         tv.setText(text);
-        
-        result.mNextView = v;//传入下个view
-        result.mDuration = duration;//Toast显示的时间长度
+        //传入下个view
+        result.mNextView = v;
+        //Toast显示的时间长度
+        result.mDuration = duration;
 
         return result;
     }
@@ -129,14 +130,16 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
         final Runnable mShow = new Runnable() {
             @Override
             public void run() {
-                handleShow();//显示处理
+                //显示处理
+                handleShow();
             }
         };
 
         final Runnable mHide = new Runnable() {
             @Override
             public void run() {
-                handleHide();//消失处理
+                //消失处理
+                handleHide();
                 // Don't do this in handleHide() because it is also invoked by handleShow()
                 mNextView = null;
             }
@@ -144,15 +147,19 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
 		//应用程序窗口
         private final WindowManager.LayoutParams mParams = new WindowManager.LayoutParams();
         final Handler mHandler = new Handler();    
+		//出现在屏幕的位置
+        int mGravity;
+        //分别是出现在屏幕的X、Y方向偏移量
+        int mX, mY;
+        //横向margin值
+        float mHorizontalMargin;
+        //竖向margin值
+        float mVerticalMargin;
 
-        int mGravity;//出现在屏幕的位置
-        int mX, mY;//分别是出现在屏幕的X、Y方向偏移量
-        float mHorizontalMargin;//横向margin值
-        float mVerticalMargin;//竖向margin值
-
-
-        View mView;//当前view
-        View mNextView;//下个Toast显示的view
+		//当前view
+        View mView;
+        //下个Toast显示的view
+        View mNextView;
 
         WindowManager mWM;
 		//TN构造函数
@@ -199,11 +206,14 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
         public void handleShow() {
             if (localLOGV) Log.v(TAG, "HANDLE SHOW: " + this + " mView=" + mView
                     + " mNextView=" + mNextView);
-            if (mView != mNextView) {//判断下个view是否一样
+            //判断下个view是否一样
+            if (mView != mNextView) {
                 // remove the old view if necessary
-                handleHide();//移除当前view
+                //移除当前view
+                handleHide();
                 mView = mNextView;
-                Context context = mView.getContext().getApplicationContext();//获取当前view上下文
+                //获取当前view上下文
+                Context context = mView.getContext().getApplicationContext();
                 String packageName = mView.getContext().getOpPackageName();
                 if (context == null) {
                     context = mView.getContext();
@@ -229,10 +239,12 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
                 mParams.packageName = packageName;
                 if (mView.getParent() != null) {
                     if (localLOGV) Log.v(TAG, "REMOVE! " + mView + " in " + this);
-                    mWM.removeView(mView);//如果当前view存在，先移除
+                    //如果当前view存在，先移除
+                    mWM.removeView(mView);
                 }
                 if (localLOGV) Log.v(TAG, "ADD! " + mView + " in " + this);
-                mWM.addView(mView, mParams);//通过WindowManager调用addView加载
+                //通过WindowManager调用addView加载
+                mWM.addView(mView, mParams);
                 trySendAccessibilityEvent();
             }
         }
@@ -290,7 +302,8 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
     @Override
     public void show() {
         if (localLOGV) Log.v(TAG, "SHOW: " + this);
-            mHandler.post(mShow);//显示
+            //显示
+            mHandler.post(mShow);
     }
 
     /**
@@ -299,7 +312,8 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
     @Override
     public void hide() {
         if (localLOGV) Log.v(TAG, "HIDE: " + this);
-        mHandler.post(mHide);//消失
+        //消失
+        mHandler.post(mHide);
     }
 ```
 
@@ -370,7 +384,8 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
                             final ToastRecord r = mToastQueue.get(i);
                             if (r.pkg.equals(pkg)) {
                                 count++;
-                                if (count >= MAX_PACKAGE_NOTIFICATIONS) {//限制toasts数，最大50
+                                //toasts最大数50个
+                                if (count >= MAX_PACKAGE_NOTIFICATIONS) {
                                     Slog.e(TAG, "Package has already posted " + count
                                             + " toasts. Not showing more. Package=" + pkg);
                                     return;
@@ -383,14 +398,16 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
                     //放入mToastQueue中                       
                     mToastQueue.add(record);
                     index = mToastQueue.size() - 1;
-                    keepProcessAliveLocked(callingPid);//(3)设置该Toast为前台进程
+                    //(3)设置该Toast为前台进程
+                    keepProcessAliveLocked(callingPid);
                 }
                 // If it's at index 0, it's the current toast.  It doesn't matter if it's
                 // new or just been updated.  Call back and tell it to show itself.
                 // If the callback fails, this will remove it from the list, so don't
                 // assume that it's valid after this.
                 if (index == 0) {
-                    showNextToastLocked();//(4)直接显示Toast
+                    //(4)直接显示Toast
+                    showNextToastLocked();
                 }
             } finally {
                 Binder.restoreCallingIdentity(callingId);
@@ -439,7 +456,8 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
     // lock on mToastQueue
     void keepProcessAliveLocked(int pid)
     {
-        int toastCount = 0; // toasts from this pid
+        // toasts from this pid
+        int toastCount = 0; 
         ArrayList<ToastRecord> list = mToastQueue;
         int N = list.size();
         for (int i=0; i<N; i++) {
@@ -467,8 +485,10 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
         while (record != null) {
             if (DBG) Slog.d(TAG, "Show pkg=" + record.pkg + " callback=" + record.callback);
             try {
-                record.callback.show();//回调TN类，显示Toast
-                scheduleTimeoutLocked(record);//设置消失
+                //回调TN类，显示Toast
+                record.callback.show();
+                //设置消失
+                scheduleTimeoutLocked(record);
                 return;
             } catch (RemoteException e) {
                 Slog.w(TAG, "Object died trying to show notification " + record.callback
@@ -490,7 +510,8 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
     
     private void scheduleTimeoutLocked(ToastRecord r)
     {
-        mHandler.removeCallbacksAndMessages(r);//移除ToastRecord
+        //移除ToastRecord
+        mHandler.removeCallbacksAndMessages(r);
         Message m = Message.obtain(mHandler, MESSAGE_TIMEOUT, r);
         //static final int LONG_DELAY = 3500; // 3.5 seconds
         //static final int SHORT_DELAY = 2000; // 2 seconds
@@ -514,7 +535,7 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
                 case MESSAGE_TIMEOUT:
                     handleTimeout((ToastRecord)msg.obj);
                     break;
-               ……
+               //……
             }
         }
 
@@ -535,20 +556,24 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
     void cancelToastLocked(int index) {
         ToastRecord record = mToastQueue.get(index);
         try {
-            record.callback.hide();//回调TN类，Toast消失
+            //回调TN类，Toast消失
+            record.callback.hide();
         } catch (RemoteException e) {
             Slog.w(TAG, "Object died trying to hide notification " + record.callback
                     + " in package " + record.pkg);
             // don't worry about this, we're about to remove it from
             // the list anyway
         }
-        mToastQueue.remove(index);//该ToastRecord对象从mToastQueue中移除
-        keepProcessAliveLocked(record.pid);//设置该Toast为前台进程
+        //该ToastRecord对象从mToastQueue中移除
+        mToastQueue.remove(index);
+        //设置该Toast为前台进程
+        keepProcessAliveLocked(record.pid);
         if (mToastQueue.size() > 0) {
             // Show the next one. If the callback fails, this will remove
             // it from the list, so don't assume that the list hasn't changed
             // after this point.
-            showNextToastLocked();//继续show下个Toast
+            //继续show下个Toast
+            showNextToastLocked();
         }
     }
 ```
