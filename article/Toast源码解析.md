@@ -337,7 +337,7 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
 得到INotificationManager服务，再调用enqueueToast方法，参数有三个，包名，TN，时间。INofiticationManager接口的具体实现类是NotificationManagerService类，源码位置：[frameworks\base\services\core\java\com\android\server\notification\NotificationManagerService.java](https://github.com/android/platform_frameworks_base/blob/master/services/core/java/com/android/server/notification/NotificationManagerService.java)
 
 ## 2.3. enqueueToast
-加入队列，用来显示Toast
+加入队列，用来显示Toast，队列最大数50
 
 ```java
 
