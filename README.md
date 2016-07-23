@@ -484,7 +484,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 
 ###联系方式：
 Github小伙伴交流A群 477826523
-GitHub小伙伴交流B群 523388744
+
+GitHub小伙伴交流B群 523388744 (别重复加群)
 
 微博    [AndoridCJJ](http://weibo.com/chenjijun2011)
 
