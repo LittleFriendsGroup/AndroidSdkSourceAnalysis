@@ -472,7 +472,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
    </tbody>
 </table>
 
-注意事项：文章请发表在你个人Github上，目的是有统一性，然后你想链接个人博客在自己分析的博文写！
 
 
 ###支持我们
@@ -484,9 +483,9 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 
 
 ###联系方式：
+Github小伙伴交流A群 477826523
+GitHub小伙伴交流B群 523388744
 
-GitHub小伙伴交流群'' 523388744
-
-微博    [小说家CJJ](http://weibo.com/chenjijun2011)
+微博    [AndoridCJJ](http://weibo.com/chenjijun2011)
 
 GitHub  [android-cjj](https://github.com/android-cjj)
