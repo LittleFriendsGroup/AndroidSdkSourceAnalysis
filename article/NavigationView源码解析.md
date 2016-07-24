@@ -206,7 +206,6 @@ private void prepareMenuItems() {
                     MenuItemImpl subMenuItem = (MenuItemImpl) subMenu.getItem(j);
                     //..
                     mItems.add(new NavigationMenuTextItem(subMenuItem));
-                    }
                 }
             }
         } else {
