@@ -579,7 +579,7 @@ TN类继承自ITransientNotification.Stub，ITransientNotification.aidl，用于
     }
 ```
 
-到这里，知道了Toast是如何消失的。`Toast核心代码显示和消失源码分析完毕。
+到这里，知道了Toast是如何消失的。Toast核心代码显示和消失源码分析完毕。
 
 # 总结
 Toast代码调用只有一行，了解这行代码的背后，有个ToastQueue，进入队列之前，会做一些合法性判断，使用进程间通信进行回调，Handler机制显示和消失。自定义Toast时，需要调用setView，不然show会抛异常，这个从show方法就能得知。至此，Toast源码解析告一段落。
