@@ -23,6 +23,23 @@ ANDROID SDK 源码解析
 
 ##已发布文章
 
+### 第二期
+Class | 分析者 | 校对者 | 版本 | 发布时间
+:------------- | :------------- | :------------- | :------------- | :-------------
+[MediaPlayer源码解析](https://github.com/lber19535/SourceAnalysis/blob/master/Media%20Player%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [lber19535](https://github.com/lber19535) | [android-cjj](https://github.com/android-cjj) | android api 22 | 2016/7/25
+[NavigationView源码解析](https://github.com/hongyangAndroid/AndroidSdkSourceAnalysis/blob/master/article/NavigationView%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [hongyangAndroid](https://github.com/hongyangAndroid) | [android-cjj](https://github.com/android-cjj) | support-v7-23.1.0 | 2016/7/25
+[Service源码解析](https://github.com/asLody/SourceAnalysis/blob/master/Service%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [asLody](https://github.com/asLody) | [liaohuqiu](https://github.com/liaohuqiu) | android api 23 | 2016/7/25
+[SharePreferences源码解析](http://blog.csdn.net/yanbober/article/details/47866369) | [yanbober](https://github.com/yanbober) | [android-cjj](https://github.com/android-cjj) | android api 22 | 2016/7/25
+[ScrollView源码分析](https://github.com/Skykai521/AndroidSdkSourceAnalysis/blob/master/article/ScrollView%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [Skykai521](https://github.com/Skykai521) | [android-cjj](https://github.com/android-cjj) | android api 23 | 2016/7/25
+[Handler源码解析](https://github.com/maoruibin/HandlerAnalysis) | [maoruibin](https://github.com/maoruibin) | [android-cjj](https://github.com/android-cjj) | android api 23 | 2016/7/25
+[NestedScrollView源码解析](https://github.com/xmuSistone/android-source-analysis/blob/master/NestedScrollView.md) | [xmuSistone](https://github.com/xmuSistone) | [android-cjj](https://github.com/android-cjj) | support-v4-23.1.0 | 2016/7/25
+[SQLiteOpenHelper/...源码解析](https://github.com/YZHIWEN/AndroidSdkSourceAnalysis/blob/master/SQLite_Android.md) | [YZHIWEN](https://github.com/YZHIWEN) | [CaMnter](https://github.com/CaMnter) | android api 23 | 2016/7/25
+[Bundle源码解析](https://github.com/ASPOOK/BundleAnalysis) | [ASPOOK](https://github.com/ASPOOK) | [CaMnter](https://github.com/CaMnter) | android api 23 | 2016/7/25
+[LocalBroadcastManager源码解析](https://github.com/czhzero/AndroidSdkSourceAnalysis/blob/master/article/LocalBroadcastManager%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [czhzero](https://github.com/czhzero) | [CaMnter](https://github.com/CaMnter) | support-v4-23.4.0 | 2016/7/25
+[Toast源码解析](https://github.com/WuXiaolong/AndroidSdkSourceAnalysis/blob/master/article/Toast%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [Wuxiaolong](https://github.com/WuXiaolong) | [Nukc](https://github.com/nukc) | android api 23 | 2016/7/25
+[TextInputLayout源码解析](https://github.com/wbersaty/TextInputLayout-24) | [wbersaty](https://github.com/wbersaty) | [android-cjj](https://github.com/android-cjj) | design-24.0.0-alpha2 | 2016/7/25
+[LayoutInflater...源码解析](https://github.com/peerless2012/SourceAnalysis/blob/master/Android/FrameWork/LayoutInflater%26LayoutInflaterCompat%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [peerless2012](https://github.com/peerless2012) | [android-cjj](https://github.com/android-cjj) | android api 23 | 2016/7/25
+[NestedScrolling事件机制源码解析](http://www.jianshu.com/p/6547ec3202bd) | [android-cjj](https://github.com/android-cjj) | [android-cjj](https://github.com/android-cjj/) | design-24.0.0 | 2016/7/25
 
 ###第一期
 Class | 分析者 | 校对者 | 版本 | 发布时间
@@ -54,14 +71,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Toast源码解析</td>
-      <td>吴小龙同學</td>
-    </tr>
-        <tr>
-     <td>ScrollView源码解析</td>
-      <td>Skykai521</td>
-    </tr>
      <tr>
       <td>Seekbar源码解析</td>
       <td>JohnTsaiAndroid</td>
@@ -98,10 +107,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>Drawable源码解析</td>
       <td>wingjay</td>
     </tr>
-    <tr>
-    	<td>Handler源码解析</td>
-    	<td>maoruibin</td>
-    </tr>
      <tr>
     	<td>AppBarLayout源码解析</td>
     	<td>desmond1121</td>
@@ -109,10 +114,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <tr>
     	<td>ProgressBar源码解析</td>
     	<td>carozhu</td>
-    </tr>
-     <tr>
-    	<td>RadioGroup源码解析</td>
-    	<td>Tikitoo</td>
     </tr>
     <tr>
     	<td>GestureDetector源码分析</td>
@@ -129,10 +130,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <tr>
     	<td>TextUtils/TimeUtils源码解析</td>
     	<td>alafighting</td>
-    </tr>
-    <tr>
-    	<td>NestedScrollView源码解析</td>
-    	<td>xmuSistone</td>
     </tr>
      <tr>
     	<td>WebView源码解析</td>
@@ -171,52 +168,24 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>shixinzhang</td>
     </tr>
     <tr>
-    	<td>LayoutInflater/LayoutInflaterCompat源码解析</td>
-    	<td>peerless2012</td>
-    </tr>
-    <tr>
     	<td>Log源码解析</td>
     	<td>lypeer</td>
-    </tr>
-     <tr>
-    	<td>SharedPreferences/Preference源码解析</td>
-    	<td>beautifulSoup</td>
     </tr>
     <tr>
     	<td>Button源码解析</td>
     	<td>pc859107393</td>
-    </tr>
-    <tr>
-    	<td>MediaPlayer源码解析</td>
-    	<td>lber19535</td>
     </tr>
      <tr>
     	<td>Animation源码解析</td>
     	<td>binIoter</td>
     </tr>
     <tr>
-    	<td>NavigationView源码解析</td>
-    	<td>hongyangAndroid</td>
-    </tr>
-    <tr>
     	<td>Notification源码解析</td>
     	<td>Allyns</td>
     </tr>
     <tr>
-    	<td>TextInputLayout源码解析</td>
-    	<td>wbersaty</td>
-    </tr>
-    <tr>
     	<td>ActivityTestCase源码解析</td>
     	<td>gdky005</td>
-    </tr>
-    <tr>
-    	<td>SQLiteOpenHelper/SQLiteDatabase/Cursor源码解析</td>
-    	<td>YZHIWEN</td>
-    </tr>
-     <tr>
-    	<td>Service源码解析</td>
-    	<td>asLody</td>
     </tr>
     <tr>
     	<td>Parcelable源码解析</td>
@@ -238,17 +207,9 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Intent源码解析</td>
     	<td>imdreamrunner</td>
     </tr>
-    <tr>
-    	<td>Bundle源码解析</td>
-    	<td>ASPOOK</td>
-    </tr>
      <tr>
     	<td>FragmentTabHost源码分析</td>
     	<td>Tikitoo</td>
-    </tr>
-    <tr>
-    	<td>LocalBroadcastManager源码分析</td>
-    	<td>czhzero</td>
     </tr>
     <tr>
     	<td>Canvas源码解析</td>
