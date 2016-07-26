@@ -451,3 +451,12 @@ GitHub小伙伴交流B群 523388744 (别重复加群)
 微博    [AndoridCJJ](http://weibo.com/chenjijun2011)
 
 GitHub  [android-cjj](https://github.com/android-cjj)
+
+
+------
+
+## 许可协议
+
+- [署名-非商业性使用-相同方式共享 4.0 国际](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
+
+------
