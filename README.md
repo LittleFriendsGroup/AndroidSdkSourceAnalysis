@@ -243,6 +243,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>StaticLayout源码解析</td>
     	<td>laobie</td>
     </tr>
+    <tr>
+      <td>SnackBar源码解析</td>
+      <td>cnLGMing</td>
+    </tr>
     </tbody>
 </table>
 
