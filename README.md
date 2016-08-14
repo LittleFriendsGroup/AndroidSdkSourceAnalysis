@@ -5,7 +5,7 @@ ANDROID SDK 源码解析
 
 #### GitHub小伙伴公众号，每周一篇大神人物专访，欢迎扫码关注！
 
-<img src="https://raw.githubusercontent.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/master/images/qrcode.jpg" width="90" height="90">
+<img src="https://raw.githubusercontent.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/master/images/qrcode.jpg" width="156" height="156">
 
 =============================
 
