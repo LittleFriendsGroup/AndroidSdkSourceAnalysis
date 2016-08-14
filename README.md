@@ -3,6 +3,8 @@ ANDROID SDK 源码解析
 
 ![](https://github.com/yuxingxin/AndroidWidgetClassGraph/blob/master/img/android.jpg)
 
+<img src="https://raw.githubusercontent.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/master/images/qrcode.jpg">
+
 =============================
 
 #####概要说明：
