@@ -251,6 +251,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>SnackBar源码解析</td>
       <td>cnLGMing</td>
     </tr>
+    <tr>
+      <td>LauncherActivity源码解析</td>
+      <td>kaiyangjia</td>
+    </tr>
     </tbody>
 </table>
 
@@ -306,10 +310,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>ImageButton源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>LauncherActivity源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
