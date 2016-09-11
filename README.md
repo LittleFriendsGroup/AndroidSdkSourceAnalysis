@@ -259,6 +259,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>Html源码解析</td>
       <td>DennyCai</td>
     </tr>
+    <tr>
+      <td>EditText源码解析</td>
+      <td>johnwatsondev</td>
+    </tr>
     </tbody>
 </table>
 
@@ -303,10 +307,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     <tr>
         <td>DownloadManager源码解析</td>
         <td>未认领</td>
-    </tr>
-    <tr>
-     <td>EditText源码解析</td>
-      <td>未认领</td>
     </tr>
     <tr>
      <td>ImageButton源码解析</td>
