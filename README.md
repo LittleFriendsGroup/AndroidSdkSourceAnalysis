@@ -263,6 +263,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>EditText源码解析</td>
       <td>johnwatsondev</td>
     </tr>
+    <tr>
+      <td>TextureView源码解析</td>
+      <td>BeEagle</td>
+    </tr>
     </tbody>
 </table>
 
@@ -340,10 +344,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>TableLayout源码解析</td>
       <td>未认领</td>
     </tr>
-       <tr>
-        <td>TextureView源码解析</td>
-        <td>未认领</td>
-        </tr>
   </tbody>
 </table>
 
