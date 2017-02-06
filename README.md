@@ -220,10 +220,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>heavenxue</td>
     </tr>
     <tr>
-    	<td>CollapsingToolbarLayout源码解析</td>
-    	<td>fever324</td>
-    </tr>
-    <tr>
     	<td>PopupWindow源码解析</td>
     	<td>GJson</td>
     </tr>
@@ -267,6 +263,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>TextureView源码解析</td>
       <td>BeEagle</td>
     </tr>
+    <tr>
+     <td>AlarmManager源码解析</td>
+     <td>devzhan</td>
+    </tr>
     </tbody>
 </table>
 
@@ -286,10 +286,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
   <tbody>
   <tr>
      <td>ActionBar源码解析</td>
-     <td>未认领</td>
-    </tr>
-    <tr>
-     <td>AlarmManager源码解析</td>
      <td>未认领</td>
     </tr>
    <tr>
@@ -438,6 +434,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>CollapsingToolbarLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
    </tbody>
 </table>
 
