@@ -265,12 +265,14 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>AlarmManager源码解析</td>
      <td>devzhan</td>
     </tr>
+     <tr>
+     <td>ViewGroup源码解析</td>
+     <td>7heaven</td>
+    </tr>
     </tbody>
 </table>
 
 ## 待认领文章
-
-表格按照class的字母排序
 
 **Sdk**
 
