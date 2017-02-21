@@ -178,10 +178,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>binIoter</td>
     </tr>
     <tr>
-    	<td>ActivityTestCase源码解析</td>
-    	<td>gdky005</td>
-    </tr>
-    <tr>
     	<td>Parcelable源码解析</td>
     	<td>neuyu</td>
     </tr>
