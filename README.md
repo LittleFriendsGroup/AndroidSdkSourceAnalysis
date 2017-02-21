@@ -145,10 +145,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>Activity源码解析</td>
     	<td>nekocode</td>
     </tr>
-    <tr>
-    	<td>Fragment源码解析</td>
-    	<td>huanglizhuo</td>
-    </tr>
      <tr>
     	<td>Camera源码解析</td>
     	<td>gcgongchao</td>
