@@ -182,10 +182,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>binIoter</td>
     </tr>
     <tr>
-    	<td>Notification源码解析</td>
-    	<td>Allyns</td>
-    </tr>
-    <tr>
     	<td>ActivityTestCase源码解析</td>
     	<td>gdky005</td>
     </tr>
@@ -269,6 +265,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>ViewGroup源码解析</td>
      <td>7heaven</td>
     </tr>
+      <tr>
+    	<td>ViewStub源码解析</td>
+    	<td>Nukc</td>
+    </tr>
     </tbody>
 </table>
 
@@ -338,6 +338,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>TableLayout源码解析</td>
+      <td>未认领</td>
+    </tr>
+    <tr>
+     <td>Notification源码解析</td>
       <td>未认领</td>
     </tr>
   </tbody>
