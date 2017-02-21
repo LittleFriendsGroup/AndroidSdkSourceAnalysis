@@ -269,6 +269,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>ViewStub源码解析</td>
     	<td>Nukc</td>
     </tr>
+    <tr>
+     <td>Spannable源码解析</td>
+      <td>lber19535</td>
+    </tr>
     </tbody>
 </table>
 
@@ -326,10 +330,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>Spinner源码解析</td>
-      <td>未认领</td>
-    </tr>
-     <tr>
-     <td>Spannable源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
