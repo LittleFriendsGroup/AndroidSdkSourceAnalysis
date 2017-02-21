@@ -130,10 +130,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     	<td>SeniorZhai</td>
     </tr>
      <tr>
-    	<td>TextUtils/TimeUtils源码解析</td>
-    	<td>alafighting</td>
-    </tr>
-     <tr>
     	<td>WebView源码解析</td>
     	<td>markzhai</td>
     </tr>
@@ -411,10 +407,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
       <td>ActionMenuView源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-      <td>Toolbar源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
