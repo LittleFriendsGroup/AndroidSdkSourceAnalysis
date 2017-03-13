@@ -245,10 +245,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
       <td>TextureView源码解析</td>
       <td>BeEagle</td>
     </tr>
-    <tr>
-     <td>AlarmManager源码解析</td>
-     <td>devzhan</td>
-    </tr>
      <tr>
      <td>ViewGroup源码解析</td>
      <td>7heaven</td>
@@ -276,6 +272,14 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <tr>
      <td>Notification源码解析</td>
       <td>huanglongyu</td>
+    </tr>
+    <tr>
+     <td>AlarmManager源码解析</td>
+     <td>huanglongyu</td>
+    </tr>
+     <tr>
+     <td>Glide源码解析</td>
+     <td>Krbit</td>
     </tr>
     </tbody>
 </table>
