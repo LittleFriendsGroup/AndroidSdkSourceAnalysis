@@ -281,6 +281,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>Glide源码解析</td>
      <td>Krbit</td>
     </tr>
+    <tr>
+     <td>DataBinding源码解析</td>
+     <td>xdsjs</td>
+    </tr>
     </tbody>
 </table>
 
