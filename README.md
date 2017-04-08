@@ -7,23 +7,23 @@ ANDROID SDK 源码解析
 
 <img src="https://raw.githubusercontent.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/master/images/qrcode.jpg" width="156" height="156">
 
-=============================
+-----
 
-#####概要说明：
+##### 概要说明：
 
 * 已发布文章 发表已经整理好的文章，读者可以阅读学习！
 
 * 已认领文章  如果你喜欢的文章被认领，你想参与,你还是可以分析认领，我们选择好的发布，也可以作为校对者。认领方式：可以在 Issues 提你要认领什么内容的或加 QQ 群（369144556）
 * 待认领文章 是想参与的的同学可以参与进来，如被认领，也可以做校对者，若想解析的内容不在表格，可以联系我们添加分析的内容，方式：在 Issues 提你要认领什么内容或加 QQ 群（369144556）
 
-#####转载说明：
+##### 转载说明：
 这里每一篇文章我们都或多或少的付出了时间、精力分析校对，第一次搞这种源码解析，可能有很多地方做的不好，但是我们用心做了！所以，如果你想转载，至少文章开头写下来源地址：
 
 [https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis)
 
 ,还有写下分析者名字！请尊重每一篇文章的劳动成果，谢谢！
 
-##已发布文章
+## 已发布文章
 
 ### 第二期
 Class | 分析者 | 校对者 | 版本 | 发布时间
@@ -43,7 +43,8 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 [LayoutInflater...源码解析](https://github.com/peerless2012/SourceAnalysis/blob/master/Android/FrameWork/LayoutInflater%26LayoutInflaterCompat%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [peerless2012](https://github.com/peerless2012) | [android-cjj](https://github.com/android-cjj) | android api 23 | 2016/7/25
 [NestedScrolling事件机制源码解析](http://www.jianshu.com/p/6547ec3202bd) | [android-cjj](https://github.com/android-cjj) | [android-cjj](https://github.com/android-cjj/) | design-24.0.0 | 2016/7/25
 
-###第一期
+### 第一期
+
 Class | 分析者 | 校对者 | 版本 | 发布时间
 :------------- | :------------- | :------------- | :------------- | :-------------
 [Binder源码解析](https://github.com/xdtianyu/SourceAnalysis/blob/master/Binder%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [xdtianyu](https://github.com/xdtianyu) |[xdtianyu](https://github.com/xdtianyu) |android api 23| 2016/5/8
