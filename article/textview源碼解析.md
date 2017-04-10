@@ -1,13 +1,13 @@
 
 
-#TextView源码解析
+# TextView源码解析
 
 ***
-##1.简介
+## 1.简介
 ***
 > TextView作为Android系统上显示和排版文字以及提供对文字的增删改查、图文混排等功能的控件，内部是相对比较复杂的。这么一个复杂的控件自然需要依赖于一些其他的辅助类，例如：Layout以及Layout的相关子类、Span相关的类、MovementMethod接口、TransformationMethod接口等。这篇文章主要介绍TextView的结构和内部处理文字的流程以及TextView相关的辅助类在TextView处理文字过程中的作用。
 
-##2.TextView的内部结构和辅助类
+## 2.TextView的内部结构和辅助类
 ***
 TextView内部除了继承自View的相关属性和measure、layout、draw步骤，还包括：
 
