@@ -40,10 +40,10 @@ ViewGroup内部并没有真正处理子View的测量，因为ViewGroup本身并�
    protected void measureChildren(int widthMeasureSpec, int heightMeasureSpec) {
           final int size = mChildrenCount;
           final View[] children = mChildren;
-    		//遍历子View
+    		// 遍历子View
           for (int i = 0; i < size; ++i) {
               final View child = children[i];
-            	//检测当前子View的Visibility状态，如果是GONE则跳过
+            	// 检测当前子View的Visibility状态，如果是GONE则跳过
               if ((child.mViewFlags & VISIBILITY_MASK) != GONE) {
                   measureChild(child, widthMeasureSpec, heightMeasureSpec);
               }
@@ -58,17 +58,17 @@ ViewGroup内部并没有真正处理子View的测量，因为ViewGroup本身并�
   ```java
   protected void measureChild(View child, int parentWidthMeasureSpec,
               int parentHeightMeasureSpec) {
-    		//获取子View的LayoutParams
+    		// 获取子View的LayoutParams
           final LayoutParams lp = child.getLayoutParams();
 
-   		//计算并返回子View的widthMeasureSpec
+   		// 计算并返回子View的widthMeasureSpec
           final int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
                   mPaddingLeft + mPaddingRight, lp.width);
-    		//计算并返回子View的heightMeasureSpec
+    		// 计算并返回子View的heightMeasureSpec
           final int childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,
                   mPaddingTop + mPaddingBottom, lp.height);
 
-    		//调用子View的measure方法，measure方法最终会调用子View的onMeasure，具体的实现在View内
+    		// 调用子View的measure方法，measure方法最终会调用子View的onMeasure，具体的实现在View内
           child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
       }
   ```
@@ -79,11 +79,13 @@ ViewGroup内部并没有真正处理子View的测量，因为ViewGroup本身并�
 
 ```java
 public static int getChildMeasureSpec(int spec, int padding, int childDimension) {
-  		//用MeasureSpec提供的方法来获取具体的模式和尺寸(实际上是把高2位和低30位分开, mode = spec & 0xC0000000, size = spec & 0x3FFFFFFF)
+  		// 用MeasureSpec提供的方法来获取具体的模式和尺寸
+  		// (实际上是把高2位和低30位分开, mode = spec & 0xC0000000, size = spec & 0x3FFFFFFF)
         int specMode = MeasureSpec.getMode(spec);
         int specSize = MeasureSpec.getSize(spec);
 
-  		//由于上一步获取的是ViewGroup自身的specSize，而ViewGroup留给子View的区域是要扣除padding的，这边需要减去padding
+  		// 由于上一步获取的是ViewGroup自身的specSize，
+  		// 而ViewGroup留给子View的区域是要扣除padding的，这边需要减去padding
         int size = Math.max(0, specSize - padding);
 
         int resultSize = 0;
@@ -93,22 +95,26 @@ public static int getChildMeasureSpec(int spec, int padding, int childDimension)
         // ViewGroup自身的MeasureSpec为EXACTLY的时候
         case MeasureSpec.EXACTLY:
             if (childDimension >= 0) {
-              //子View的LayoutParams传入的尺寸既不是MATCH_PARENT也不是WRAP_CONTENT的时候，
-              //直接让子View的尺寸固定为传入的值
+              // 子View的LayoutParams传入的尺寸既不是MATCH_PARENT也不是WRAP_CONTENT的时候，
+              // 直接让子View的尺寸固定为传入的值
                 resultSize = childDimension;
                 resultMode = MeasureSpec.EXACTLY;
             } else if (childDimension == LayoutParams.MATCH_PARENT) {
-                //子View的LayoutParams传入的为MATCH_PARENT，即是和父View同样尺寸，直接给ViewGroup的size值
+                // 子View的LayoutParams传入的为MATCH_PARENT，即是和父View同样尺寸，
+              	// 直接给ViewGroup的size值
                 resultSize = size;
                 resultMode = MeasureSpec.EXACTLY;
             } else if (childDimension == LayoutParams.WRAP_CONTENT) {
-                // 子View的LayoutParams传入的为WRAP_CONTENT，但是ViewGroup自身是固定的尺寸，这时候让子View在不超出ViewGroup的size的情况下自行决定大小
+                // 子View的LayoutParams传入的为WRAP_CONTENT，但是ViewGroup自身是固定的尺寸，
+              	// 这时候让子View在不超出ViewGroup的size的情况下自行决定大小
                 resultSize = size;
                 resultMode = MeasureSpec.AT_MOST;
             }
             break;
 
-        // 传入的ViewGroup的MeasureSpec规定在给定的尺寸范围内自行决定大小，这通常是在ViewGroup本身的尺寸设置为WRAP_CONTENT的情况下传入(参考上面MeasureSpec.EXACTLY的case里面childDimension == LayoutParams.WRAP_CONTNET的情况)
+        // 传入的ViewGroup的MeasureSpec规定在给定的尺寸范围内自行决定大小，
+        // 这通常是在ViewGroup本身的尺寸设置为WRAP_CONTENT的情况下传入
+        // (参考上面MeasureSpec.EXACTLY的case里面childDimension == LayoutParams.WRAP_CONTNET的情况)
         case MeasureSpec.AT_MOST:
             if (childDimension >= 0) {
                 //子View的LayoutParams传入的尺寸既不是MATCH_PARENT也不是WRAP_CONTENT的时候，
@@ -128,7 +134,6 @@ public static int getChildMeasureSpec(int spec, int padding, int childDimension)
             }
             break;
 
-        // Parent asked to see how big we want to be
         case MeasureSpec.UNSPECIFIED:
             if (childDimension >= 0) {
                 //子View的LayoutParams传入的尺寸既不是MATCH_PARENT也不是WRAP_CONTENT的时候，
@@ -141,14 +146,12 @@ public static int getChildMeasureSpec(int spec, int padding, int childDimension)
                 resultSize = View.sUseZeroUnspecifiedMeasureSpec ? 0 : size;
                 resultMode = MeasureSpec.UNSPECIFIED;
             } else if (childDimension == LayoutParams.WRAP_CONTENT) {
-                // Child wants to determine its own size.... find out how
-                // big it should be
                 resultSize = View.sUseZeroUnspecifiedMeasureSpec ? 0 : size;
                 resultMode = MeasureSpec.UNSPECIFIED;
             }
             break;
         }
-        //用MeasureSpec类的makeMeasureSpec把size和mode拼装成一个int并返回
+        // 用MeasureSpec类的makeMeasureSpec把size和mode拼装成一个int并返回
         return MeasureSpec.makeMeasureSpec(resultSize, resultMode);
     }
 ```
@@ -180,7 +183,7 @@ public void addView(View child, int index) {
         }
         LayoutParams params = child.getLayoutParams();
         if (params == null) {
-            //params为空的情况，调用generateDefaultLayoutParams方法生成LayoutParams
+            // params为空的情况，调用generateDefaultLayoutParams方法生成LayoutParams
             params = generateDefaultLayoutParams();
             if (params == null) {
                 throw new IllegalArgumentException("generateDefaultLayoutParams() cannot return null");
@@ -190,7 +193,8 @@ public void addView(View child, int index) {
     }
 
 public void addView(View child, int width, int height) {
-        //调用这个方法的时候，会直接无视子View原来的LayoutParams，直接调用generateDefaultLayoutParams生成新的LayoutParams
+        // 调用这个方法的时候，会直接无视子View原来的LayoutParams，
+  		// 直接调用generateDefaultLayoutParams生成新的LayoutParams
         final LayoutParams params = generateDefaultLayoutParams();
         params.width = width;
         params.height = height;
@@ -207,18 +211,22 @@ private void addViewInner(View child, int index, LayoutParams params,
             boolean preventRequestLayout) {
          ...
 
-        //子View的parent不为空，说明子View已经被添加到其他ViewGroup了。直接抛出异常。也就是说子View是不允许同时被添加到多个ViewGroup中的。这边挺好理解的，因为子View的布局相关参数都是唯一的，如果同时被添加到多个ViewGroup，而ViewGroup的布局规则各不相同，会导致我们从某一个ViewGroup获取子View的时候，没法得到它正确的尺寸等相关信息
+        // 子View的parent不为空，说明子View已经被添加到其他ViewGroup了。直接抛出异常。
+        // 也就是说子View是不允许同时被添加到多个ViewGroup中的。这边挺好理解的，因为子View的布局相关参数都是唯一的，
+        // 如果同时被添加到多个ViewGroup，而ViewGroup的布局规则各不相同，会导致我们从某一个ViewGroup获取子View的时候，没法得到它正确的尺寸等相关信息
         if (child.getParent() != null) {
             throw new IllegalStateException("The specified child already has a parent. " +
                     "You must call removeView() on the child's parent first.");
         }
 
-        //调用checkLayoutParams判断当前的params是不是我们需要的LayoutParams，很多继承自ViewGroup的布局都会用自己的LayoutParams，并有独立的一些布局属性。如果不是当前布局所需的LayoutParams则调用generateLayoutParams来转换
+        // 调用checkLayoutParams判断当前的params是不是我们需要的LayoutParams，
+  		// 很多继承自ViewGroup的布局都会用自己的LayoutParams，并有独立的一些布局属性。
+  		// 如果不是当前布局所需的LayoutParams则调用generateLayoutParams来转换
         if (!checkLayoutParams(params)) {
             params = generateLayoutParams(params);
         }
 
-        //给子View设置LayoutParams
+        // 给子View设置LayoutParams
         if (preventRequestLayout) {
             child.mLayoutParams = params;
         } else {
@@ -229,7 +237,7 @@ private void addViewInner(View child, int index, LayoutParams params,
             index = mChildrenCount;
         }
 
-        //添加到子View的数组中
+        // 添加到子View的数组中
         addInArray(child, index);
 
         // 给子View设置parent
@@ -239,12 +247,13 @@ private void addViewInner(View child, int index, LayoutParams params,
             child.mParent = this;
         }
 
-        //判断并设置焦点
+        // 判断并设置焦点
         if (child.hasFocus()) {
             requestChildFocus(child, child.findFocus());
         }
 
-        //判断AttachInfo是否为空，AttachInfo不为空说明当前的ViewGroup是已经添加到Window上了。调用子View的dispatchAttachedToWindow。通知当前子View已经被添加到Window
+        // 判断AttachInfo是否为空，AttachInfo不为空说明当前的ViewGroup是已经添加到Window上了。
+  		// 调用子View的dispatchAttachedToWindow。通知当前子View已经被添加到Window
         AttachInfo ai = mAttachInfo;
         if (ai != null && (mGroupFlags & FLAG_PREVENT_DISPATCH_ATTACHED_TO_WINDOW) == 0) {
             boolean lastKeepOn = ai.mKeepScreenOn;
@@ -262,7 +271,7 @@ private void addViewInner(View child, int index, LayoutParams params,
 
         dispatchViewAdded(child);
   
-        //判断是否需要通知子View状态改变(state这边指按下、放开、选中等状态)
+        // 判断是否需要通知子View状态改变(state这边指按下、放开、选中等状态)
         if ((child.mViewFlags & DUPLICATE_PARENT_STATE) == DUPLICATE_PARENT_STATE) {
             mGroupFlags |= FLAG_NOTIFY_CHILDREN_ON_DRAWABLE_STATE_CHANGE;
         }
@@ -285,7 +294,7 @@ private void removeViewInternal(int index, View view) {
 
         boolean clearChildFocus = false;
   
-        //判断并清除焦点
+        // 判断并清除焦点
         if (view == mFocused) {
             view.unFocus(null);
             clearChildFocus = true;
@@ -293,16 +302,17 @@ private void removeViewInternal(int index, View view) {
 
         view.clearAccessibilityFocus();
 
-        //取消相关的事件Target
+        // 取消相关的事件Target
         cancelTouchTarget(view);
         cancelHoverTarget(view);
 
-        //当子View自身还有动画没有结束的时候，把子View添加到disappearingChildren列表中，在disappearingChildren列表中的子View会在动画结束后被移除
+        // 当子View自身还有动画没有结束的时候，把子View添加到disappearingChildren列表中，
+  		// 在disappearingChildren列表中的子View会在动画结束后被移除
         if (view.getAnimation() != null ||
                 (mTransitioningViews != null && mTransitioningViews.contains(view))) {
             addDisappearingView(view);
         } else if (view.mAttachInfo != null) {
-          //子View自身没有动画在执行中，通知子View从Window中脱离
+          // 子View自身没有动画在执行中，通知子View从Window中脱离
            view.dispatchDetachedFromWindow();
         }
 
@@ -312,7 +322,7 @@ private void removeViewInternal(int index, View view) {
 
         needGlobalAttributesUpdate(false);
 
-        //把子View移出子View数组
+        // 把子View移出子View数组
         removeFromArray(index);
 
         if (clearChildFocus) {
@@ -349,11 +359,11 @@ protected void dispatchDraw(Canvas canvas) {
         final View[] children = mChildren;
         int flags = mGroupFlags;
 
-        //检测是否有布局动画
+        // 检测是否有布局动画
         if ((flags & FLAG_RUN_ANIMATION) != 0 && canAnimate()) {
             final boolean buildCache = !isHardwareAccelerated();
           
-            //给所有当前可见的子View绑定布局动画
+            // 给所有当前可见的子View绑定布局动画
             for (int i = 0; i < childrenCount; i++) {
                 final View child = children[i];
                 if ((child.mViewFlags & VISIBILITY_MASK) == VISIBLE) {
@@ -368,7 +378,7 @@ protected void dispatchDraw(Canvas canvas) {
                 mGroupFlags |= FLAG_OPTIMIZE_INVALIDATE;
             }
 
-            //启动布局动画
+            // 启动布局动画
             controller.start();
 
             mGroupFlags &= ~FLAG_RUN_ANIMATION;
@@ -379,7 +389,7 @@ protected void dispatchDraw(Canvas canvas) {
             }
         }
 
-        //处理clipToPadding的情况，这边是直接调用canvas的clipRect方法来剪切出除去padding的区域
+        // 处理clipToPadding的情况，这边是直接调用canvas的clipRect方法来剪切出除去padding的区域
         int clipSaveCount = 0;
         final boolean clipToPadding = (flags & CLIP_TO_PADDING_MASK) == CLIP_TO_PADDING_MASK;
         if (clipToPadding) {
@@ -397,14 +407,17 @@ protected void dispatchDraw(Canvas canvas) {
             final int childIndex = getAndVerifyPreorderedIndex(childrenCount, i, customOrder);
             final View child = getAndVerifyPreorderedView(preorderedList, children, childIndex);
             if ((child.mViewFlags & VISIBILITY_MASK) == VISIBLE || child.getAnimation() != null) {
-                //子View是可见状态或者子View的动画还在运行的时候，调用drawChild来绘制子View，drawChild方法内部则是直接调用子View的draw(canvas, parent, draingTime)方法让子View对自身进行绘制
+                // 子View是可见状态或者子View的动画还在运行的时候，调用drawChild来绘制子View，
+              	// drawChild方法内部则是直接调用子View的draw(canvas, parent, draingTime)方法让子View对自身进行绘制
                 more |= drawChild(canvas, child, drawingTime);
             }
         }
         ...
         if (preorderedList != null) preorderedList.clear();
 
-        // 绘制那些即将消失的View，所有被移除或者Visibility不是VISIBLE但是自身还有动画没有完成的子View，都会被添加到mDisappearingChildren里面，等动画完成后才被移除。
+        // 绘制那些即将消失的View，
+  		// 所有被移除或者Visibility不是VISIBLE但是自身还有动画没有完成的子View，
+  		// 都会被添加到mDisappearingChildren里面，等动画完成后才被移除。
         if (mDisappearingChildren != null) {
             final ArrayList<View> disappearingChildren = mDisappearingChildren;
             final int disappearingCount = disappearingChildren.size() - 1;
@@ -490,7 +503,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
             if (actionMasked == MotionEvent.ACTION_DOWN
                     || mFirstTouchTarget != null) {
               
-                //处理调用requestDisallowInterceptTouchEvent来防止ViewGroup拦截事件的情况
+                // 处理调用requestDisallowInterceptTouchEvent来防止ViewGroup拦截事件的情况
                 final boolean disallowIntercept = (mGroupFlags & FLAG_DISALLOW_INTERCEPT) != 0;
                 if (!disallowIntercept) {
                     intercepted = onInterceptTouchEvent(ev);
@@ -503,14 +516,13 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
                 intercepted = true;
             }
 
-            // Check for cancelation.
             final boolean canceled = resetCancelNextUpFlag(this)
                     || actionMasked == MotionEvent.ACTION_CANCEL;
 
             // 检测是否需要把多点触摸事件分配给不同的子View
             final boolean split = (mGroupFlags & FLAG_SPLIT_MOTION_EVENTS) != 0;
           
-            //当前事件流对应的TouchTarget对象
+            // 当前事件流对应的TouchTarget对象
             TouchTarget newTouchTarget = null;
             boolean alreadyDispatchedToNewTouchTarget = false;
             if (!canceled && !intercepted) {
@@ -544,14 +556,14 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
                           
                           ...
 
-                            //判断当前遍历到的子View能否接受事件，如果不能则直接continue进入下一次循环
+                            // 判断当前遍历到的子View能否接受事件，如果不能则直接continue进入下一次循环
                             if (!canViewReceivePointerEvents(child)
                                     || !isTransformedTouchPointInView(x, y, child, null)) {
                                 ev.setTargetAccessibilityFocus(false);
                                 continue;
                             }
 
-                            //当前子View能接收事件，为子View创建TouchTarget
+                            // 当前子View能接收事件，为子View创建TouchTarget
                             newTouchTarget = getTouchTarget(child);
                             if (newTouchTarget != null) {
                                 newTouchTarget.pointerIdBits |= idBitsToAssign;
@@ -559,7 +571,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
                             }
 
                             resetCancelNextUpFlag(child);
-                            //调用dispatchTransformedTouchEvent把事件分配给子View
+                            // 调用dispatchTransformedTouchEvent把事件分配给子View
                             if (dispatchTransformedTouchEvent(ev, false, child, idBitsToAssign)) {
                                 mLastTouchDownTime = ev.getDownTime();
                                 if (preorderedList != null) {
@@ -575,7 +587,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
                                 mLastTouchDownX = ev.getX();
                                 mLastTouchDownY = ev.getY();
                                 
-                                //把TouchTarget添加到TouchTarget列表的第一位
+                                // 把TouchTarget添加到TouchTarget列表的第一位
                                 newTouchTarget = addTouchTarget(child, idBitsToAssign);
                                 alreadyDispatchedToNewTouchTarget = true;
                                 break;
@@ -597,14 +609,14 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
             }
 
             if (mFirstTouchTarget == null) {
-                //目前没有任何TouchTarget，所以直接传null给dispatchTransformedTouchEvent
+                // 目前没有任何TouchTarget，所以直接传null给dispatchTransformedTouchEvent
                 handled = dispatchTransformedTouchEvent(ev, canceled, null,
                         TouchTarget.ALL_POINTER_IDS);
             } else {
                 // 把事件根据pointer id分发给TouchTarget列表内的所有TouchTarget，用来处理多点触摸的情况
                 TouchTarget predecessor = null;
                 TouchTarget target = mFirstTouchTarget;
-                //遍历TouchTarget列表
+                // 遍历TouchTarget列表
                 while (target != null) {
                     final TouchTarget next = target.next;
                     if (alreadyDispatchedToNewTouchTarget && target == newTouchTarget) {
@@ -613,7 +625,7 @@ public boolean dispatchTouchEvent(MotionEvent ev) {
                         final boolean cancelChild = resetCancelNextUpFlag(target.child)
                                 || intercepted;
                       
-                        //根据TouchTarget的pointerIdBits来执行dispatchTransformedTouchEvent
+                        // 根据TouchTarget的pointerIdBits来执行dispatchTransformedTouchEvent
                         if (dispatchTransformedTouchEvent(ev, cancelChild,
                                 target.child, target.pointerIdBits)) {
                             handled = true;
@@ -665,7 +677,8 @@ private boolean dispatchTransformedTouchEvent(MotionEvent event, boolean cancel,
         final boolean handled;
 
         final int oldAction = event.getAction();
-        //处理CANCEL的情况，直接把MotionEvent的原始数据分发给子View或者自身的onTouchEvent(这边调用View.dispatchTouchEvent，而View.dispatchTouchEvent会再调用onTouchEvent方法，把MotionEvent传入)
+        // 处理CANCEL的情况，直接把MotionEvent的原始数据分发给子View或者自身的onTouchEvent
+  		// (这边调用View.dispatchTouchEvent，而View.dispatchTouchEvent会再调用onTouchEvent方法，把MotionEvent传入)
         if (cancel || oldAction == MotionEvent.ACTION_CANCEL) {
             event.setAction(MotionEvent.ACTION_CANCEL);
             if (child == null) {
@@ -688,13 +701,13 @@ private boolean dispatchTransformedTouchEvent(MotionEvent event, boolean cancel,
 
         final MotionEvent transformedEvent;
         if (newPointerIdBits == oldPointerIdBits) {
-            //MotionEvent自身的pointer id和当前处理pointer id相同
+            // MotionEvent自身的pointer id和当前处理pointer id相同
             if (child == null || child.hasIdentityMatrix()) {
                 if (child == null) {
-                    //子View为空，直接交还给自身的onTouchEvent处理
+                    // 子View为空，直接交还给自身的onTouchEvent处理
                     handled = super.dispatchTouchEvent(event);
                 } else {
-                    //子View矩阵是单位矩阵，说明子View并没有做过任何变换，直接对x、y做偏移并分配给子View处理
+                    // 子View矩阵是单位矩阵，说明子View并没有做过任何变换，直接对x、y做偏移并分配给子View处理
                     final float offsetX = mScrollX - child.mLeft;
                     final float offsetY = mScrollY - child.mTop;
                     event.offsetLocation(offsetX, offsetY);
@@ -707,24 +720,24 @@ private boolean dispatchTransformedTouchEvent(MotionEvent event, boolean cancel,
             }
             transformedEvent = MotionEvent.obtain(event);
         } else {
-            //MotionEvent自身的pointer id和当前需要处理的pointer id不同，把不需要处理的pointer id相关的信息剔除掉。
+            // MotionEvent自身的pointer id和当前需要处理的pointer id不同，把不需要处理的pointer id相关的信息剔除掉。
             transformedEvent = event.split(newPointerIdBits);
         }
 
         if (child == null) {
-            //子View为空，直接交还给自身的onTouchEvent处理
+            // 子View为空，直接交还给自身的onTouchEvent处理
             handled = super.dispatchTouchEvent(transformedEvent);
         } else {
-            //根据当前的scrollX、scrollY和子View的left、top对MotionEvent的触摸坐标x、y进行偏移
+            // 根据当前的scrollX、scrollY和子View的left、top对MotionEvent的触摸坐标x、y进行偏移
             final float offsetX = mScrollX - child.mLeft;
             final float offsetY = mScrollY - child.mTop;
             transformedEvent.offsetLocation(offsetX, offsetY);
             if (! child.hasIdentityMatrix()) {
-                //获取子View自身矩阵的逆矩阵，并对MotionEvent的坐标相关信息进行矩阵变换
+                // 获取子View自身矩阵的逆矩阵，并对MotionEvent的坐标相关信息进行矩阵变换
                 transformedEvent.transform(child.getInverseMatrix());
             }
           
-            //把经过偏移以及矩阵变换的事件传递给子View处理
+            // 把经过偏移以及矩阵变换的事件传递给子View处理
             handled = child.dispatchTouchEvent(transformedEvent);
         }
 
