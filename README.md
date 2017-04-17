@@ -33,7 +33,7 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
 [AtomicFile 源码解析](https://github.com/GcsSloop/AndroidNote/blob/master/SourceAnalysis/AtomicFile.md) | [GcsSloop](https://github.com/GcsSloop) | [Nukc](https://github.com/nukc) | android api 25 | 2017/4/17
 [Spannable 源码解析](https://github.com/lber19535/SourceAnalysis/blob/master/Spannable%20%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md) | [lber19535](https://github.com/lber19535) | [Nukc](https://github.com/nukc) | android api 24 | 2017/4/17
 [Notification 源码解析](http://www.jianshu.com/p/0cb97db7090c) | [huanglongyu](https://github.com/huanglongyu) | [Nukc](https://github.com/nukc) | android api 21 (cm) | 2017/4/17
-[SparseArray 源码解析](http://sonaive.com/2016/05/04/sparse-array-analysis/) | [taoliuh](https://github.com/taoliuh) | [Nukc](https://github.com/nukc) | android api 23 | 2017/4/17
+[SparseArray 源码解析](http://sonaive.com/2016/05/04/sparse-array-analysis/) | [taoliuh](https://github.com/taoliuh) | [Nukc](https://github.com/nukc) | android api 22 | 2017/4/17
 [ViewStub 源码解析](https://github.com/LittleFriendsGroup/AndroidSdkSourceAnalysis/blob/master/article/ViewStub%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90.md) | [Nukc](https://github.com/nukc) | [7heaven](https://github.com/7heaven) | android api 25 | 2017/4/17
 
 ### 第二期
