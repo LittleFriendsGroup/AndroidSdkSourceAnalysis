@@ -273,6 +273,10 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
      <td>DataBinding源码解析</td>
      <td>xdsjs</td>
     </tr>
+     <tr>
+     <td>PreferenceActivity源码解析</td>
+      <td>FightingLarry</td>
+    </tr>
     </tbody>
 </table>
 
@@ -310,10 +314,6 @@ Class | 分析者 | 校对者 | 版本 | 发布时间
     </tr>
     <tr>
      <td>Paint源码解析</td>
-      <td>未认领</td>
-    </tr>
-    <tr>
-     <td>PreferenceActivity源码解析</td>
       <td>未认领</td>
     </tr>
     <tr>
