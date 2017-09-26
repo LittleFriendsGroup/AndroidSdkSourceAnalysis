@@ -23,21 +23,21 @@ ViewCompat.setOnApplyWindowInsetsListener(this,
             @Override
             public WindowInsetsCompat onApplyWindowInsets(View v,
                     WindowInsetsCompat insets) {
-                // 当前activity的高度 = 手机屏幕 - 状态栏 - 导航栏，突然有代码请求activity的视图嵌入到状态栏或者导航栏里，
-                // 这是activity的高度 = 手机屏幕。 这种情况就会触发onWindowInsetChanged
-                // onWindowInsetChanged方法的逻辑是：当前insets不一致啦，调用reqeustLayout请求重新布局
+                // 当前activity的高度 = 手机屏幕 - 状态栏 - 导航栏，突然间请求activity的视图嵌入到状态栏或者导航栏里，
+                // 这时activity的高度 = 手机屏幕。 这种情况下就会触发onWindowInsetChanged
+                // onWindowInsetChanged方法的逻辑是：当前insets不一致时就会回调，调用reqeustLayout请求重新布局
                 return onWindowInsetChanged(insets);
             }
         });
 ```   
 #### onAttachedToWindow与onDetachedFromWindow
-CollapsingToolbarLayout的收缩动画需要他的父类是AppBarLayout
+CollapsingToolbarLayout的收缩动画需要他的父类是AppBarLayout,而且还要依赖CoordinatorLayout,Behavior.
 onAttachedToWindow()就做了两件事：1. 获取父别布局AppBarLayout添加OnOffsetChangedListener监听
                                  2. ViewCompat.requestApplyInsets(this) 请求安装WindowInsets
 onDetachedFromWindow():移除OnOffsetChangedListener监听
-简单讲一下WindowInsets： requestApplyInsets， setOnApplyWindowInsetsListener， setFitsSystemWindows
+简单讲一下WindowInsets相关几个方法： requestApplyInsets， setOnApplyWindowInsetsListener， setFitsSystemWindows
 状态栏只有一个，只能被一个View消耗掉，当调用requestApplyInsets 就会重新分配一次WindowInsets， OnApplyWindowInsetsListener就会被回调
-setFitsSystemWindows: 设置了一个标志
+setFitsSystemWindows: 给当前View设置了一个标志
 ```java
 final ViewParent parent = getParent();
 if (parent instanceof AppBarLayout) {
@@ -188,7 +188,7 @@ for (int i = 0, z = getChildCount(); i < z; i++) {
     getViewOffsetHelper(getChildAt(i)).onViewLayout();
 }
 ```
-4. 更新mContentScrim和mStatusBarScrim，这下面会简单，调用updateScrimVisibility()更新
+4. 这里调用updateScrimVisibility()就为了更新mContentScrim和mStatusBarScrim，这个下面会讲到。
 
 
 #### OnOffsetChangedListener 的onOffsetChanged() - 该类核心方法
@@ -204,7 +204,7 @@ for (int i = 0, z = getChildCount(); i < z; i++) {
             //2. 这里要说明一下，收缩或展开的过程中CollapsingToolbarLayout的高度是没有变化的。收缩或展开的过程本质上是AppBarLayout下向上或向下偏移,verticalOffset就是AppBarLayout的偏移量，AppBarLayout相对原来的位置是向上的，所有verticalOffset一直为负数，要想理解整个联动动画的过程可以需要结合CoordinatorLayout的Behavior, NestedScrollingParent, NestedScrollingChild, AppBarLayout在理解才可以,
             //这里不展开啦，只关注CollapsingToolbarLayout本身
 
-            //下面这个循环的母的是根据collpaseMode来更新子View的偏移量
+            //下面这个循环目的是根据collpaseMode来更新子View的偏移量
             // 1. PIN 模式: pin是别针的意思，大概意思就是订在这里不动。收缩时AppBarLayout在向上偏移，要想保证child不动，就需要反方向偏移
             // 2. PARALLAX 模式：视差效果，这个效果原理很简单, AppBarLayout在向上偏移，而child向上的偏移量 -verticalOffset 乘上一个因子, 保证不和AppBarLayout偏移量同步就产生了视差效果
             for (int i = 0, z = getChildCount(); i < z; i++) {
